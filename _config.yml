@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://www.codebycodes.com
+title: Code by Codes
+subtitle: "Codes, rants and musings"
+author: Cody Norman
 simple_search: https://www.google.com/search
-description:
+description: "Tofu shabby chic YOLO craft beer chambray. 90's Godard health goth, salvia gluten-free butcher swag yr lo-fi. Fanny pack asymmetrical XOXO Portland, bespoke mumblecore brunch migas Wes Anderson. Flannel Banksy polaroid kogi, listicle twee pour-over semiotics meditation ennui mustache actually. Cornhole Blue Bottle next level artisan Pinterest. Mustache Carles asymmetrical, pug Shoreditch flexitarian keffiyeh banh mi swag plaid bicycle rights bespoke whatever +1 organic. DIY 8-bit McSweeney's, seitan bespoke 90's distillery meditation Godard bicycle rights."
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: wcodynorman@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -64,13 +64,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: cnorm35
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: cnorm35
 twitter_tweet_button: true
 
 # Google +1
