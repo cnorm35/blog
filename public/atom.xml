@@ -4,7 +4,7 @@
   <title><![CDATA[Code by Codes]]></title>
   <link href="http://www.codebycodes.com/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2014-11-29T18:54:39-05:00</updated>
+  <updated>2014-11-29T22:24:02-05:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -12,5 +12,16 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Test Post]]></title>
+    <link href="http://www.codebycodes.com/blog/2014/11/29/test-post/"/>
+    <updated>2014-11-29T19:06:30-05:00</updated>
+    <id>http://www.codebycodes.com/blog/2014/11/29/test-post</id>
+    <content type="html"><![CDATA[<p>Vinyl tote bag dreamcatcher, Carles ethical Helvetica banh mi health goth Banksy Brooklyn gentrify forage cold-pressed mustache deep v. Tofu biodiesel wolf craft beer, beard dreamcatcher cold-pressed Wes Anderson meggings iPhone bitters <!--more-->Echo Park photo booth street art. Jean shorts asymmetrical fingerstache Etsy taxidermy roof party. Listicle stumptown PBR&amp;B 8-bit, Godard literally fap Schlitz Cosby sweater 90&rsquo;s food truck polaroid. Cronut put a bird on it wayfarers skateboard, cornhole Helvetica fixie keffiyeh. Distillery migas pork belly hashtag letterpress fanny pack readymade four loko authentic single-origin coffee direct trade. Yr street art hashtag Intelligentsia, selfies paleo tofu Vice organic.</p>
+
+<p>Mlkshk squid Vice lo-fi post-ironic raw denim, YOLO sustainable Williamsburg single-origin coffee. Bitters cold-pressed wolf, VHS slow-carb chillwave 8-bit Austin Neutra fixie pickled health goth. Migas wolf pop-up Marfa pickled, fixie distillery PBR&amp;B mixtape Banksy pour-over Williamsburg bitters cray trust fund. Ethical kogi American Apparel before they sold out. Cray beard retro slow-carb, selvage mumblecore Williamsburg Brooklyn ugh meggings farm-to-table Marfa. Tonx kitsch vegan Schlitz migas Intelligentsia. McSweeney&rsquo;s sustainable letterpress, Shoreditch bicycle rights cold-pressed fingerstache meditation synth.</p>
+]]></content>
+  </entry>
   
 </feed>
