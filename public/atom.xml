@@ -4,7 +4,7 @@
   <title><![CDATA[Code by Codes]]></title>
   <link href="http://www.codebycodes.com/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2014-11-30T00:11:23-05:00</updated>
+  <updated>2014-11-30T11:50:32-05:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -14,13 +14,97 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Test Post]]></title>
-    <link href="http://www.codebycodes.com/blog/2014/01/29/test-post/"/>
-    <updated>2014-01-29T19:06:30-05:00</updated>
-    <id>http://www.codebycodes.com/blog/2014/01/29/test-post</id>
-    <content type="html"><![CDATA[<p>Vinyl tote bag dreamcatcher, Carles ethical Helvetica banh mi health goth Banksy Brooklyn gentrify forage cold-pressed mustache deep v. Tofu biodiesel wolf craft beer, beard dreamcatcher cold-pressed Wes Anderson meggings iPhone bitters <!--more-->Echo Park photo booth street art. Jean shorts asymmetrical fingerstache Etsy taxidermy roof party. Listicle stumptown PBR&amp;B 8-bit, Godard literally fap Schlitz Cosby sweater 90&rsquo;s food truck polaroid. Cronut put a bird on it wayfarers skateboard, cornhole Helvetica fixie keffiyeh. Distillery migas pork belly hashtag letterpress fanny pack readymade four loko authentic single-origin coffee direct trade. Yr street art hashtag Intelligentsia, selfies paleo tofu Vice organic.</p>
+    <title type="html"><![CDATA[This Aint No Vacation.]]></title>
+    <link href="http://www.codebycodes.com/blog/2014/07/09/this-aint-no-vacation/"/>
+    <updated>2014-07-09T12:45:21-04:00</updated>
+    <id>http://www.codebycodes.com/blog/2014/07/09/this-aint-no-vacation</id>
+    <content type="html"><![CDATA[<p>I know, I know…having a double negative for my post title isn’t exactly good form.  Maybe it’s a remnant of my southern upbringing, but that’s been a bit of a motto for my stay out here.  I’m not on a vacation, I’m not at a summer camp, it’s a bootcamp.  That was more than apparent this past week. <!--more--> Coming into the end of my second week I had covered an enormous amount of information, pulling 12 plus hour days and still taking in new information everyday.  My first big challenge was when we started writing MySQL queries.  Don’t get me wrong, everything else I had done up to that point was extremely challenging, but I had at least some experience with.  This was completely new territory for me.  The first couple of days were pretty rough, but I kept reminding myself of one thing.  This was the reason I had left my entire life behind, packed my things and headed for the west coast…to be challenged.  I didn’t come out here to be patted on the back, I came here to push myself.  A few extra sessions over the long weekend and everything started to click.  I was back on track with renewed confidence, something I’ll definitely need. I know this won’t be the last I’ll really be pushed with fully grasping a new topic and things won’t be slowing down anytime soon.</p>
 
-<p>Mlkshk squid Vice lo-fi post-ironic raw denim, YOLO sustainable Williamsburg single-origin coffee. Bitters cold-pressed wolf, VHS slow-carb chillwave 8-bit Austin Neutra fixie pickled health goth. Migas wolf pop-up Marfa pickled, fixie distillery PBR&amp;B mixtape Banksy pour-over Williamsburg bitters cray trust fund. Ethical kogi American Apparel before they sold out. Cray beard retro slow-carb, selvage mumblecore Williamsburg Brooklyn ugh meggings farm-to-table Marfa. Tonx kitsch vegan Schlitz migas Intelligentsia. McSweeney&rsquo;s sustainable letterpress, Shoreditch bicycle rights cold-pressed fingerstache meditation synth.</p>
+<p>On top of all of that, our first exam/certification was this weekend.  Keeping with the Dojo theme, it’s referred to as the Yellow Belt.  It may not sound very intimidating, but don’t let the title fool you.  The challenge is to recreate a website of their choosing from a screen shot…in 4 hours.  It wasn’t exactly a geocities, or angel fire page (for the youngsters out there, they were some of the first user created websites on the web back in the AOL and dial-up days.).  This was an actual business’s website.  A few weeks ago, this would’ve been a huge task for me to accomplish in any amount of time, much less 4 hours.  Nonetheless, I was able to get everything done with about 3 minutes to spare.  When I received my results back late last night, I got a 9.5 out of 10 “near perfect” on their grading scale.  I took about 30 seconds to revel in my score and started pounding away at the keys again, like I said this aint no vacation.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Times They Are a Changin']]></title>
+    <link href="http://www.codebycodes.com/blog/2014/07/03/times-they-are-a-changin/"/>
+    <updated>2014-07-03T12:38:59-04:00</updated>
+    <id>http://www.codebycodes.com/blog/2014/07/03/times-they-are-a-changin</id>
+    <content type="html"><![CDATA[<p>Today, I had a bit of a realization.  It was something that really made me realize how my mindset is changing.  I was plugging along at the dojo, and looked at the clock.  Something I do dozens of times a day.  The difference was what I thought afterwards.  It was around 3:30 or so and normally,<!--more--> I would be counting down the hours until I could go home and unwind.  Instead of wishing the time would pass faster, I was wishing it would move slower, wishing I could cram more hours into the day.  This is day 8 of the bootcamp and I’m usually there for about 12 hours a day, ride home and try to knock out another 2-3 hours when I get back to the hacker house.  It reminded me a a really good quote/parable about time a manager of mine sent out a while back.  I think it really speaks for itself so i’ll just end with that.  (I tried to find the source of the quote, and the only name I could find attached was Marc Levy)</p>
+
+<blockquote><p>Imagine there is a bank account that credits your account each morning with $86,400. It carries over no balance from day to day.
+Every evening the bank deletes whatever part of the balance you failed to use during the day. What would you do? Draw out every cent, of course?
+Each of us has such a bank. It’s name is TIME.
+Every morning, it credits you with 86,400 seconds.
+Every night it writes off as lost, whatever of this you have failed to invest to a good purpose.
+It carries over no balance. It allows no over draft. Each day it opens a new account for you. Each night it burns the remains of the day.
+If you fail to use the day’s deposits, the loss is yours. There is no drawing against “tomorrow.”
+You must live in the present on today’s deposits. Invest it so as to get from it the utmost in health, happiness and success!
+The clock is running!! Make the most of today</p></blockquote>
+
+<p>To realise the value of ONE YEAR, ask a student who failed a grade.</p>
+
+<p>To realise the value of ONE MONTH, ask a mother who has given birth to a premature baby.</p>
+
+<p>To realise the value of ONE WEEK, ask the editor of a weekly newspaper.</p>
+
+<p>To realise the value of ONE HOUR, ask the lovers who are waiting to meet.</p>
+
+<p>To realise the value of ONE MINUTE, ask a person who just missed a train.</p>
+
+<p>To realise the value of ONE SECOND, ask someone who just avoided an accident.</p>
+
+<p>To realise the value of ONE MILLISECOND, ask the person who won a silver medal at the Olympics.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Week One]]></title>
+    <link href="http://www.codebycodes.com/blog/2014/06/29/week-one/"/>
+    <updated>2014-06-29T12:36:13-04:00</updated>
+    <id>http://www.codebycodes.com/blog/2014/06/29/week-one</id>
+    <content type="html"><![CDATA[<p>I haven’t been able to keep up with my blog post as much as I would have liked so far, but that’s with good reason.  With week one behind me at Coding Dojo, I’ve put in close to 70 hours of work between writing code, reading code, lectures, debugging, and working on assignments.  That figure would have terrified me before, but what I quickly realized is how much I love diving into these problems and assignments. <!--more--> It turns out I actually really enjoy the amount of time we’re putting in and the rate at which I’m writing better code in a shorter amount of time is phenomenal.  This weeks assignments were getting a solid base with writing HTML and CSS, then adding in Twitter’s Bootstrap framework and LESS.  Bootstrap and LESS have been invaluable additions to my budding development arsenal.</p>
+
+<p>At first, my main concern was to get whatever I’m working on actually working and closely resembling the assignment.  Now, I’m changeling myself to see how few lines of code I can write and produce the same result.  Going back through older assignments and refactoring   gives me an idea of what to do better next time.</p>
+
+<p>Nonetheless, I have came away with some good lessons from the first week.  One is to really embrace the Coding Dojo rules:</p>
+
+<p>1.) Be Present  – This is not a 9-5 gig, that’s for sure.  Generally, I will arrive at the dojo around 7:30 – 8:00 (it’s a 6 mile bike for me, so some trips are slower than others) and work until at least 7:00.  After my ride home, I’ll generally spend another 2 hours or so working on that days tasks or getting a jumpstart on the next day.</p>
+
+<p>2.) Strength through struggle – I think this rule has been the most beneficial for me so far.  Part of learning something that sticks with you is struggling through it.  Also, I’ve found things that I’ve learned while trying to find a solution helps solve other problems down the road.  It’s not like this is sink or swim.  This rule comes with the wonderful caveat of the 20 minute rule.  Don’t spend more than 20 minutes trying to figure out something on your own.  Time is at a premium, and you really want to be as efficient as possible.  After you’ve banged your head against the desk (metaphorically…at least most of the time) reach out to one of your classmates.  Sometimes, the simple matter of saying your problem out loud,   or thinking of it in a way to explain what’s going on to someone else can solve it for you.  If you and some of your group mates can’t figure out the issue then it’s time to grab an instructor.  I really love the system because it gives you a chance to debug other people’s code and work on problems in a group setting.  If the group can’t figure it out, one of the instructors will explain the issue on the whiteboard for the whole class.</p>
+
+<p>3.) Be humble – This should be pretty self-explanatory.  Everyone is from different backgrounds, learns at a different pace, and has varying levels of experience with the material.</p>
+
+<p>With week one down, I’ve met some amazing people from all sorts of backgrounds and watch my skill grow exponentially.  Something that would have otherwise taken me about a couple to a few days, I can have knocked out in 6-8 hours of solid work.  Really looking forward to see what week two has in store for me and my fellow code ninjas.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Departure]]></title>
+    <link href="http://www.codebycodes.com/blog/2014/06/29/the-departure/"/>
+    <updated>2014-06-29T11:58:52-04:00</updated>
+    <id>http://www.codebycodes.com/blog/2014/06/29/the-departure</id>
+    <content type="html"><![CDATA[<p>Before I get into what the application process was like for Coding Dojo, I thought I would go into some of the preparations for flying out and making arrangements, etc.<!--more--></p>
+
+<p>First off, this is the first time I have ever bought a one-way ticket, not going to lie, felt a little weird.  The reason I didn’t purchase a round trip ticket is I wanted to leave the possibility of doing some interviews open.  Also, hitting the exact day I would need to fly back (and stick to since I’m stubborn and would refuse to pay change fees) 5-6 months down the road really seemed like hitting a moving target.</p>
+
+<p>For finding a place to stay, Airbnb really seemed like my best bet.  I like the idea of verified photos and a middle man to make me feel a little more comfortable going into something like this blind.  While I’m at the bootcamp, I will be staying at a couple of the area “hacker houses/hostels”.  If you’re not familiar with the term, no worries…I wasn’t either.  It’s basically a house with a few rooms of bunk beds that you can rent out by the day, night, or month.  People working on their startups, doing internships, and other tech related shenanigans rent out the beds as needed.  I’m really excited to be surrounded with people from different tech backgrounds, working on different projects, and ideas.</p>
+
+<p>One thing that was a bit overwhelming was packing.  I wanted to try to only check one bag (which I succeeded at) plus my carry on.  How do you pack everything your going to need for 3 months in a place that you’ve never been to?  I still don’t know the answer, but vacuum bags for the majority of my clothes were an absolute life saver.  The thing I was more concerned about was my gadgets, cords, and accessories.  With 50-70hrs a week for the next 12 weeks ahead of me, I wanted to try to be as prepared as possible.  I can always do laundry more often, but missing something that would make my life a lot easier would really get to me.  I basically packed up every charger, adapter, cord, hard drive, and flash drive I had.  I’m sure I’ve left something behind but hopefully it falls under the category of that would have been nice instead of <em>D’OH!!!!</em>. Only time will tell.  Either way, time for boarding….Let’s Do This!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Introductions]]></title>
+    <link href="http://www.codebycodes.com/blog/2014/06/17/introductions/"/>
+    <updated>2014-06-17T11:56:41-04:00</updated>
+    <id>http://www.codebycodes.com/blog/2014/06/17/introductions</id>
+    <content type="html"><![CDATA[<p>Hello everyone!  I started this blog to chronicle my journey through the Coding Dojo bootcamp in Mountain View, CA this summer.  First things first, a bit of background about myself.<!--more--></p>
+
+<p>If you haven’t already guessed by the web address, my name is Cody.  I’ve been living in Philadelphia for the past 4 years, but I’m originally from North Carolina.  For the most part, I really enjoy living in Philly except for the fact that everything that should be on a biscuit, is on a bagel but hey…no one is perfect.</p>
+
+<p>My background is primarily in economics and finance and spent the past few years as a loan officer for a mortgage lender.  I know what you’re thinking, why would anyone want to leave the glamorous, exciting, rock star life of a loan officer?  Well, there were some things I really did enjoy about my job, mainly helping people who were severely  underwater on their homes.  Everything else was filled with red-tape and regulations which was the main reason I decided to leave to focus all my efforts on web development and programming.</p>
+
+<p>I fly out to the west coast on Friday and the bootcamp starts on Monday.  I’ll go into more detail on the application process and some of the preparation I’ve done in a later post.</p>
 ]]></content>
   </entry>
   
