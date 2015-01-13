@@ -40,26 +40,38 @@ I have a chance to work through all the lessons (hopefully by the end of the wee
 
 ```
 add_bootstrap_elements_to_pages
-authorization
-creating_more_pages
-creating_navigation_links
-creating_your_homepage
-customizing_bootstrap
-design_improvements
-generate_pins_scaffold
-generating_users
-going_online_with_heroku
-installing_devise
-installing_the_bootstrap_gem
-master
-new_user_signup
-pins_controller
-pins_users_and_associations
-pins_views
-setting_the_root_path_with_routes
-setting_up_devise
-twerking_devise_views
-what_is_embedded_ruby
+  adding_icons
+  adding_names_to_users
+  adding_validations
+  authorization
+  changing_the_root_route
+  creating_a_page_for_one_pin
+  creating_more_pages
+  creating_navigation_links
+  creating_your_homepage
+  customizing_bootstrap
+  design_improvements
+  fixing_a_bug
+  generate_pins_scaffold
+  generating_users
+  going_online_with_heroku
+  image_upload_with_paperclip
+  installing_devise
+  installing_the_bootstrap_gem
+* master
+  new_user_signup
+  ordering_pins
+  pagination
+  paperclip_to_amazon_s3
+  pins_controller
+  pins_users_and_associations
+  pins_views
+  replacing_emails_with_names
+  setting_the_root_path_with_routes
+  setting_up_devise
+  styling_with_jquery_masonry
+  twerking_devise_views
+  what_is_embedded_ruby
 ```
 
 When you have a branch(one of the lessons) you would like to checkout just type
@@ -85,6 +97,8 @@ If you check the results of starting the rails server, you'll see that it's runn
 This way, you can have this example application running and open in your browser at the same time
 as your own version of the Pintersting application.
 
-If you're having problems getting the example applicaiton to run, check out the [documentation](https://github.com/cnorm35/one_month_rails_psl) on the github page for some extra info.
+If you're having problems getting the example application to run, check out the [documentation](https://github.com/cnorm35/one_month_rails_psl) on the github page for some extra info.
 
 Hopefully, this will make it a little easier to see the end results from the lessons and allow you to keep moving forward in the course.
+
+Once your finished with the One Month Rails course, I highly recommend checking out the [Rails Tutorial](http://railstutorial.org/book) from Michael Hartl.  He takes you through the process of building a twitter clone step-by-step.  There is also a nice introduction to getting started with testing.
