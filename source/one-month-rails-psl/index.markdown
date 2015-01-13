@@ -35,8 +35,8 @@ just type:
 $ git branch -a
 ```
 
-Here is the current list of all the branches.  I'll update this with the full list of branches once 
-I have a chance to work through all the lessons (hopefully by the end of the week)
+Here is the current list of all the branches.
+
 
 ```
 add_bootstrap_elements_to_pages
