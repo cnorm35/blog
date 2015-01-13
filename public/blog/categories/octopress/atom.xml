@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress, | Code by Codes]]></title>
+  <link href="http://www.codebycodes.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://www.codebycodes.com/"/>
+  <updated>2015-01-13T18:44:05-05:00</updated>
+  <id>http://www.codebycodes.com/</id>
+  <author>
+    <name><![CDATA[Cody Norman]]></name>
+    <email><![CDATA[wcodynorman@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Deploy Your Octopress Blog to Heroku]]></title>
+    <link href="http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/"/>
+    <updated>2015-01-13T18:08:38-05:00</updated>
+    <id>http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku</id>
+    <content type="html"><![CDATA[<p>This post will walk you through setting up a new blog with the Octopress blogging framework
+and deploy to Heroku.</p>
+
+<p>So first off, what exactly italics IS Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
+
+<p>The first is it&rsquo;s built with Ruby.  The second, is there is no database.  You create your posts using the markdown language and Ruby (and Octopress) generates static HTML pages.  This make it pretty easy to set up and very fast since everything is a static page.</p>
+
+<p>To get started, fire up your command line and clone a copy of the Octopress repository.</p>
+
+<pre><code>$ git clone git://github.com/imathis/octopress.git my_blog
+</code></pre>
+
+<p>Next, navigate into the folder that was created when you cloned the Octopress code.</p>
+
+<pre><code>$ cd my_blog
+</code></pre>
+
+<p>Since Octopress is built off Ruby, lets check the current version of Ruby installed.</p>
+
+<pre><code>$ ruby -v
+</code></pre>
+
+<p>If it&rsquo;s not at least <code>ruby 1.9.3</code> check out the documentation to upgrading your ruby version with RVM <a href="http://octopress.org/docs/setup/rvm/">here</a></p>
+
+<p>So now, lets install the gems</p>
+
+<pre><code>$ gem install bundler
+$ bundle install
+$ rake install
+</code></pre>
+
+<p>At this point, you should be able to see the basic template for your site.  Running
+<code>
+$ rake preview
+</code>
+will generate the required files for you site and start a simple web server.  Check out localhost:4000 to see if your site is up and running.  It should look something like this</p>
+
+<p><img class="left" src="/images/Octopress_Screenshot.png" width="800" height="350" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+
+<p>Now we need to remove <code>public</code> and <code>Gemfile.lock</code> from our <code>.gitignore</code> file.  We&rsquo;ll need this to add generated content to Heroku.</p>
+
+<p>Once that&rsquo;s take care of, let&rsquo;s head to <code>_config.yml</code> and start customizing the settings</p>
+
+<p>Main settings:
+<code>
+url: http://www.codebycodes.com
+title: Code by Codes
+subtitle: "Codes, rants and musings"
+author: Cody Norman
+</code>
+If you&rsquo;d like to connect some of your external accounts, scroll down and check out some of the 3rd party services you can connect.</p>
+]]></content>
+  </entry>
+  
+</feed>

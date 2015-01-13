@@ -10,12 +10,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Code by Codes</title>
+  <title>Deploy Your Octopress Blog to Heroku - Code by Codes</title>
   <meta name="author" content="Cody Norman">
 
   
-  <meta name="description" content="Code by Codes
-Codes, rants and musings about me Cody here! I'm a former loan officer who saw the light and became a software developer. This is &hellip;">
+  <meta name="description" content="Deploy Your Octopress Blog to Heroku written January 13, 2015 in heroku, octopress, This post will walk you through setting up a new blog with the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +23,7 @@ Codes, rants and musings about me Cody here! I'm a former loan officer who saw t
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.codebycodes.com">
+  <link rel="canonical" href="http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Code by Codes" type="application/atom+xml">
@@ -53,171 +52,13 @@ Codes, rants and musings about me Cody here! I'm a former loan officer who saw t
       <img src="/images/home.png"/>
     </a>
 
-    <div class="home-page">
-  <div class="hero">
-    <h1>Code by Codes</h1>
-<p>Codes, rants and musings</p>
-
-  </div>
-
-  <div class="home-field">
-    <div class="home-landing her-row">
-      <div class="container">
-        <div class="row">
-          <div id="about-me" class="col-md-offset-3 col-md-6">
-  <h4>about me</h4>
-  <p>Cody here! I&#8217;m a former loan officer who saw the light and became a software developer. This is where I&#8217;ll share what I&#8217;m working on, what I&#8217;ve learned from coding bootcamp and working as a developer in an early stage start up. You want to know more? Drop me a line.</p>
-  <div class="social-icon-list">
-  	
-    <a title="Twitter" href="https://twitter.com/cnorm35"><i class="fa fa-twitter-square fa-3x"></i></a>
-    
-    
-    <a title="GitHub" href="https://github.com/cnorm35"><i class="fa fa-github fa-3x"></i></a>
-    
-    
-    
-    <a title="E-Mail" href="mailto:wcodynorman@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a>
-    
-  </div>
-</div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="article-list">
-      <div class="container">
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/">Deploy Your Octopress Blog to Heroku</a></h2>
-  
-  <p>
-    <p>This post will walk you through setting up a new blog with the Octopress blogging framework
-and deploy to Heroku.</p>
-
-
-
-
-<p>So first off, what exactly italics IS Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
-
-
-
-
-<p>The first is it&rsquo;s built with Ruby.  The second, is there is no database.  You create your posts using the markdown language and Ruby (and Octopress) generates static HTML pages.  This make it pretty easy to set up and very fast since everything is a static page.</p>
-
-
-
-
-<p>To get started, fire up your command line and clone a copy of the Octopress repository.</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git://github.com/imathis/octopress.git my_blog</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Next, navigate into the folder that was created when you cloned the Octopress code.</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd my_blog</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Since Octopress is built off Ruby, lets check the current version of Ruby installed.</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ruby -v</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>If it&rsquo;s not at least <code>ruby 1.9.3</code> check out the documentation to upgrading your ruby version with RVM <a href="http://octopress.org/docs/setup/rvm/">here</a></p>
-
-
-
-
-<p>So now, lets install the gems</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install bundler
-</span><span class='line'>$ bundle install
-</span><span class='line'>$ rake install</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>At this point, you should be able to see the basic template for your site.  Running</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake preview</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>will generate the required files for you site and start a simple web server.  Check out localhost:4000 to see if your site is up and running.  It should look something like this</p>
-
-
-
-
-<p><img class="left" src="/images/Octopress_Screenshot.png" width="800" height="350" title="image" alt="images"></p>
-
-
-
-
-<p>Now we need to remove <code>public</code> and <code>Gemfile.lock</code> from our <code>.gitignore</code> file.  We&rsquo;ll need this to add generated content to Heroku.</p>
-
-
-
-
-<p>Once that&rsquo;s take care of, let&rsquo;s head to <code>_config.yml</code> and start customizing the settings</p>
-
-
-
-
-<p>Main settings:</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>url: http://www.codebycodes.com
-</span><span class='line'>title: Code by Codes
-</span><span class='line'>subtitle: "Codes, rants and musings"
-</span><span class='line'>author: Cody Norman</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>If you&rsquo;d like to connect some of your external accounts, scroll down and check out some of the 3rd party services you can connect.</p>
-
-
-  </p>
-  <span class="meta">
-    written 
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Deploy Your Octopress Blog to Heroku</h1>
+        <div class="meta">
+          written 
 
 
 
@@ -231,7 +72,7 @@ and deploy to Heroku.</p>
 
 
 <time datetime="2015-01-13T18:08:38-05:00" pubdate data-updated="true">January 13, 2015</time>
-    
+          
 
 in
 <span class="categories">
@@ -241,181 +82,101 @@ in
 </span>
 
 
-  </span>
+        </div>
+        <p>This post will walk you through setting up a new blog with the Octopress blogging framework
+and deploy to Heroku.</p>
 
-  
-</article>
-            </div>
-          </div>
+<p>So first off, what exactly italics IS Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
+
+<p>The first is it&rsquo;s built with Ruby.  The second, is there is no database.  You create your posts using the markdown language and Ruby (and Octopress) generates static HTML pages.  This make it pretty easy to set up and very fast since everything is a static page.</p>
+
+<p>To get started, fire up your command line and clone a copy of the Octopress repository.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git://github.com/imathis/octopress.git my_blog</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, navigate into the folder that was created when you cloned the Octopress code.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd my_blog</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Since Octopress is built off Ruby, lets check the current version of Ruby installed.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ruby -v</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If it&rsquo;s not at least <code>ruby 1.9.3</code> check out the documentation to upgrading your ruby version with RVM <a href="http://octopress.org/docs/setup/rvm/">here</a></p>
+
+<p>So now, lets install the gems</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install bundler
+</span><span class='line'>$ bundle install
+</span><span class='line'>$ rake install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>At this point, you should be able to see the basic template for your site.  Running</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake preview</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will generate the required files for you site and start a simple web server.  Check out localhost:4000 to see if your site is up and running.  It should look something like this</p>
+
+<p><img class="left" src="/images/Octopress_Screenshot.png" width="800" height="350" title="image" alt="images"></p>
+
+<p>Now we need to remove <code>public</code> and <code>Gemfile.lock</code> from our <code>.gitignore</code> file.  We&rsquo;ll need this to add generated content to Heroku.</p>
+
+<p>Once that&rsquo;s take care of, let&rsquo;s head to <code>_config.yml</code> and start customizing the settings</p>
+
+<p>Main settings:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>url: http://www.codebycodes.com
+</span><span class='line'>title: Code by Codes
+</span><span class='line'>subtitle: "Codes, rants and musings"
+</span><span class='line'>author: Cody Norman</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you&rsquo;d like to connect some of your external accounts, scroll down and check out some of the 3rd party services you can connect.</p>
+
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="cnorm35" data-size="large">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+</script>
+        <hr class="divider-short"/>
+
         
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/12/10/my-time-at-dreamit-ventures/">My Time at Dreamit Ventures</a></h2>
-  
-  <p>
-    <p><p>On June 20th of this year, I boarded a flight bound for San Francisco.  Armed with only a suitcase and a laptop, I was heading to a coding bootcamp to follow a crazy dream of switching careers and becoming a developer.  I had no idea what the next 3 months would bring.  My first two weeks were spent on the top bunk at a hacker house.  My &ldquo;room&rdquo; was really the living room.  I didn&rsquo;t even have a chance to fall asleep with the light off and not have people working around me until week 3.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-12-10T07:53:40-05:00" pubdate data-updated="true">December 10, 2014</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/accelerator/'>accelerator</a>, <a class='category' href='/blog/categories/startup/'>startup</a>, <a class='category' href='/blog/categories/startups/'>startups,</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/12/10/my-time-at-dreamit-ventures/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/12/03/new-site/">New Site, New Format</a></h2>
-  
-  <p>
-    <p>Hello all!  My last post was on a different blog and a few months back. I decided to set up a new blog once I came across the <a href="http://octopress.org/">Octopress</a> blogging framework.  It&rsquo;s billed as &ldquo;A blogging framework for hackers&rdquo; making it much easier to share code snippets.  It&rsquo;s also built in Ruby so it seemed like a great project for me to tinker with.
-This will be a place where I can share what I&rsquo;m working on, tips and tricks I pick up, and the occasional rant.</p>
-
-
-
-
-<p><p>So&hellip; on the last update,</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-12-03T07:10:42-05:00" pubdate data-updated="true">December 3, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/12/03/new-site/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/07/09/this-aint-no-vacation/">This Aint No Vacation.</a></h2>
-  
-  <p>
-    <p><p>I know, I know…having a double negative for my post title isn’t exactly good form.  Maybe it’s a remnant of my southern upbringing, but that’s been a bit of a motto for my stay out here.  I’m not on a vacation, I’m not at a summer camp, it’s a bootcamp.  That was more than apparent this past week.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-07-09T12:45:21-04:00" pubdate data-updated="true">July 9, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/07/09/this-aint-no-vacation/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/07/03/times-they-are-a-changin/">Times They Are a Changin&#8217;</a></h2>
-  
-  <p>
-    <p><p>Today, I had a bit of a realization.  It was something that really made me realize how my mindset is changing.  I was plugging along at the dojo, and looked at the clock.  Something I do dozens of times a day.  The difference was what I thought afterwards.  It was around 3:30 or so and normally,</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-07-03T12:38:59-04:00" pubdate data-updated="true">July 3, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/07/03/times-they-are-a-changin/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
         
       </div>
     </div>
+  </div>
+</article>
 
-    <hr class="divider-short"/>
+<hr class="divider-short"/>
 
-    <div class="archive-link">
-      <h3><a href="/posts/">All Posts</a></h3>
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2014/12/10/my-time-at-dreamit-ventures/" title="Previous Post: My time at Dreamit Ventures">&laquo; Previous: My time at Dreamit Ventures</a>
+        
+
+        
+      </div>
     </div>
   </div>
 </div>
@@ -455,13 +216,36 @@ This will be a place where I can share what I&rsquo;m working on, tips and trick
 </footer>
 
     
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'codebycodes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/';
+        var disqus_url = 'http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
     
 
 <script type="text/javascript">
       var disqus_shortname = 'codebycodes';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/';
+        var disqus_url = 'http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

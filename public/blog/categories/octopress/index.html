@@ -10,12 +10,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Code by Codes</title>
+  <title>Category: Octopress, - Code by Codes</title>
   <meta name="author" content="Cody Norman">
 
   
-  <meta name="description" content="Code by Codes
-Codes, rants and musings about me Cody here! I'm a former loan officer who saw the light and became a software developer. This is &hellip;">
+  <meta name="description" content="Category: octopress,">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +23,7 @@ Codes, rants and musings about me Cody here! I'm a former loan officer who saw t
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.codebycodes.com/blog/posts/2">
+  <link rel="canonical" href="http://www.codebycodes.com/blog/categories/octopress">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Code by Codes" type="application/atom+xml">
@@ -53,159 +52,110 @@ Codes, rants and musings about me Cody here! I'm a former loan officer who saw t
       <img src="/images/home.png"/>
     </a>
 
-    <div class="home-page">
-  <div class="hero">
-    <h1>Code by Codes</h1>
-<p>Codes, rants and musings</p>
-
+    <div class="all-posts">
+  <div class="container">
+    <div class="row">
+      <div class="list-title col-md-offset-3 col-md-6">
+        <h4>Posts in octopress,</h4>
+      </div>
+    </div>
   </div>
 
-  <div class="home-field">
-    <div class="home-landing her-row">
-      <div class="container">
+  <div class="article-list">
+    <div class="container">
+      
+        
         <div class="row">
-          <div id="about-me" class="col-md-offset-3 col-md-6">
-  <h4>about me</h4>
-  <p>Cody here! I&#8217;m a former loan officer who saw the light and became a software developer. This is where I&#8217;ll share what I&#8217;m working on, what I&#8217;ve learned from coding bootcamp and working as a developer in an early stage start up. You want to know more? Drop me a line.</p>
-  <div class="social-icon-list">
-  	
-    <a title="Twitter" href="https://twitter.com/cnorm35"><i class="fa fa-twitter-square fa-3x"></i></a>
-    
-    
-    <a title="GitHub" href="https://github.com/cnorm35"><i class="fa fa-github fa-3x"></i></a>
-    
-    
-    
-    <a title="E-Mail" href="mailto:wcodynorman@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a>
-    
-  </div>
-</div>
+          <div class="col-md-offset-3 col-md-6">
+            <article>
+  <h2><a href="/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/">Deploy Your Octopress Blog to Heroku</a></h2>
+  
+  <p>
+    <p>This post will walk you through setting up a new blog with the Octopress blogging framework
+and deploy to Heroku.</p>
 
+<p>So first off, what exactly italics IS Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
+
+<p>The first is it&rsquo;s built with Ruby.  The second, is there is no database.  You create your posts using the markdown language and Ruby (and Octopress) generates static HTML pages.  This make it pretty easy to set up and very fast since everything is a static page.</p>
+
+<p>To get started, fire up your command line and clone a copy of the Octopress repository.</p>
+
+<pre><code>$ git clone git://github.com/imathis/octopress.git my_blog
+</code></pre>
+
+<p>Next, navigate into the folder that was created when you cloned the Octopress code.</p>
+
+<pre><code>$ cd my_blog
+</code></pre>
+
+<p>Since Octopress is built off Ruby, lets check the current version of Ruby installed.</p>
+
+<pre><code>$ ruby -v
+</code></pre>
+
+<p>If it&rsquo;s not at least <code>ruby 1.9.3</code> check out the documentation to upgrading your ruby version with RVM <a href="http://octopress.org/docs/setup/rvm/">here</a></p>
+
+<p>So now, lets install the gems</p>
+
+<pre><code>$ gem install bundler
+$ bundle install
+$ rake install
+</code></pre>
+
+<p>At this point, you should be able to see the basic template for your site.  Running
+<code>
+$ rake preview
+</code>
+will generate the required files for you site and start a simple web server.  Check out localhost:4000 to see if your site is up and running.  It should look something like this</p>
+
+<p><img class="left" src="/images/Octopress_Screenshot.png" width="800" height="350" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+
+<p>Now we need to remove <code>public</code> and <code>Gemfile.lock</code> from our <code>.gitignore</code> file.  We&rsquo;ll need this to add generated content to Heroku.</p>
+
+<p>Once that&rsquo;s take care of, let&rsquo;s head to <code>_config.yml</code> and start customizing the settings</p>
+
+<p>Main settings:
+<code>
+url: http://www.codebycodes.com
+title: Code by Codes
+subtitle: "Codes, rants and musings"
+author: Cody Norman
+</code>
+If you&rsquo;d like to connect some of your external accounts, scroll down and check out some of the 3rd party services you can connect.</p>
+
+  </p>
+  <span class="meta">
+    written 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2015-01-13T18:08:38-05:00" pubdate data-updated="true">January 13, 2015</time>
+    
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/heroku/'>heroku</a>, <a class='category' href='/blog/categories/octopress/'>octopress,</a>
+  
+</span>
+
+
+  </span>
+
+  
+</article>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="article-list">
-      <div class="container">
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/06/29/week-one/">Week One</a></h2>
-  
-  <p>
-    <p><p>I haven’t been able to keep up with my blog post as much as I would have liked so far, but that’s with good reason.  With week one behind me at Coding Dojo, I’ve put in close to 70 hours of work between writing code, reading code, lectures, debugging, and working on assignments.  That figure would have terrified me before, but what I quickly realized is how much I love diving into these problems and assignments.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-29T12:36:13-04:00" pubdate data-updated="true">June 29, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/06/29/week-one/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/06/29/the-departure/">The Departure</a></h2>
-  
-  <p>
-    <p><p>Before I get into what the application process was like for Coding Dojo, I thought I would go into some of the preparations for flying out and making arrangements, etc.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-29T11:58:52-04:00" pubdate data-updated="true">June 29, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/06/29/the-departure/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/06/17/introductions/">Introductions</a></h2>
-  
-  <p>
-    <p><p>Hello everyone!  I started this blog to chronicle my journey through the Coding Dojo bootcamp in Mountain View, CA this summer.  First things first, a bit of background about myself.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-17T11:56:41-04:00" pubdate data-updated="true">June 17, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/06/17/introductions/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-      </div>
-    </div>
-
-    <hr class="divider-short"/>
-
-    <div class="archive-link">
-      <h3><a href="/posts/">All Posts</a></h3>
+      
     </div>
   </div>
 </div>
