@@ -154,7 +154,13 @@ $ git commit -m "updated my awesome site"
 $ git push heroku master
 ```
 
-And that's it!  You now have your own blog up and running on Heroku.  If you get stuck, [Octopress](http://octopress.org/docs/) has some really helpful documentation.
+Once that's complete, you can either head to the url that Heroku gave to you or run the open command from your command line and open it automatically.
+
+```
+$ heroku open
+```
+
+And that's it!  You now have your own blog up and running on Heroku.  If your having any issues, [Octopress](http://octopress.org/docs/) has some really helpful documentation and so does [Heroku](https://devcenter.heroku.com/start).
 
 
 
