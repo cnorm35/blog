@@ -95,125 +95,12 @@ Codes, rants and musings about me Cody here! I'm a former loan officer who saw t
   <h2><a href="/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/">Deploy Your Octopress Blog to Heroku</a></h2>
   
   <p>
-    <p>This post will walk you through setting up a new blog with the Octopress blogging framework
-and deploy to Heroku.</p>
+    <p>You may have noticed that my site&rsquo;s name is codebycodes, but I have yet to post any code on here.  Good job on calling me out.  So here it is.  This post will walk you through setting up a new blog with the Octopress blogging framework and deploy to Heroku.  This is the same setup that this blog is currently running on.</p>
 
 
 
 
-<p>So first off, what exactly italics IS Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
-
-
-
-
-<p>The first is it&rsquo;s built with Ruby.  The second, is there is no database.  You create your posts using the markdown language and Ruby (and Octopress) generates static HTML pages.  This make it pretty easy to set up and very fast since everything is a static page.</p>
-
-
-
-
-<p>To get started, fire up your command line and clone a copy of the Octopress repository.</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone git://github.com/imathis/octopress.git my_blog</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Next, navigate into the folder that was created when you cloned the Octopress code.</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd my_blog</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>Since Octopress is built off Ruby, lets check the current version of Ruby installed.</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ruby -v</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>If it&rsquo;s not at least <code>ruby 1.9.3</code> check out the documentation to upgrading your ruby version with RVM <a href="http://octopress.org/docs/setup/rvm/">here</a></p>
-
-
-
-
-<p>So now, lets install the gems</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install bundler
-</span><span class='line'>$ bundle install
-</span><span class='line'>$ rake install</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>At this point, you should be able to see the basic template for your site.  Running</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rake preview</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>will generate the required files for you site and start a simple web server.  Check out localhost:4000 to see if your site is up and running.  It should look something like this</p>
-
-
-
-
-<p><img class="left" src="/images/Octopress_Screenshot.png" width="800" height="350" title="image" alt="images"></p>
-
-
-
-
-<p>Now we need to remove <code>public</code> and <code>Gemfile.lock</code> from our <code>.gitignore</code> file.  We&rsquo;ll need this to add generated content to Heroku.</p>
-
-
-
-
-<p>Once that&rsquo;s take care of, let&rsquo;s head to <code>_config.yml</code> and start customizing the settings</p>
-
-
-
-
-<p>Main settings:</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>url: http://www.codebycodes.com
-</span><span class='line'>title: Code by Codes
-</span><span class='line'>subtitle: "Codes, rants and musings"
-</span><span class='line'>author: Cody Norman</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<p>If you&rsquo;d like to connect some of your external accounts, scroll down and check out some of the 3rd party services you can connect.</p>
-
+<p><p>So first off, what exactly <em>is</em> Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
 
   </p>
   <span class="meta">
@@ -243,6 +130,8 @@ in
 
   </span>
 
+  
+    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/">Read on &rarr;</a>
   
 </article>
             </div>

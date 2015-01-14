@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress, | Code by Codes]]></title>
   <link href="http://www.codebycodes.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2015-01-13T18:44:05-05:00</updated>
+  <updated>2015-01-14T09:10:55-05:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -18,12 +18,11 @@
     <link href="http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/"/>
     <updated>2015-01-13T18:08:38-05:00</updated>
     <id>http://www.codebycodes.com/blog/2015/01/13/deploy-your-octopress-blog-to-heroku</id>
-    <content type="html"><![CDATA[<p>This post will walk you through setting up a new blog with the Octopress blogging framework
-and deploy to Heroku.</p>
+    <content type="html"><![CDATA[<p>You may have noticed that my site&rsquo;s name is codebycodes, but I have yet to post any code on here.  Good job on calling me out.  So here it is.  This post will walk you through setting up a new blog with the Octopress blogging framework and deploy to Heroku.  This is the same setup that this blog is currently running on.</p>
 
-<p>So first off, what exactly italics IS Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
+<p>So first off, what exactly <em>is</em> Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.<!--more--></p>
 
-<p>The first is it&rsquo;s built with Ruby.  The second, is there is no database.  You create your posts using the markdown language and Ruby (and Octopress) generates static HTML pages.  This make it pretty easy to set up and very fast since everything is a static page.</p>
+<p>The first is it&rsquo;s built with Ruby on top of another framework called Jekyll.  The second, is there is no database.  You create your posts using the <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a> language and Ruby (with the help of Octopress) generates static HTML pages.  This make it pretty easy to set up and very fast since everything is a static page.</p>
 
 <p>To get started, fire up your command line and clone a copy of the Octopress repository.</p>
 
@@ -55,20 +54,117 @@ $ rake preview
 </code>
 will generate the required files for you site and start a simple web server.  Check out localhost:4000 to see if your site is up and running.  It should look something like this</p>
 
-<p><img class="left" src="/images/Octopress_Screenshot.png" width="800" height="350" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+<p>{% img left /images/Octopress_Screenshot.png 800 350 &lsquo;image&rsquo; &lsquo;images&rsquo; %}</p>
 
 <p>Now we need to remove <code>public</code> and <code>Gemfile.lock</code> from our <code>.gitignore</code> file.  We&rsquo;ll need this to add generated content to Heroku.</p>
+
+<p>There are also a number of themes you can download and use for your Octopress site, or you can create your own.  You can find a good list of available themes <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">here</a>.  There are pretty good instructions for downloading and installing a new theme for your blog.</p>
 
 <p>Once that&rsquo;s take care of, let&rsquo;s head to <code>_config.yml</code> and start customizing the settings</p>
 
 <p>Main settings:
-<code>
-url: http://www.codebycodes.com
+&#8220;`yaml</p>
+
+<h1>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</h1>
+
+<h1>Main Configs</h1>
+
+<h1>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</h1>
+
+<p>url: <a href="http://www.codebycodes.com">http://www.codebycodes.com</a>
 title: Code by Codes
-subtitle: "Codes, rants and musings"
+subtitle: &ldquo;Codes, rants and musings&rdquo;
 author: Cody Norman
-</code>
+&#8220;`
 If you&rsquo;d like to connect some of your external accounts, scroll down and check out some of the 3rd party services you can connect.</p>
+
+<p>To add or remove services, add or remove the service in the <code>default_asides</code> section of the <code>._config.yml</code> file.</p>
+
+<pre><code class="yml">default_asides: [asides/recent_posts.html, asides/github.html]
+</code></pre>
+
+<p>I think at one point, there was a default Twitter aside ready to go.  But now we&rsquo;ll have to make our own.  Since this seems like it&rsquo;d be one of the more popular things to have.  I&rsquo;ll show you how to add it.</p>
+
+<p>First, add Twitter to your list of default asides.</p>
+
+<pre><code class="yml">default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html]
+</code></pre>
+
+<p>Now, let&rsquo;s head to Twitter to generate the code we need.  Log into your Twitter account and click on <code>Settings</code>.  Once you&rsquo;re there click on the <code>Widgets</code> tab.  You can update some of the options if you&rsquo;d like.  There is a nice preview on the side so you can play around with your configuration to get it set up how you like.  Now that you have all your settings squared away, click on the <code>Create Widget</code> button and copy the generated code.</p>
+
+<p>Create the file <code>source/_includes/asides/twitter.html</code>  Once you have the new file open paste in the code you got for the Twitter widget.</p>
+
+<pre><code class="html">    &lt;section&gt;
+        &lt;h1&gt;Twitter&lt;/h1&gt;
+        &lt;!-- PASTE THE CODE HERE! --&gt;
+    &lt;/section&gt;
+</code></pre>
+
+<p>With some bells and whistles, it&rsquo;s time to create our first post.  We create all our new posts from the command line.  With your command line open in your blog&rsquo;s directory, let&rsquo;s create a new post</p>
+
+<pre><code>$ rake new_post["your title goes here"]
+# Creates source/_posts/2015-01-14-your-title-goes-here.markdown
+</code></pre>
+
+<p>The <code>new_post</code> command expects a naturally written title so don&rsquo;t worry about underscores, just write out the title as your normally would.  This filename will determine the url for the post.
+<code>yourblog.com/blog/2015-01-14-your-title-goes-here/index.html</code>.</p>
+
+<p>With our first post created, open up the file that was created and notice the top lines of the file.  This is the <a href="http://jekyllrb.com/docs/frontmatter/">yaml front matter</a>.  This is where you can set the predefined variables or add your own.</p>
+
+<pre><code class="yml">---
+layout: post
+title: "Deploy your Octopress blog to Heroku"
+date: 2015-01-13 18:08:38 -0500
+comments: true
+categories: octopress, heroku
+published: false
+---
+</code></pre>
+
+<p>All of this info is going to be used by Octopress to process the posts and pages.  You&rsquo;re going to be writing your post in the <a href="http://en.wikipedia.org/wiki/Markdown">Markdown</a> language.  This is the same language you would see in the documentation on github project.  This format makes it much easier to share code snippets.  The syntax will take some getting used to, so you can find a pretty good cheatsheet <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">here</a>.</p>
+
+<p>After you have some info in your post, let&rsquo;s check out how it looks.  First, let&rsquo;s run <code>rake generate</code> to create our pages into static html</p>
+
+<pre><code>$ rake generate
+</code></pre>
+
+<p>Once all our static files are created, running <code>rake preview</code> will start up a web server and let us take our new blog for a test drive.</p>
+
+<pre><code>$ rake preview
+</code></pre>
+
+<p>Now we have a fully functioning blog, all we need to do now is deploy it somewhere.  This post will cover how to deploy your blog to Heroku.  You can also deploy your site to Github Pages.  Each user can have a free page on github (heroku is free also).  I chose Heroku because I normally have a couple of test or demo apps running anyway (you have up to 5 for free) so it makes it a little easier for me to manage.  If you&rsquo;d like to look into Github pages more, Octopress has some great <a href="http://octopress.org/docs/deploying/github/">documentation</a></p>
+
+<p>In your terminal, install the <code>heroku</code> gem</p>
+
+<pre><code>$ gem install heroku
+</code></pre>
+
+<p>If you&rsquo;ve never deployed to Heroku, head over to their site and create an account.  Once you have your account, in your command line run <code>heroku create</code></p>
+
+<pre><code>$ heroku create
+</code></pre>
+
+<p>It will ask for your account credentials and upload your public SSH key.  If you&rsquo;ve never created a public SSH key, <a href="https://help.github.com/articles/set-up-git/">Github</a> has a really great guide to getting it setup.</p>
+
+<p>Once of my favorite features to Heroku is it&rsquo;s as easy to deploy as pushing code to Github.</p>
+
+<p>Create a new app on Heroku and add a git remote named &lsquo;heroku&rsquo;</p>
+
+<pre><code>$ git config branch.master.remote heroku
+</code></pre>
+
+<p>If you haven&rsquo;t done so yet, make sure that you&rsquo;ve edited your <code>.gitignore</code> file be removing <code>public</code> and <code>Gemfile.lock</code>.  Again, this will let you add your generated content to Heroku.</p>
+
+<p>With your remote branch set up, we just need to commit and push as we would any normal git repository.</p>
+
+<pre><code>$ rake generate
+$ git add .
+$ git commit -m "updated my awesome site"
+$ git push heroku master
+</code></pre>
+
+<p>And that&rsquo;s it!  You now have your own blog up and running on Heroku.  If you get stuck, <a href="http://octopress.org/docs/">Octopress</a> has some really helpful documentation.</p>
 ]]></content>
   </entry>
   
