@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Heroku | Code by Codes]]></title>
   <link href="http://www.codebycodes.com/blog/categories/heroku/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2015-08-18T11:06:05-04:00</updated>
+  <updated>2015-08-18T19:01:29-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -162,7 +162,7 @@ $ git push heroku master
 <pre><code>$ heroku open
 </code></pre>
 
-<p>And that&rsquo;s it!  You now have your own blog up and running on Heroku.  If your having any issues, <a href="http://octopress.org/docs/">Octopress</a> has some really helpful documentation and so does <a href="https://devcenter.heroku.com/start">Heroku</a>.</p>
+<p>And that&rsquo;s it!  You now have your own blog up and running on Heroku.  If your having any issues, <a href="http://octopress.org/docs/">Octopress</a> has some really helpful documentation and so does <a href="https://devcenter.hero7ku.com/start">Heroku</a>.  If you dont have any luck there, leave a comment and we&rsquo;ll see if we can get it sorted out.</p>
 ]]></content>
   </entry>
   
