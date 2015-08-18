@@ -160,7 +160,7 @@ Once that's complete, you can either head to the url that Heroku gave to you or 
 $ heroku open
 ```
 
-And that's it!  You now have your own blog up and running on Heroku.  If your having any issues, [Octopress](http://octopress.org/docs/) has some really helpful documentation and so does [Heroku](https://devcenter.heroku.com/start).
+And that's it!  You now have your own blog up and running on Heroku.  If your having any issues, [Octopress](http://octopress.org/docs/) has some really helpful documentation and so does [Heroku](https://devcenter.hero7ku.com/start).  If you dont have any luck there, leave a comment and we'll see if we can get it sorted out.
 
 
 

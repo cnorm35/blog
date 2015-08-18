@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress, | Code by Codes]]></title>
   <link href="http://www.codebycodes.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2015-01-14T09:10:55-05:00</updated>
+  <updated>2015-08-18T18:50:01-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -54,7 +54,7 @@ $ rake preview
 </code>
 will generate the required files for you site and start a simple web server.  Check out localhost:4000 to see if your site is up and running.  It should look something like this</p>
 
-<p>{% img left /images/Octopress_Screenshot.png 800 350 &lsquo;image&rsquo; &lsquo;images&rsquo; %}</p>
+<p><img class="left" src="/images/Octopress_Screenshot.png" width="800" height="350" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
 
 <p>Now we need to remove <code>public</code> and <code>Gemfile.lock</code> from our <code>.gitignore</code> file.  We&rsquo;ll need this to add generated content to Heroku.</p>
 
@@ -63,31 +63,24 @@ will generate the required files for you site and start a simple web server.  Ch
 <p>Once that&rsquo;s take care of, let&rsquo;s head to <code>_config.yml</code> and start customizing the settings</p>
 
 <p>Main settings:
-&#8220;`yaml</p>
-
-<h1>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</h1>
-
-<h1>Main Configs</h1>
-
-<h1>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</h1>
-
-<p>url: <a href="http://www.codebycodes.com">http://www.codebycodes.com</a>
+<code>yaml
+url: http://www.codebycodes.com
 title: Code by Codes
-subtitle: &ldquo;Codes, rants and musings&rdquo;
+subtitle: "Codes, rants and musings"
 author: Cody Norman
-&#8220;`
+</code>
 If you&rsquo;d like to connect some of your external accounts, scroll down and check out some of the 3rd party services you can connect.</p>
 
 <p>To add or remove services, add or remove the service in the <code>default_asides</code> section of the <code>._config.yml</code> file.</p>
 
-<pre><code class="yml">default_asides: [asides/recent_posts.html, asides/github.html]
+<pre><code class="yaml">default_asides: [asides/recent_posts.html, asides/github.html]
 </code></pre>
 
 <p>I think at one point, there was a default Twitter aside ready to go.  But now we&rsquo;ll have to make our own.  Since this seems like it&rsquo;d be one of the more popular things to have.  I&rsquo;ll show you how to add it.</p>
 
 <p>First, add Twitter to your list of default asides.</p>
 
-<pre><code class="yml">default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html]
+<pre><code class="yaml">default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html]
 </code></pre>
 
 <p>Now, let&rsquo;s head to Twitter to generate the code we need.  Log into your Twitter account and click on <code>Settings</code>.  Once you&rsquo;re there click on the <code>Widgets</code> tab.  You can update some of the options if you&rsquo;d like.  There is a nice preview on the side so you can play around with your configuration to get it set up how you like.  Now that you have all your settings squared away, click on the <code>Create Widget</code> button and copy the generated code.</p>
@@ -111,7 +104,7 @@ If you&rsquo;d like to connect some of your external accounts, scroll down and c
 
 <p>With our first post created, open up the file that was created and notice the top lines of the file.  This is the <a href="http://jekyllrb.com/docs/frontmatter/">yaml front matter</a>.  This is where you can set the predefined variables or add your own.</p>
 
-<pre><code class="yml">---
+<pre><code class="yaml">---
 layout: post
 title: "Deploy your Octopress blog to Heroku"
 date: 2015-01-13 18:08:38 -0500
@@ -164,7 +157,12 @@ $ git commit -m "updated my awesome site"
 $ git push heroku master
 </code></pre>
 
-<p>And that&rsquo;s it!  You now have your own blog up and running on Heroku.  If you get stuck, <a href="http://octopress.org/docs/">Octopress</a> has some really helpful documentation.</p>
+<p>Once that&rsquo;s complete, you can either head to the url that Heroku gave to you or run the open command from your command line and open it automatically.</p>
+
+<pre><code>$ heroku open
+</code></pre>
+
+<p>And that&rsquo;s it!  You now have your own blog up and running on Heroku.  If your having any issues, <a href="http://octopress.org/docs/">Octopress</a> has some really helpful documentation and so does <a href="https://devcenter.hero7ku.com/start">Heroku</a>.  If you dont have any luck there, leave a comment and we&rsquo;ll see if we can get it sorted out.</p>
 ]]></content>
   </entry>
   
