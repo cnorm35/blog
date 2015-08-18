@@ -86,7 +86,7 @@
 
 
 
-<p>Why choose a template over just having a full application you can clone from github as a fresh starting point?  I think Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  You’re probably pretty familiar with ActiveRecord, ActionController and so on.  Thor is described as</p>
+<p>Why choose a template over just having a full application you can clone from github as a fresh starting point?  I think Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  You’re probably pretty familiar with ActiveRecord, ActionController and so on.  <a href="http://whatisthor.com/">Thor</a> is described as:</p>
 
 
 
@@ -96,22 +96,17 @@
 
 
 
-<p><em>underscores</em></p>
+<p>Ever notice all the files that are created and how you don’t have to run bundle install after you create a new rails app?  You have Thor to thank for that.</p>
 
 
 
 
-<p>(link Thor docs and jumpstart tutorial)  Every notice how you don’t have to run bundle install after you create a new rails app?  You have Thor to thank for that.</p>
+<p>Having the ability to run commands and edit files is a huge advantage.  It’s also an easy way to stick to best practices with less effort.  How?  You can do things like set up guard, r-spec, and even create a git repo and make an initial commit, all without having to write any code&hellip;well, except for the template.</p>
 
 
 
 
-<p>Adding in the ability to run commands and edit the files is a huge advantage.  It’s also an easy way to stick to best practices with less effort.  How?  You can do things like set up guard, r-spec, and even create a git repo and make an initial commit, all without having to write any code well, except for the template derp.</p>
-
-
-
-
-<p>I’ll admit, I can be pretty sloppy with having tests in my personal apps.  If I’m pressed for time, I’ll normally choose cramming as many features as possible (the F-it Ship it mantra) than tests.  I think this helps combat that having my test suite all set up and ready to go</p>
+<p>I’ll admit, sometimes I can be a little sloppy with having tests in my personal apps.  If I’m pressed for time, I’ll normally choose cramming as many features as possible (the F-it Ship it mantra) than tests.  I think this helps combat that by having my test suite all set up and ready to go.</p>
 
 
 
@@ -121,28 +116,427 @@
 
 
 
-<p>COMMANDS</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>  $ rails new your_project_name -m https://github.com/cnorm35/starter_template/blob/master/test_template.rb</span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<p>Or you can see the entire template here: (link Github)</p>
+<p>Or you can see the entire template <a href="https://github.com/cnorm35/starter_template/blob/master/test_template.rb">here</a>.</p>
 
 
 
 
-<p><a href="http://ryanswapp.com/posts/How-to-Make-a-Rails-Application-Template">http://ryanswapp.com/posts/How-to-Make-a-Rails-Application-Template</a></p>
+<p>Let&rsquo;s break apart the pieces and see what everything is doing.  Check out the <a href="http://guides.rubyonrails.org/rails_application_templates.html">RailsGuides for Applicaiton Templates</a></p>
 
 
 
 
-<p>Talk about using &lt;&lt;-TEXT, &lt;&lt;-CODE from Thor dsl
-When inserting the last line using before (talk about before and after), talk about what the regex is doing and link rubular.</p>
+<p>The first thing we&rsquo;ll do it overwrite the #source_path in Thor with the location of our template.  By doing this, Thor will accept relative file paths to the location of our template.</p>
 
 
 
 
-<p>As I was working on this post, I proved my exact point.  Front-end has never been my specialty so I found myself looking up bootstrap elements and past projects to refresh myself. Also, devise flash messages don’t always work well at first with bootstrap.  Luckilty, they know have a page on the devise wiki that helps you add the helper method and get everythi running smoothly.</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">source_paths</span>
+</span><span class='line'>  <span class="nb">Array</span><span class="p">(</span><span class="k">super</span><span class="p">)</span>
+</span><span class='line'>  <span class="o">[</span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">))</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>The next step, we set up the Gemfile.  You can either remove and add gems to your existing Gemfile individually, or you can remove the Gemfile all together and start from scratch.  I prefer to start from scratch to I dont have to remove all the comments Rails adds automaticall afterwards.</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">remove_file</span> <span class="s2">&quot;Gemfile&quot;</span>
+</span><span class='line'><span class="n">run</span> <span class="s2">&quot;touch Gemfile&quot;</span>
+</span><span class='line'><span class="c1">#be sure to add source at the top of the file</span>
+</span><span class='line'><span class="n">add_source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.2.1&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;uglifier&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;coffee-rails&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;jquery-rails&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;thin&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;devise&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;bootstrap-sass&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sass-rails&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;simple_form&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sdoc&#39;</span><span class="p">,</span> <span class="ss">group</span><span class="p">:</span> <span class="ss">:doc</span>
+</span><span class='line'><span class="n">gem_group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;quiet_assets&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;pry-rails&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;byebug&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;awesome_print&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;better_errors&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;binding_of_caller&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem_group</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;guard-rspec&#39;</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;rspec-rails&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Since we&rsquo;ll be using Rspec, after bundle, we can remove the <code>test</code> directory with the #after_bundle callback</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">after_bundle</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">remove_dir</span> <span class="s1">&#39;test&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Then we&rsquo;ll change the README to markdown</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">remove_file</span> <span class="s1">&#39;README.rdoc&#39;</span>
+</span><span class='line'><span class="n">create_file</span> <span class="s1">&#39;README.md&#39;</span> <span class="k">do</span> <span class="o">&lt;&lt;-</span><span class="no">TEXT</span>
+</span><span class='line'><span class="sh">  #Markdown Stuff!</span>
+</span><span class='line'><span class="sh">  Created with the help of Rails application templates</span>
+</span><span class='line'><span class="no">  TEXT</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Here&rsquo;s where things start to get a little more interesting.  The Rails template API provide a <code>generate</code> <a href="http://guides.rubyonrails.org/rails_application_templates.html#generate-what-args">method</a>.  The <code>generate</code> method works pretty much the same as if you were running it from your console.  You can use it to generate scaffolds, or even included generator for gems (we&rsquo;ll get to that in a moment)</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">generate</span> <span class="s1">&#39;rspec:install&#39;</span>
+</span><span class='line'><span class="n">run</span> <span class="s1">&#39;guard init&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">generate</span> <span class="s1">&#39;devise:install&#39;</span>
+</span><span class='line'><span class="n">generate</span> <span class="s1">&#39;devise User&#39;</span>
+</span><span class='line'><span class="n">generate</span> <span class="s1">&#39;devise:views&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rake</span> <span class="s1">&#39;db:migrate&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>BOOM!  Now, when we create a new app from the template, we have Rspec installed and Devise already set up with a <code>User</code> model with the db migrated.</p>
+
+
+
+
+<p>Now, since Devise will direct you to the root path after creating a new registration or signing in, lets create a new controller and home page to redirect to.</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">generate</span><span class="p">(</span><span class="ss">:controller</span><span class="p">,</span> <span class="s2">&quot;pages home&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">remove_file</span> <span class="s1">&#39;app/views/pages/home.html.erb&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">create_file</span> <span class="s1">&#39;app/views/pages/home.html.erb&#39;</span> <span class="k">do</span> <span class="o">&lt;&lt;-</span><span class="no">TEXT</span>
+</span><span class='line'><span class="sh">&lt;div class=&quot;jumbotron center&quot;&gt;</span>
+</span><span class='line'><span class="sh">  &lt;h1&gt;Tempaltes, Whoop Whoop!&lt;/h1&gt;</span>
+</span><span class='line'><span class="sh">  &lt;p&gt;Link to my blog and shit.&lt;/p&gt;</span>
+</span><span class='line'><span class="sh">  &lt;h4&gt;&lt;%= link_to &#39;Sign Up&#39;, new_user_registration_path %&gt;&lt;/h4&gt;</span>
+</span><span class='line'><span class="sh">&lt;/div&gt;</span>
+</span><span class='line'><span class="no">TEXT</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">route</span> <span class="s2">&quot;root &#39;pages#home&#39;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>You may have noticed, we&rsquo;re using some Bootstrap classes.  Let&rsquo;s go set up out app to use Bootstrap now.  Note:  I have some extra style rules added in so Devise and Bootstrap
+will play together nicely.  I&rsquo;ll go over that in more details later.</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">create_file</span> <span class="s1">&#39;app/assets/stylesheets/customizations.css.scss&#39;</span> <span class="k">do</span> <span class="o">&lt;&lt;-</span><span class="no">TEXT</span>
+</span><span class='line'><span class="sh">  @import &quot;bootstrap-sprockets&quot;;</span>
+</span><span class='line'><span class="sh">  @import &quot;bootstrap&quot;;</span>
+</span><span class='line'><span class="sh">  .center {</span>
+</span><span class='line'><span class="sh">    text-align: center;</span>
+</span><span class='line'><span class="sh">  }</span>
+</span><span class='line'><span class="sh">  /*for Devise Rememver me box*/</span>
+</span><span class='line'><span class="sh">  #user_remember_me {</span>
+</span><span class='line'><span class="sh">    margin-left: 0px;</span>
+</span><span class='line'><span class="sh">  }</span>
+</span><span class='line'><span class="sh">  /*flash*/</span>
+</span><span class='line'><span class="sh">  .alert-error {</span>
+</span><span class='line'><span class="sh">      background-color: #f2dede;</span>
+</span><span class='line'><span class="sh">      border-color: #eed3d7;</span>
+</span><span class='line'><span class="sh">      color: #b94a48;</span>
+</span><span class='line'><span class="sh">      text-align: left;</span>
+</span><span class='line'><span class="sh">   }</span>
+</span><span class='line'><span class="sh">  .alert-alert {</span>
+</span><span class='line'><span class="sh">      background-color: #f2dede;</span>
+</span><span class='line'><span class="sh">      border-color: #eed3d7;</span>
+</span><span class='line'><span class="sh">      color: #b94a48;</span>
+</span><span class='line'><span class="sh">      text-align: left;</span>
+</span><span class='line'><span class="sh">   }</span>
+</span><span class='line'><span class="sh">  .alert-success {</span>
+</span><span class='line'><span class="sh">      background-color: #dff0d8;</span>
+</span><span class='line'><span class="sh">      border-color: #d6e9c6;</span>
+</span><span class='line'><span class="sh">      color: #468847;</span>
+</span><span class='line'><span class="sh">      text-align: left;</span>
+</span><span class='line'><span class="sh">   }</span>
+</span><span class='line'><span class="sh">  .alert-notice {</span>
+</span><span class='line'><span class="sh">      background-color: #dff0d8;</span>
+</span><span class='line'><span class="sh">      border-color: #d6e9c6;</span>
+</span><span class='line'><span class="sh">      color: #468847;</span>
+</span><span class='line'><span class="sh">      text-align: left;</span>
+</span><span class='line'><span class="sh">   }</span>
+</span><span class='line'><span class="no">  TEXT</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Now to add it to <code>application.js</code>.  Thor provides the really handy methods <code>before</code> and <code>after</code> to target where you would like something inserted.</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">insert_into_file</span><span class="p">(</span><span class="s1">&#39;app/assets/javascripts/application.js&#39;</span><span class="p">,</span> <span class="s2">&quot;//= require bootstrap-sprockets</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="ss">:before</span> <span class="o">=&gt;</span> <span class="sr">/\/\/= require_tree ./</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>In other words, find <code>require_tree</code> in the file, and right before it, insert <code>"//= require bootstrap-sprockets"</code> with a new line after.</p>
+
+
+
+
+<p>I&rsquo;ll skip over some of the other setups for the views, it&rsquo;s jsut some view files with a little styling applied to it.  Again, the complete templete is available <a href="https://github.com/cnorm35/starter_template/blob/master/test_template.rb">here</a></p>
+
+
+
+
+<p>One thing I do want to address is setting up flash messages with Devise.  Devise ships with some less-than flattering flash messages and updating them to use Bootstrap isn&rsquo;t always straightforward.  Luckily, there&rsquo;s a page on the Devise wiki, so you dont have to dig though stack-overflow posts anymore.  The next few blocks will just be setting that up.</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">create_file</span> <span class="s1">&#39;app/views/layouts/_messages.html.erb&#39;</span> <span class="k">do</span> <span class="o">&lt;&lt;-</span><span class="no">HTML</span>
+</span><span class='line'><span class="sh">  &lt;% flash.each do |key, value| %&gt;</span>
+</span><span class='line'><span class="sh">  &lt;div class=&quot;alert alert-&lt;%= key %&gt;&quot;&gt;</span>
+</span><span class='line'><span class="sh">    &lt;a href=&quot;#&quot; data-dismiss=&quot;alert&quot; class=&quot;close&quot;&gt;×&lt;/a&gt;</span>
+</span><span class='line'><span class="sh">      &lt;ul&gt;</span>
+</span><span class='line'><span class="sh">        &lt;li&gt;</span>
+</span><span class='line'><span class="sh">          &lt;%= value %&gt;</span>
+</span><span class='line'><span class="sh">        &lt;/li&gt;</span>
+</span><span class='line'><span class="sh">      &lt;/ul&gt;</span>
+</span><span class='line'><span class="sh">  &lt;/div&gt;</span>
+</span><span class='line'><span class="sh">&lt;% end %&gt;</span>
+</span><span class='line'><span class="no">HTML</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">insert_into_file</span> <span class="s1">&#39;app/views/layouts/application.html.erb&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&lt;%= render &#39;layouts/header&#39; %&gt;</span><span class="se">\n</span><span class="s2"> &lt;%= render &#39;layouts/messages&#39;%&gt;&quot;</span><span class="p">,</span> <span class="ss">:after</span> <span class="o">=&gt;</span> <span class="sr">/&lt;body&gt;/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Now, create the helper file</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">create_file</span> <span class="s1">&#39;app/helpers/devise_helper.rb&#39;</span> <span class="k">do</span> <span class="o">&lt;&lt;-</span><span class="no">TEXT</span>
+</span><span class='line'><span class="sh">  module DeviseHelper</span>
+</span><span class='line'><span class="sh">    def devise_error_messages!</span>
+</span><span class='line'><span class="sh">      return &#39;&#39; if resource.errors.empty?</span>
+</span><span class='line'><span class="sh">      messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join</span>
+</span><span class='line'><span class="sh">      html = &lt;&lt;-HTML</span>
+</span><span class='line'><span class="sh">      &lt;div class=&quot;alert alert-error alert-danger&quot;&gt; &lt;button type=&quot;button&quot;</span>
+</span><span class='line'><span class="sh">      class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;x&lt;/button&gt;</span>
+</span><span class='line'><span class="sh">        { messages }</span>
+</span><span class='line'><span class="sh">      &lt;/div&gt;</span>
+</span><span class='line'><span class="sh">      HTML</span>
+</span><span class='line'><span class="sh">      html.html_safe</span>
+</span><span class='line'><span class="sh">    end</span>
+</span><span class='line'><span class="sh">  end</span>
+</span><span class='line'><span class="no">TEXT</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Here was my biggest Gotcha of the day.  You may notice in the above block it&rsquo;s just <code>{messages}</code> instead of <code>#{messages}</code>.  When running the template, rails kept complaining
+<code>messages</code> was undefined.  I could have extractred that out into a seperate file, but I wanted to try to keep everying in a single file.  Also, I try to not focus too much on over optimizing at the beginning and stick with &ldquo;Done is Better Than Perfect&rdquo;.</p>
+
+
+
+
+<p>Since Thor provides <code>:before</code> and <code>:after</code>, my solution was to find <code>{ messages }</code> and insert the <code>#</code> directly before it to make the string interpolation work properly.</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">insert_into_file</span><span class="p">(</span><span class="s1">&#39;app/helpers/devise_helper.rb&#39;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="ss">:before</span> <span class="o">=&gt;</span> <span class="sr">/{messages}/</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>So there you have it, a working Rails template.  Let me know in the comments if there&rsquo;s anything I missed or some things you think I should have added.  Since this was the first template I&rsquo;ve created it&rsquo;s still a work in progress so I will try to keep it updated as my setup evolves over time.</p>
 
 
   </p>
