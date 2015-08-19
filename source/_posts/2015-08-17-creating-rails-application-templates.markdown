@@ -3,7 +3,7 @@ layout: post
 title: "Creating Rails Application Templates"
 date: 2015-08-17 09:11:43 -0400
 comments: true
-categories:
+categories: ruby, rails
 ---
 
 Programmers are lazy.  This is probably one of the greatest things about us.  Anything that takes slightly longer than we think it should, and you start thinking “Hmmmmm……I wonder if I could fix that” or “I bet I could make that better".
@@ -12,7 +12,7 @@ I don’t know about you, but I’m the type that can get easily distracted by s
 
 I started looking into Rails application templates to try to alleviate these problems.  If I want to try out a new feature, follow along with a tutorial, or just start tinkering with a new project, it takes me a little while to get everything set up with my preferences.  Things like setting up devise, bootstrap, getting flash messages to play nicely with bootstrap and any other configs I think will help with whatever project I’m kicking off.
 
-Why choose a template over just having a full application you can clone from github as a fresh starting point?  I think Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  [Thor](http://whatisthor.com/) is described as:
+Why choose a template over just having a full application you can clone from github as a fresh starting point?<!--more-->  I think Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  [Thor](http://whatisthor.com/) is described as:
 
 _... a toolkit for building powerful command-line interfaces. It is used in Bundler, Vagrant, Rails and others._
 

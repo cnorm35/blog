@@ -4,7 +4,7 @@
   <title><![CDATA[Code by Codes]]></title>
   <link href="http://www.codebycodes.com/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2015-08-19T08:48:11-04:00</updated>
+  <updated>2015-08-19T08:58:38-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -24,7 +24,7 @@
 
 <p>I started looking into Rails application templates to try to alleviate these problems.  If I want to try out a new feature, follow along with a tutorial, or just start tinkering with a new project, it takes me a little while to get everything set up with my preferences.  Things like setting up devise, bootstrap, getting flash messages to play nicely with bootstrap and any other configs I think will help with whatever project I’m kicking off.</p>
 
-<p>Why choose a template over just having a full application you can clone from github as a fresh starting point?  I think Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  <a href="http://whatisthor.com/">Thor</a> is described as:</p>
+<p>Why choose a template over just having a full application you can clone from github as a fresh starting point?<!--more-->  I think Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  <a href="http://whatisthor.com/">Thor</a> is described as:</p>
 
 <p><em>&hellip; a toolkit for building powerful command-line interfaces. It is used in Bundler, Vagrant, Rails and others.</em></p>
 
