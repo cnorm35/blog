@@ -4,11 +4,7 @@
   <title><![CDATA[Code by Codes]]></title>
   <link href="http://www.codebycodes.com/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-<<<<<<< HEAD
-  <updated>2015-08-18T19:15:07-04:00</updated>
-=======
-  <updated>2015-08-19T08:58:38-04:00</updated>
->>>>>>> cffcb3cf3b7b41c2491f6d6d67fefba71f336f97
+  <updated>2015-08-31T09:03:47-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -16,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Simeple Twitter Bot With Ruby]]></title>
+    <link href="http://www.codebycodes.com/blog/2015/08/30/creating-a-simeple-twitter-bot-with-ruby/"/>
+    <updated>2015-08-30T14:47:48-04:00</updated>
+    <id>http://www.codebycodes.com/blog/2015/08/30/creating-a-simeple-twitter-bot-with-ruby</id>
+    <content type="html"><![CDATA[<p>Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots.  With that said, they can be useful and fun to build.  Here is a quick rundown of creating a simple Twitter bot in Ruby.</p>
+
+<p>First off, you will need to have an existing Twitter account. So, if you&rsquo;d like to create a new account just for the bot you&rsquo;ll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you&rsquo;ve already used your phone number for your primary twitter account.  Head over to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to create a new app that can communicate with Twitter&rsquo;s API.</p>
+
+<p>IMAGE/SCREEN SHOT?</p>
+
+<p>It requires the app&rsquo;s Name, Description, and URL.  Fill out the info.  You can use something like &ldquo;<a href="http://www.example.com">http://www.example.com</a>&rdquo; to get started with and update it later. Also, the Name must be unique so something like &lsquo;Test&rsquo; is probably going to be taken.</p>
+
+<p>Fill out the requied info and create your new app.  Once that&rsquo;s done you&rsquo;ll be taken to the Application details page.  Head over to the <code>Key and Access Tokens</code> section next.  This is where you&rsquo;ll find your Consumer Key and Consumer Secret Keys.  There&rsquo;s one more step that we need to do before we&rsquo;re going to be ready to go.  Scroll down to the bottom to <code>Token Actions</code> and create a new access token.  This will create the new Access Token and Access Token Secret needed to connect out bot to Twitter&rsquo;s API.</p>
+
+<p>Now that we have all of keys and tokens situated, we&rsquo;re ready to write some code.</p>
+
+<p>This post is meant to be a quick intro into automating actions using the Twitter gem.  It will be a single file and ran from the command line so feel free to create a Gemfile, and set up a directory structure if you like.</p>
+
+<p>Let&rsquo;s create a directory to keep our bot files in</p>
+
+<p><code>$ mkdir TwitterBot</code></p>
+
+<p><code>$ cd TwitterBot</code></p>
+
+<p><code>$ touch bot.rb</code></p>
+
+<p>Now that we have a directory set up and a <code>bot.rb</code> file created, let&rsquo;s install the Twitter gem:</p>
+
+<p><code>$ gem install twitter</code></p>
+
+<p>Time to write some code, open the <code>bot.rb</code> we created and let&rsquo;s get to work.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#!/usr/bin/env ruby</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Twitter</span><span class="o">::</span><span class="no">REST</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_key</span>        <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_secret</span>     <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">access_token</span>        <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">access_token_secret</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Creating Rails Application Templates]]></title>

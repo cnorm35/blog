@@ -4,11 +4,7 @@
   <title><![CDATA[Category: Heroku | Code by Codes]]></title>
   <link href="http://www.codebycodes.com/blog/categories/heroku/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-<<<<<<< HEAD
-  <updated>2015-08-18T19:15:07-04:00</updated>
-=======
-  <updated>2015-08-19T08:58:38-04:00</updated>
->>>>>>> cffcb3cf3b7b41c2491f6d6d67fefba71f336f97
+  <updated>2015-08-31T09:18:55-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -58,7 +54,7 @@ $ rake preview
 </code>
 will generate the required files for you site and start a simple web server.  Check out localhost:4000 to see if your site is up and running.  It should look something like this</p>
 
-<p><img class="left" src="/images/Octopress_Screenshot.png" width="800" height="350" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" ></p>
+<p>{% img left /images/Octopress_Screenshot.png 800 350 &lsquo;image&rsquo; &lsquo;images&rsquo; %}</p>
 
 <p>Now we need to remove <code>public</code> and <code>Gemfile.lock</code> from our <code>.gitignore</code> file.  We&rsquo;ll need this to add generated content to Heroku.</p>
 
