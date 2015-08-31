@@ -41,13 +41,37 @@ Time to write some code, open the `bot.rb` we created and let's get to work.
 #!/usr/bin/env ruby
 
 client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = ""
-  config.consumer_secret     = ""
-  config.access_token        = ""
-  config.access_token_secret = ""
+  config.consumer_key        = "YOUR_CONSUMER_KEY"
+  config.consumer_secret     = "YOUR_CONSUMER_SECRET"
+  config.access_token        = "YOUR_ACCESS_TOKEN"
+  config.access_token_secret = "YOUR_ACCESS_SECRET"
+end
+```
+
+First, I'd like to point out the first line at the top.  Even though it has a `#` at the beginning, this is not a comment.  It's called a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).  This tells the program loader what command to use to run the program.  In out example it will use the [env](http://ss64.com/bash/env.html) command to figure out where the ruby interperter is to run our program.
+
+Next, we create a client to communicate with the Twitter API.  Fill in the config variables with your information from the Twitter app settings page.  DO NOT CHECK YOUR KEYS INTO VERSION CONTROL.  If you plan on uploading this to GitHub or anywhere else besides your computer, [create Environment Variables](http://www.schrodinger.com/kb/1842) for your key information.
+
+Now that we have everything connected, you can send your first tweet
+
+```ruby
+client.update('Tweet from the command line!')
+```
+Being able to send a tweet from the command line is not terribly useful so let's look into something a little more interesting.  On the gem's Github page, there are a couple useful [examples](https://github.com/sferik/twitter/tree/master/examples) to get you started.  To really get an idea of the available options, you'll need to go though the [docs](http://www.rubydoc.info/gems/twitter)
+
+Here's a little example I came up with.  As a tribute to [Hitchbot](http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606) the lovable little robot that met it's untimely demise here in Philadelphia, let's find all the 100 most recent tweets containg `#hitchbot`, favorite the tweet and reply to the tweet with "Avenge Me..." as an account I setup called @hitchbot_ghost.
+
+First, let's pull all the recent tweets for our search criteria to make sure everything's working:
+
+
+```ruby
+client.search("#hitchbot").take(50) do |tweet|
+  puts tweet.text
 end
 
 ```
+
+
 
 
 
