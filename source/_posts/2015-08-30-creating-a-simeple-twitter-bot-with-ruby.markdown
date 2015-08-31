@@ -13,4 +13,9 @@ First off, you will need to have an existing Twitter account.  Head over to http
 
 IMAGE/SCREEN SHOT?
 
-Ite requires the app's Name, Description, and URL.  Fill out the info.  You can use something like "http://www.example.com" to get started with and update it later.
+Ite requires the app's Name, Description, and URL.  Fill out the info and be sure to look over the developers terms and conditions.  You can use something like "http://www.example.com" to get started with and update it later.
+
+
+
+
+
