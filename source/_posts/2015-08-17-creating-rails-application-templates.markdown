@@ -3,18 +3,18 @@ layout: post
 title: "Creating Rails Application Templates"
 date: 2015-08-17 09:11:43 -0400
 comments: true
-categories:
+categories: ruby, rails
 ---
 
-Programmers are lazy, this is probably one of the greatest things about us.  Anything that takes slightly longer than we think it should and you start thinking “Hmmmmm……I wonder if I could fix that” or “I bet I could make that better".
+Programmers are lazy.  This is probably one of the greatest things about us.  Anything that takes slightly longer than we think it should, and you start thinking “Hmmmmm……I wonder if I could fix that” or “I bet I could make that better".
 
 I don’t know about you, but I’m the type that can get easily distracted by shiny new things to try out, whether it’s a new framework, gem, pattern, or fancy bourbon (I mean, we can’t program all the time).
 
-I started looking into Rails application templates to try to alleviate these problems for me.  If I want to try out a new feature, follow along with a tutorial, or just start tinkering with a new project, it takes me a little while to get everything set up with my preferences.  Things like setting up devise, bootstrap, getting flash messages to play nicely with bootstrap and any other configs I think will help with whatever project I’m kicking off.
+I started looking into Rails application templates to try to alleviate these problems.  If I want to try out a new feature, follow along with a tutorial, or just start tinkering with a new project, it takes me a little while to get everything set up with my preferences.  Things like setting up devise, bootstrap, getting flash messages to play nicely with bootstrap and any other configs I think will help with whatever project I’m kicking off.
 
-Why choose a template over just having a full application you can clone from github as a fresh starting point?  I think Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  You’re probably pretty familiar with ActiveRecord, ActionController and so on.  [Thor](http://whatisthor.com/) is described as:
+Why choose a template over just having a full application you can clone from github as a fresh starting point?<!--more-->  I think Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  [Thor](http://whatisthor.com/) is described as:
 
-_Thor is a toolkit for building powerful command-line interfaces. It is used in Bundler, Vagrant, Rails and others._
+_... a toolkit for building powerful command-line interfaces. It is used in Bundler, Vagrant, Rails and others._
 
 Ever notice all the files that are created and how you don’t have to run bundle install after you create a new rails app?  You have Thor to thank for that.
 
@@ -30,9 +30,9 @@ If you want the TL;DR version, you can create a new rails app from the template 
 
 Or you can see the entire template [here](https://github.com/cnorm35/starter_template/blob/master/test_template.rb).
 
-Let's break apart the pieces and see what everything is doing.  Check out the [RailsGuides for Applicaiton Templates](http://guides.rubyonrails.org/rails_application_templates.html)
+Let's break apart the pieces and see what everything is doing.  Check out the [RailsGuides for Applicaiton Templates](http://guides.rubyonrails.org/rails_application_templates.html) for some more info, and a detailed rundown of the available methods.
 
-The first thing we'll do it overwrite the #source_path in Thor with the location of our template.  By doing this, Thor will accept relative file paths to the location of our template.
+The first thing we'll do it overwrite the `source_path` method in Thor with the location of our template.  By doing this, Thor will accept relative file paths to the location of our template.
 
 ``` ruby
 def source_paths
@@ -41,12 +41,11 @@ def source_paths
 end
 ```
 
-The next step, we set up the Gemfile.  You can either remove and add gems to your existing Gemfile individually, or you can remove the Gemfile all together and start from scratch.  I prefer to start from scratch to I dont have to remove all the comments Rails adds automaticall afterwards.
+The next step, we set up the Gemfile.  You can either remove and add gems to your existing Gemfile individually, or you can remove the Gemfile all together and start from scratch.  I prefer to start from scratch to I dont have to remove all the comments Rails adds automatically afterwards.  Just be sure to include a source at the top of the Gemfile.
 
 ```ruby
 remove_file "Gemfile"
 run "touch Gemfile"
-#be sure to add source at the top of the file
 add_source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 gem 'sqlite3'
@@ -76,14 +75,14 @@ gem_group :test do
 end
 ```
 
-Since we'll be using Rspec, after bundle, we can remove the `test` directory with the #after_bundle callback
+Since we'll be using Rspec, after bundle, we can remove the `test` directory with the `after_bundle` callback.
 ```ruby
 after_bundle do
   remove_dir 'test'
 end
 ```
 
-Then we'll change the README to markdown
+Then we'll change the README to markdown.
 ```ruby
 remove_file 'README.rdoc'
 create_file 'README.md' do <<-TEXT
@@ -93,7 +92,7 @@ create_file 'README.md' do <<-TEXT
 end
 ```
 
-Here's where things start to get a little more interesting.  The Rails template API provide a `generate` [method](http://guides.rubyonrails.org/rails_application_templates.html#generate-what-args).  The `generate` method works pretty much the same as if you were running it from your console.  You can use it to generate scaffolds, or even included generator for gems (we'll get to that in a moment)
+Here's where things start to get a little more interesting.  The Rails template API provide a `generate` [method](http://guides.rubyonrails.org/rails_application_templates.html#generate-what-args).  The `generate` method works pretty much the same as if you were running it from your console.  You can use it to generate scaffolds, or even included generator for gems.
 
 ```ruby
 generate 'rspec:install'
@@ -107,7 +106,7 @@ rake 'db:migrate'
 ```
 
 
-BOOM!  Now, when we create a new app from the template, we have Rspec installed and Devise already set up with a `User` model with the db migrated.
+BOOM!  Now, when we create a new app from the template, we have Rspec installed and Devise already set up with a `User` model and the db migrated.
 
 Now, since Devise will direct you to the root path after creating a new registration or signing in, lets create a new controller and home page to redirect to.
 
@@ -119,7 +118,7 @@ remove_file 'app/views/pages/home.html.erb'
 create_file 'app/views/pages/home.html.erb' do <<-TEXT
 <div class="jumbotron center">
   <h1>Tempaltes, Whoop Whoop!</h1>
-  <p>Link to my blog and shit.</p>
+  <p>Template created with the help of <a href="http://codebycodes.com">CodeByCodes.</a>/p>
   <h4><%= link_to 'Sign Up', new_user_registration_path %></h4>
 </div>
 TEXT
@@ -128,7 +127,7 @@ end
 route "root 'pages#home'"
 ```
 
-You may have noticed, we're using some Bootstrap classes.  Let's go set up out app to use Bootstrap now.  Note:  I have some extra style rules added in so Devise and Bootstrap
+You may have noticed, we're using some Bootstrap classes.  Let's go set up the app to use Bootstrap.  Note:  I have some extra style rules added in so Devise and Bootstrap
 will play together nicely.  I'll go over that in more details later.
 
 ```ruby
@@ -178,9 +177,9 @@ insert_into_file('app/assets/javascripts/application.js', "//= require bootstrap
 ```
 In other words, find `require_tree` in the file, and right before it, insert `"//= require bootstrap-sprockets"` with a new line after.
 
-I'll skip over some of the other setups for the views, it's jsut some view files with a little styling applied to it.  Again, the complete templete is available [here](https://github.com/cnorm35/starter_template/blob/master/test_template.rb)
+I'll skip over some of the other setups for the views, it's jsut some view files with a little styling applied to it.  Again, the complete templete is available [here.](https://github.com/cnorm35/starter_template/blob/master/test_template.rb)
 
-One thing I do want to address is setting up flash messages with Devise.  Devise ships with some less-than flattering flash messages and updating them to use Bootstrap isn't always straightforward.  Luckily, there's a page on the Devise wiki, so you dont have to dig though stack-overflow posts anymore.  The next few blocks will just be setting that up.
+One thing I do want to address, is setting up flash messages with Devise.  Devise ships with some less-than flattering flash messages and updating them to use Bootstrap isn't always straightforward.  Luckily, there's a page on the [Devise wiki](https://github.com/plataformatec/devise/wiki/How-To:-Integrate-I18n-Flash-Messages-with-Devise-and-Bootstrap), so you dont have to dig though stack-overflow posts anymore.  The next few blocks will just be setting that up.
 
 ```ruby
 create_file 'app/views/layouts/_messages.html.erb' do <<-HTML
@@ -221,15 +220,15 @@ TEXT
 end
 ```
 
-Here was my biggest Gotcha of the day.  You may notice in the above block it's just `{messages}` instead of `#{messages}`.  When running the template, rails kept complaining
+Here was my biggest _Gotcha_ of the day.  You may notice in the above block it's just `{ messages }` instead of `#{ messages }`.  When running the template, rails kept complaining
 `messages` was undefined.  I could have extractred that out into a seperate file, but I wanted to try to keep everying in a single file.  Also, I try to not focus too much on over optimizing at the beginning and stick with "Done is Better Than Perfect".
 
 Since Thor provides `:before` and `:after`, my solution was to find `{ messages }` and insert the `#` directly before it to make the string interpolation work properly.
 
 ```
-insert_into_file('app/helpers/devise_helper.rb', '#', :before => /{messages}/)
+insert_into_file('app/helpers/devise_helper.rb', '#', :before => /{ messages }/)
 ```
 
-So there you have it, a working Rails template.  Let me know in the comments if there's anything I missed or some things you think I should have added.  Since this was the first template I've created it's still a work in progress so I will try to keep it updated as my setup evolves over time.
+So there you have it, a working Rails template.  Let me know in the comments if there's anything I missed or some things you think I should have added.  Since this was the first template I've created, it's still a work in progress.  I'll try to keep it updated as my setup evolves over time.
 
 
