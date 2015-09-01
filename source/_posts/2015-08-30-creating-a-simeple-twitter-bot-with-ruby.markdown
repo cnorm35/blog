@@ -1,11 +1,10 @@
 ---
 layout: post
-title: "Creating a Simeple Twitter Bot with Ruby"
-date: 2015-08-30 14:47:48 -0400
+title: "Creating a Simple Twitter Bot with Ruby"
+date: 2015-08-31 20:09:41 -0400
 comments: true
-categories:
+categories: 
 ---
-
 
 Let me preface this by saying I'm not always the biggest fan of Twitter bots.  With that said, they can be useful and fun to build.  Here is a quick rundown of creating a simple Twitter bot in Ruby.
 
@@ -25,7 +24,7 @@ This post is meant to be a quick intro into automating actions using the Twitter
 
 Let's create a directory to keep our bot files in
 
-```$ mkdir TwitterBot```
+`$ mkdir TwitterBot`
 
 `$ cd TwitterBot`
 
@@ -54,7 +53,7 @@ Next, we create a client to communicate with the Twitter API.  Fill in the confi
 
 Now that we have everything connected, you can send your first tweet
 
-```
+```ruby
 client.update('Tweet from the command line!')
 ```
 Being able to send a tweet from the command line is not terribly useful so let's look into something a little more interesting.  On the gem's Github page, there are a couple useful [examples](https://github.com/sferik/twitter/tree/master/examples) to get you started.  To really get an idea of the available options, you'll need to go though the [docs](http://www.rubydoc.info/gems/twitter)
@@ -64,7 +63,7 @@ Here's a little example I came up with.  As a tribute to [Hitchbot](http://www.n
 First, let's pull all the recent tweets for our search criteria to make sure everything's working:
 
 
-```
+```ruby
 client.search("#hitchbot").take(50) do |tweet|
   puts tweet.text
 end
@@ -72,7 +71,7 @@ end
 
 If you see the tweets output to your console, you're good to go.  The baic format for the search method is: 
 
-```
+```ruby
 	client.search("query", {options})
 ```
 
@@ -80,7 +79,7 @@ You can find the available options in the [docs](http://www.rubydoc.info/gems/tw
 
 With's the pope's visit to Philadelphia in about a month, let's say we want to get 50 recent tweets containing the work "pope" we could do this:
 
-```
+```ruby
 search_options = {
 	result_type: "recent",
 	geocode: "39.9525839,-75.1652215,10mi"
@@ -91,6 +90,36 @@ client.search("pope", search_options).take(50).each do |tweet|
 end
 ```
 
+If you're feeling extra friendly, you can favorite, and reply to their tweet with a message.
+
+```ruby
+search_options = {
+	result_type: "recent",
+	geocode: "39.9525839,-75.1652215,10mi"
+}
+
+client.search("pope", search_options).take(50).each do |tweet|
+	puts "#{tweet.user.screen_name}: #{tweet.text}
+	client.favorite(tweet)
+	client.upate("@{tweet.user.screen_name} Welcome to Philadelphia!")
+end
+```
+
+Here's a little example I came up with.  As a tribute to [Hitchbot](http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606) the lovable little robot that met it's untimely demise here in Philadelphia. Let's find all the 10 most recent tweets containg "#hitchbot", favorite the tweet and reply to the tweet with "Avenge Me..." as an account I setup called @hitchbot_ghost.  Take note, if you pull too many tweets for an action, the API can respond with an error saying it looks like it could be spam.
+
+```ruby
+search_options = {
+	result_type: "recent",
+	geocode: "39.9525839,-75.1652215,10mi"
+}
+client.search("#hitchbot", search_options).take(10).each do |tweet|
+	puts "#{tweet.user.screen_name}: #{tweet.text}"
+	client.favorite(tweet)
+	client.update("@#{tweet.user.screen_name} Avenge me...", 
+				  in_reply_to_status_id: tweet.id)
+end
+```
+And that's it, in just few lines of Ruby, we have a working bot for Twitter.  If you have any questions or get stuck let me know!
 
 
 

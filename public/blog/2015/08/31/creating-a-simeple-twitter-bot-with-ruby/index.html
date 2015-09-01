@@ -10,11 +10,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>All Posts - Code by Codes</title>
+  <title>Creating a Simple Twitter Bot With Ruby - Code by Codes</title>
   <meta name="author" content="Cody Norman">
 
   
-  <meta name="description" content="All Posts Creating a Simple Twitter Bot With Ruby Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots. With that said &hellip;">
+  <meta name="description" content="Creating a Simple Twitter Bot With Ruby written August 31, 2015 Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -23,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.codebycodes.com/posts">
+  <link rel="canonical" href="http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Code by Codes" type="application/atom+xml">
@@ -52,94 +52,57 @@
       <img src="/images/home.png"/>
     </a>
 
-    <div class="all-posts">
+    <article role="article" class="full-single-article">
   <div class="container">
     <div class="row">
-      <div class="list-title col-md-offset-3 col-md-6">
-        <h4>All Posts</h4>
-      </div>
-    </div>
-  </div>
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Creating a Simple Twitter Bot With Ruby</h1>
+        <div class="meta">
+          written 
 
-  <div class="article-list">
-    <div class="container">
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/">Creating a Simple Twitter Bot With Ruby</a></h2>
+
+
+
+
+
+
+
   
-  <p>
-    <p>Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots.  With that said, they can be useful and fun to build.  Here is a quick rundown of creating a simple Twitter bot in Ruby.</p>
 
 
 
+<time datetime="2015-08-31T20:09:41-04:00" pubdate data-updated="true">August 31, 2015</time>
+          
+
+
+        </div>
+        <p>Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots.  With that said, they can be useful and fun to build.  Here is a quick rundown of creating a simple Twitter bot in Ruby.</p>
 
 <p>First off, you will need to have an existing Twitter account. So, if you&rsquo;d like to create a new account just for the bot you&rsquo;ll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you&rsquo;ve already used your phone number for your primary twitter account.  Head over to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to create a new app that can communicate with Twitter&rsquo;s API.</p>
 
-
-
-
 <p>IMAGE/SCREEN SHOT?</p>
-
-
-
 
 <p>It requires the app&rsquo;s Name, Description, and URL.  Fill out the info.  You can use something like &ldquo;<a href="http://www.example.com">http://www.example.com</a>&rdquo; to get started with and update it later. Also, the Name must be unique so something like &lsquo;Test&rsquo; is probably going to be taken.</p>
 
-
-
-
 <p>Fill out the requied info and create your new app.  Once that&rsquo;s done you&rsquo;ll be taken to the Application details page.  Head over to the <code>Key and Access Tokens</code> section next.  This is where you&rsquo;ll find your Consumer Key and Consumer Secret Keys.  There&rsquo;s one more step that we need to do before we&rsquo;re going to be ready to go.  Scroll down to the bottom to <code>Token Actions</code> and create a new access token.  This will create the new Access Token and Access Token Secret needed to connect out bot to Twitter&rsquo;s API.</p>
-
-
-
 
 <p>Now that we have all of keys and tokens situated, we&rsquo;re ready to write some code.</p>
 
-
-
-
 <p>This post is meant to be a quick intro into automating actions using the Twitter gem.  It will be a single file and ran from the command line so feel free to create a Gemfile, and set up a directory structure if you like.</p>
-
-
-
 
 <p>Let&rsquo;s create a directory to keep our bot files in</p>
 
-
-
-
 <p><code>$ mkdir TwitterBot</code></p>
-
-
-
 
 <p><code>$ cd TwitterBot</code></p>
 
-
-
-
 <p><code>$ touch bot.rb</code></p>
-
-
-
 
 <p>Now that we have a directory set up and a <code>bot.rb</code> file created, let&rsquo;s install the Twitter gem:</p>
 
-
-
-
 <p><code>$ gem install twitter</code></p>
 
-
-
-
 <p>Time to write some code, open the <code>bot.rb</code> we created and let&rsquo;s get to work.</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -160,44 +123,22 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>First, I&rsquo;d like to point out the first line at the top.  Even though it has a <code>#</code> at the beginning, this is not a comment.  It&rsquo;s called a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix">shebang</a>).  This tells the program loader what command to use to run the program.  In out example it will use the <a href="http://ss64.com/bash/env.html">env</a> command to figure out where the ruby interperter is to run our program.</p>
-
-
-
 
 <p>Next, we create a client to communicate with the Twitter API.  Fill in the config variables with your information from the Twitter app settings page.  DO NOT CHECK YOUR KEYS INTO VERSION CONTROL.  If you plan on uploading this to GitHub or anywhere else besides your computer, <a href="http://www.schrodinger.com/kb/1842">create Environment Variables</a> for your key information.</p>
 
-
-
-
 <p>Now that we have everything connected, you can send your first tweet</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;Tweet from the command line!&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>Being able to send a tweet from the command line is not terribly useful so let&rsquo;s look into something a little more interesting.  On the gem&rsquo;s Github page, there are a couple useful <a href="https://github.com/sferik/twitter/tree/master/examples">examples</a> to get you started.  To really get an idea of the available options, you&rsquo;ll need to go though the <a href="http://www.rubydoc.info/gems/twitter">docs</a></p>
-
-
-
 
 <p>Here&rsquo;s a little example I came up with.  As a tribute to <a href="http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606">Hitchbot</a> the lovable little robot that met it&rsquo;s untimely demise here in Philadelphia, let&rsquo;s find all the 100 most recent tweets containg <code>#hitchbot</code>, favorite the tweet and reply to the tweet with &ldquo;Avenge Me&hellip;&rdquo; as an account I setup called @hitchbot_ghost.</p>
 
-
-
-
 <p>First, let&rsquo;s pull all the recent tweets for our search criteria to make sure everything&rsquo;s working:</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -208,29 +149,16 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>If you see the tweets output to your console, you&rsquo;re good to go.  The baic format for the search method is:</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">options</span><span class="p">})</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>You can find the available options in the <a href="http://www.rubydoc.info/gems/twitter/Twitter/REST/Search">docs</a></p>
 
-
-
-
 <p>With&rsquo;s the pope&rsquo;s visit to Philadelphia in about a month, let&rsquo;s say we want to get 50 recent tweets containing the work &ldquo;pope&rdquo; we could do this:</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -251,12 +179,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>If you&rsquo;re feeling extra friendly, you can favorite, and reply to their tweet with a message.</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -281,12 +204,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>Here&rsquo;s a little example I came up with.  As a tribute to <a href="http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606">Hitchbot</a> the lovable little robot that met it&rsquo;s untimely demise here in Philadelphia. Let&rsquo;s find all the 10 most recent tweets containg &ldquo;#hitchbot&rdquo;, favorite the tweet and reply to the tweet with &ldquo;Avenge Me&hellip;&rdquo; as an account I setup called @hitchbot_ghost.  Take note, if you pull too many tweets for an action, the API can respond with an error saying it looks like it could be spam.</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -311,483 +229,37 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>And that&rsquo;s it, in just few lines of Ruby, we have a working bot for Twitter.  If you have any questions or get stuck let me know!</p>
 
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="cnorm35" data-size="large">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+</script>
+        <hr class="divider-short"/>
 
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-08-31T20:09:41-04:00" pubdate data-updated="true">August 31, 2015</time>
-    
-
-
-  </span>
-
-  
-</article>
-        </div>
+        
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
+        
       </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2015/08/17/creating-rails-application-templates/">Creating Rails Application Templates</a></h2>
-  
-  <p>
-    <p>Programmers are lazy.  This is probably one of the greatest things about us.  Anything that takes slightly longer than we think it should, and you start thinking “Hmmmmm……I wonder if I could fix that” or “I bet I could make that better&#8221;.</p>
-
-
-
-
-<p>I don’t know about you, but I’m the type that can get easily distracted by shiny new things to try out, whether it’s a new framework, gem, pattern, or fancy bourbon (I mean, we can’t program all the time).</p>
-
-
-
-
-<p>I started looking into Rails application templates to try to alleviate these problems.  If I want to try out a new feature, follow along with a tutorial, or just start tinkering with a new project, it takes me a little while to get everything set up with my preferences.  Things like setting up devise, bootstrap, getting flash messages to play nicely with bootstrap and any other configs I think will help with whatever project I’m kicking off.</p>
-
-
-
-
-<p><p>Why choose a template over just having a full application you can clone from github as a fresh starting point?</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-08-17T09:11:43-04:00" pubdate data-updated="true">August 17, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby,</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/08/17/creating-rails-application-templates/">Read on &rarr;</a>
-  
+    </div>
+  </div>
 </article>
-        </div>
+
+<hr class="divider-short"/>
+
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2015/08/17/creating-rails-application-templates/" title="Previous Post: Creating Rails Application Templates">&laquo; Previous: Creating Rails Application Templates</a>
+        
+
+        
       </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2015/08/16/creating-rails-application-templates/">Creating Rails Application Templates</a></h2>
-  
-  <p>
-    <p>Programmers are lazy, that is probably one of the greatest things about us.  Anything that takes slightly longer than we think it should “Hmmmmm……I wonder if I could fix that” or “I bet I could make that better&#8221;</p>
-
-
-
-
-<p>I don’t know about you, but I’m the type that can get easily distracted by shiny new things to try out, whether it’s a new framework, gem, pattern, or fancy burbon (I mean, we can’t program all the time)</p>
-
-
-
-
-<p>I started looking into Rails application templates to try to help out these two problems for me.  If I want to try out a new feature, follow along with a tutorial, or just start tinkering with a new project I it takes me a little while to get everything set up to my preferences.  Things like setting up devise, bootstrap, getting flash messages to play nicely with bootstrap and any other confing I think will help with whatever project I’m kicking off.</p>
-
-
-
-
-<p>Why choose a template over just having a full application you can clone from github as a fresh starting point?  Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  You’re probably pretty familiar with ActiveRecord, ActionController and so on, but Thor is a ruby library for creating command line apps with ruby (link Thor docs and jumpstart tutorial)  Every notice how you don’t have to run bundle install after you create a new rails app?  You have Thor to thank for that.</p>
-
-
-
-
-<p>Adding in the ability to run commands and edit the files is a huge advantage.  It’s also an easy way to stick to best practices with less effort.  How?  You can do things like set up guard, r-spec, and even create a git repo and make an initial commit, all without having to write any code well, except for the template derp.</p>
-
-
-
-
-<p>I’ll admit, I can be pretty sloppy with having tests in my personal apps.  If I’m pressed for time, I’ll normally choose cramming as many features as possible (the F-it Ship it mantra) than tests.  I think this helps combat that having my test suite all set up and ready to go</p>
-
-
-
-
-<pre><code></code></pre>
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-08-16T15:25:29-04:00" pubdate data-updated="true">August 16, 2015</time>
-    
-
-
-  </span>
-
-  
-</article>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/">Deploy Your Octopress Blog to Heroku</a></h2>
-  
-  <p>
-    <p>You may have noticed that my site&rsquo;s name is codebycodes, but I have yet to post any code on here.  Good job on calling me out.  So here it is.  This post will walk you through setting up a new blog with the Octopress blogging framework and deploy to Heroku.  This is the same setup that this blog is currently running on.</p>
-
-
-
-
-<p><p>So first off, what exactly <em>is</em> Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-01-13T18:08:38-05:00" pubdate data-updated="true">January 13, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/heroku/'>heroku</a>, <a class='category' href='/blog/categories/octopress/'>octopress,</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/">Read on &rarr;</a>
-  
-</article>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2014/12/10/my-time-at-dreamit-ventures/">My Time at Dreamit Ventures</a></h2>
-  
-  <p>
-    <p><p>On June 20th of this year, I boarded a flight bound for San Francisco.  Armed with only a suitcase and a laptop, I was heading to a coding bootcamp to follow a crazy dream of switching careers and becoming a developer.  I had no idea what the next 3 months would bring.  My first two weeks were spent on the top bunk at a hacker house.  My &ldquo;room&rdquo; was really the living room.  I didn&rsquo;t even have a chance to fall asleep with the light off and not have people working around me until week 3.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-12-10T07:53:40-05:00" pubdate data-updated="true">December 10, 2014</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/accelerator/'>accelerator</a>, <a class='category' href='/blog/categories/startup/'>startup</a>, <a class='category' href='/blog/categories/startups/'>startups,</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/12/10/my-time-at-dreamit-ventures/">Read on &rarr;</a>
-  
-</article>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2014/12/03/new-site/">New Site, New Format</a></h2>
-  
-  <p>
-    <p>Hello all!  My last post was on a different blog and a few months back. I decided to set up a new blog once I came across the <a href="http://octopress.org/">Octopress</a> blogging framework.  It&rsquo;s billed as &ldquo;A blogging framework for hackers&rdquo; making it much easier to share code snippets.  It&rsquo;s also built in Ruby so it seemed like a great project for me to tinker with.
-This will be a place where I can share what I&rsquo;m working on, tips and tricks I pick up, and the occasional rant.</p>
-
-
-
-
-<p><p>So&hellip; on the last update,</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-12-03T07:10:42-05:00" pubdate data-updated="true">December 3, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/12/03/new-site/">Read on &rarr;</a>
-  
-</article>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2014/07/09/this-aint-no-vacation/">This Aint No Vacation.</a></h2>
-  
-  <p>
-    <p><p>I know, I know…having a double negative for my post title isn’t exactly good form.  Maybe it’s a remnant of my southern upbringing, but that’s been a bit of a motto for my stay out here.  I’m not on a vacation, I’m not at a summer camp, it’s a bootcamp.  That was more than apparent this past week.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-07-09T12:45:21-04:00" pubdate data-updated="true">July 9, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/07/09/this-aint-no-vacation/">Read on &rarr;</a>
-  
-</article>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2014/07/03/times-they-are-a-changin/">Times They Are a Changin&#8217;</a></h2>
-  
-  <p>
-    <p><p>Today, I had a bit of a realization.  It was something that really made me realize how my mindset is changing.  I was plugging along at the dojo, and looked at the clock.  Something I do dozens of times a day.  The difference was what I thought afterwards.  It was around 3:30 or so and normally,</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-07-03T12:38:59-04:00" pubdate data-updated="true">July 3, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/07/03/times-they-are-a-changin/">Read on &rarr;</a>
-  
-</article>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2014/06/29/week-one/">Week One</a></h2>
-  
-  <p>
-    <p><p>I haven’t been able to keep up with my blog post as much as I would have liked so far, but that’s with good reason.  With week one behind me at Coding Dojo, I’ve put in close to 70 hours of work between writing code, reading code, lectures, debugging, and working on assignments.  That figure would have terrified me before, but what I quickly realized is how much I love diving into these problems and assignments.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-29T12:36:13-04:00" pubdate data-updated="true">June 29, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/06/29/week-one/">Read on &rarr;</a>
-  
-</article>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2014/06/29/the-departure/">The Departure</a></h2>
-  
-  <p>
-    <p><p>Before I get into what the application process was like for Coding Dojo, I thought I would go into some of the preparations for flying out and making arrangements, etc.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-29T11:58:52-04:00" pubdate data-updated="true">June 29, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/06/29/the-departure/">Read on &rarr;</a>
-  
-</article>
-        </div>
-      </div>
-      
-      
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <article>
-  <h2><a href="/blog/2014/06/17/introductions/">Introductions</a></h2>
-  
-  <p>
-    <p><p>Hello everyone!  I started this blog to chronicle my journey through the Coding Dojo bootcamp in Mountain View, CA this summer.  First things first, a bit of background about myself.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-06-17T11:56:41-04:00" pubdate data-updated="true">June 17, 2014</time>
-    
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/06/17/introductions/">Read on &rarr;</a>
-  
-</article>
-        </div>
-      </div>
-      
     </div>
   </div>
 </div>
@@ -827,13 +299,36 @@ This will be a place where I can share what I&rsquo;m working on, tips and trick
 </footer>
 
     
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'codebycodes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/';
+        var disqus_url = 'http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
     
 
 <script type="text/javascript">
       var disqus_shortname = 'codebycodes';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/';
+        var disqus_url = 'http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

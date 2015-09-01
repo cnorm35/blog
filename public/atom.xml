@@ -4,7 +4,7 @@
   <title><![CDATA[Code by Codes]]></title>
   <link href="http://www.codebycodes.com/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2015-08-31T09:03:47-04:00</updated>
+  <updated>2015-08-31T20:45:07-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Creating a Simeple Twitter Bot With Ruby]]></title>
-    <link href="http://www.codebycodes.com/blog/2015/08/30/creating-a-simeple-twitter-bot-with-ruby/"/>
-    <updated>2015-08-30T14:47:48-04:00</updated>
-    <id>http://www.codebycodes.com/blog/2015/08/30/creating-a-simeple-twitter-bot-with-ruby</id>
+    <title type="html"><![CDATA[Creating a Simple Twitter Bot With Ruby]]></title>
+    <link href="http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/"/>
+    <updated>2015-08-31T20:09:41-04:00</updated>
+    <id>http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby</id>
     <content type="html"><![CDATA[<p>Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots.  With that said, they can be useful and fun to build.  Here is a quick rundown of creating a simple Twitter bot in Ruby.</p>
 
 <p>First off, you will need to have an existing Twitter account. So, if you&rsquo;d like to create a new account just for the bot you&rsquo;ll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you&rsquo;ve already used your phone number for your primary twitter account.  Head over to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to create a new app that can communicate with Twitter&rsquo;s API.</p>
@@ -57,15 +57,121 @@
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#!/usr/bin/env ruby</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">client</span> <span class="o">=</span> <span class="no">Twitter</span><span class="o">::</span><span class="no">REST</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_key</span>        <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_secret</span>     <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">access_token</span>        <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">access_token_secret</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_key</span>        <span class="o">=</span> <span class="s2">&quot;YOUR_CONSUMER_KEY&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">consumer_secret</span>     <span class="o">=</span> <span class="s2">&quot;YOUR_CONSUMER_SECRET&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">access_token</span>        <span class="o">=</span> <span class="s2">&quot;YOUR_ACCESS_TOKEN&quot;</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">access_token_secret</span> <span class="o">=</span> <span class="s2">&quot;YOUR_ACCESS_SECRET&quot;</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>First, I&rsquo;d like to point out the first line at the top.  Even though it has a <code>#</code> at the beginning, this is not a comment.  It&rsquo;s called a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix">shebang</a>).  This tells the program loader what command to use to run the program.  In out example it will use the <a href="http://ss64.com/bash/env.html">env</a> command to figure out where the ruby interperter is to run our program.</p>
 
+<p>Next, we create a client to communicate with the Twitter API.  Fill in the config variables with your information from the Twitter app settings page.  DO NOT CHECK YOUR KEYS INTO VERSION CONTROL.  If you plan on uploading this to GitHub or anywhere else besides your computer, <a href="http://www.schrodinger.com/kb/1842">create Environment Variables</a> for your key information.</p>
+
+<p>Now that we have everything connected, you can send your first tweet</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;Tweet from the command line!&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Being able to send a tweet from the command line is not terribly useful so let&rsquo;s look into something a little more interesting.  On the gem&rsquo;s Github page, there are a couple useful <a href="https://github.com/sferik/twitter/tree/master/examples">examples</a> to get you started.  To really get an idea of the available options, you&rsquo;ll need to go though the <a href="http://www.rubydoc.info/gems/twitter">docs</a></p>
+
+<p>Here&rsquo;s a little example I came up with.  As a tribute to <a href="http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606">Hitchbot</a> the lovable little robot that met it&rsquo;s untimely demise here in Philadelphia, let&rsquo;s find all the 100 most recent tweets containg <code>#hitchbot</code>, favorite the tweet and reply to the tweet with &ldquo;Avenge Me&hellip;&rdquo; as an account I setup called @hitchbot_ghost.</p>
+
+<p>First, let&rsquo;s pull all the recent tweets for our search criteria to make sure everything&rsquo;s working:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;#hitchbot&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="n">tweet</span><span class="o">.</span><span class="n">text</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you see the tweets output to your console, you&rsquo;re good to go.  The baic format for the search method is:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">options</span><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can find the available options in the <a href="http://www.rubydoc.info/gems/twitter/Twitter/REST/Search">docs</a></p>
+
+<p>With&rsquo;s the pope&rsquo;s visit to Philadelphia in about a month, let&rsquo;s say we want to get 50 recent tweets containing the work &ldquo;pope&rdquo; we could do this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">search_options</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="ss">result_type</span><span class="p">:</span> <span class="s2">&quot;recent&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">geocode</span><span class="p">:</span> <span class="s2">&quot;39.9525839,-75.1652215,10mi&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;pope&quot;</span><span class="p">,</span> <span class="n">search_options</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">screen_name</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">tweet</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2"></span>
+</span><span class='line'><span class="s2">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you&rsquo;re feeling extra friendly, you can favorite, and reply to their tweet with a message.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">search_options</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="ss">result_type</span><span class="p">:</span> <span class="s2">&quot;recent&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">geocode</span><span class="p">:</span> <span class="s2">&quot;39.9525839,-75.1652215,10mi&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;pope&quot;</span><span class="p">,</span> <span class="n">search_options</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">screen_name</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">tweet</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2"></span>
+</span><span class='line'><span class="s2"> client.favorite(tweet)</span>
+</span><span class='line'><span class="s2"> client.upate(&quot;</span><span class="err">@</span><span class="p">{</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">screen_name</span><span class="p">}</span> <span class="no">Welcome</span> <span class="n">to</span> <span class="no">Philadelphia</span><span class="o">!</span><span class="s2">&quot;)</span>
+</span><span class='line'><span class="s2">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s a little example I came up with.  As a tribute to <a href="http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606">Hitchbot</a> the lovable little robot that met it&rsquo;s untimely demise here in Philadelphia. Let&rsquo;s find all the 10 most recent tweets containg &ldquo;#hitchbot&rdquo;, favorite the tweet and reply to the tweet with &ldquo;Avenge Me&hellip;&rdquo; as an account I setup called @hitchbot_ghost.  Take note, if you pull too many tweets for an action, the API can respond with an error saying it looks like it could be spam.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">search_options</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="ss">result_type</span><span class="p">:</span> <span class="s2">&quot;recent&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">geocode</span><span class="p">:</span> <span class="s2">&quot;39.9525839,-75.1652215,10mi&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;#hitchbot&quot;</span><span class="p">,</span> <span class="n">search_options</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">screen_name</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">tweet</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="n">client</span><span class="o">.</span><span class="n">favorite</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;@</span><span class="si">#{</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">screen_name</span><span class="si">}</span><span class="s2"> Avenge me...&quot;</span><span class="p">,</span>
+</span><span class='line'>                <span class="ss">in_reply_to_status_id</span><span class="p">:</span> <span class="n">tweet</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that&rsquo;s it, in just few lines of Ruby, we have a working bot for Twitter.  If you have any questions or get stuck let me know!</p>
 ]]></content>
   </entry>
   
