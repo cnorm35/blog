@@ -4,7 +4,7 @@
   <title><![CDATA[Code by Codes]]></title>
   <link href="http://www.codebycodes.com/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2015-08-31T20:45:07-04:00</updated>
+  <updated>2015-08-31T21:36:16-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -22,11 +22,16 @@
 
 <p>First off, you will need to have an existing Twitter account. So, if you&rsquo;d like to create a new account just for the bot you&rsquo;ll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you&rsquo;ve already used your phone number for your primary twitter account.  Head over to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to create a new app that can communicate with Twitter&rsquo;s API.</p>
 
-<p>IMAGE/SCREEN SHOT?</p>
+<p>IMAGE/SCREEN SHOT?
+TEST</p>
+
+<p><img class="center" src="https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.33.03+AM.png" width="700" height="450" title="image" alt="images"></p>
 
 <p>It requires the app&rsquo;s Name, Description, and URL.  Fill out the info.  You can use something like &ldquo;<a href="http://www.example.com">http://www.example.com</a>&rdquo; to get started with and update it later. Also, the Name must be unique so something like &lsquo;Test&rsquo; is probably going to be taken.</p>
 
 <p>Fill out the requied info and create your new app.  Once that&rsquo;s done you&rsquo;ll be taken to the Application details page.  Head over to the <code>Key and Access Tokens</code> section next.  This is where you&rsquo;ll find your Consumer Key and Consumer Secret Keys.  There&rsquo;s one more step that we need to do before we&rsquo;re going to be ready to go.  Scroll down to the bottom to <code>Token Actions</code> and create a new access token.  This will create the new Access Token and Access Token Secret needed to connect out bot to Twitter&rsquo;s API.</p>
+
+<p><img class="center" src="https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.47.05+AM.png" width="700" height="450" title="image" alt="images"></p>
 
 <p>Now that we have all of keys and tokens situated, we&rsquo;re ready to write some code.</p>
 
@@ -542,27 +547,6 @@ will play together nicely.  I&rsquo;ll go over that in more details later.</p>
 
 
 <p>So there you have it, a working Rails template.  Let me know in the comments if there&rsquo;s anything I missed or some things you think I should have added.  Since this was the first template I&rsquo;ve created, it&rsquo;s still a work in progress.  I&rsquo;ll try to keep it updated as my setup evolves over time.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Creating Rails Application Templates]]></title>
-    <link href="http://www.codebycodes.com/blog/2015/08/16/creating-rails-application-templates/"/>
-    <updated>2015-08-16T15:25:29-04:00</updated>
-    <id>http://www.codebycodes.com/blog/2015/08/16/creating-rails-application-templates</id>
-    <content type="html"><![CDATA[<p>Programmers are lazy, that is probably one of the greatest things about us.  Anything that takes slightly longer than we think it should “Hmmmmm……I wonder if I could fix that” or “I bet I could make that better&#8221;</p>
-
-<p>I don’t know about you, but I’m the type that can get easily distracted by shiny new things to try out, whether it’s a new framework, gem, pattern, or fancy burbon (I mean, we can’t program all the time)</p>
-
-<p>I started looking into Rails application templates to try to help out these two problems for me.  If I want to try out a new feature, follow along with a tutorial, or just start tinkering with a new project I it takes me a little while to get everything set up to my preferences.  Things like setting up devise, bootstrap, getting flash messages to play nicely with bootstrap and any other confing I think will help with whatever project I’m kicking off.</p>
-
-<p>Why choose a template over just having a full application you can clone from github as a fresh starting point?  Rails templates are a much more powerful and versatile option.  Rails templates are built on Thor which is probably the best feature in Rails you’ve never heard about.  You’re probably pretty familiar with ActiveRecord, ActionController and so on, but Thor is a ruby library for creating command line apps with ruby (link Thor docs and jumpstart tutorial)  Every notice how you don’t have to run bundle install after you create a new rails app?  You have Thor to thank for that.</p>
-
-<p>Adding in the ability to run commands and edit the files is a huge advantage.  It’s also an easy way to stick to best practices with less effort.  How?  You can do things like set up guard, r-spec, and even create a git repo and make an initial commit, all without having to write any code well, except for the template derp.</p>
-
-<p>I’ll admit, I can be pretty sloppy with having tests in my personal apps.  If I’m pressed for time, I’ll normally choose cramming as many features as possible (the F-it Ship it mantra) than tests.  I think this helps combat that having my test suite all set up and ready to go</p>
-
-<pre><code></code></pre>
 ]]></content>
   </entry>
   

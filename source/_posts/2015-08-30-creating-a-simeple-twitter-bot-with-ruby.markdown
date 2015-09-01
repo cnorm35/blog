@@ -13,10 +13,15 @@ Let me preface this by saying I'm not always the biggest fan of Twitter bots.  W
 First off, you will need to have an existing Twitter account. So, if you'd like to create a new account just for the bot you'll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you've already used your phone number for your primary twitter account.  Head over to https://apps.twitter.com/ to create a new app that can communicate with Twitter's API.
 
 IMAGE/SCREEN SHOT?
+TEST
+
+{% img center https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.33.03+AM.png 700 450 'image' 'images' %}
 
 It requires the app's Name, Description, and URL.  Fill out the info.  You can use something like "http://www.example.com" to get started with and update it later. Also, the Name must be unique so something like 'Test' is probably going to be taken.
 
 Fill out the requied info and create your new app.  Once that's done you'll be taken to the Application details page.  Head over to the `Key and Access Tokens` section next.  This is where you'll find your Consumer Key and Consumer Secret Keys.  There's one more step that we need to do before we're going to be ready to go.  Scroll down to the bottom to `Token Actions` and create a new access token.  This will create the new Access Token and Access Token Secret needed to connect out bot to Twitter's API.
+
+{% img center https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.47.05+AM.png 700 450 'image' 'images' %}
 
 Now that we have all of keys and tokens situated, we're ready to write some code.
 
