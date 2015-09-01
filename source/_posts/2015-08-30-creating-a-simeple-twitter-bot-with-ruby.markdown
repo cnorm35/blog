@@ -10,22 +10,19 @@ Let me preface this by saying I'm not always the biggest fan of Twitter bots.  W
 
 
 
-First off, you will need to have an existing Twitter account. So, if you'd like to create a new account just for the bot you'll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you've already used your phone number for your primary twitter account.  Head over to https://apps.twitter.com/ to create a new app that can communicate with Twitter's API.
-
-IMAGE/SCREEN SHOT?
-TEST
+First off, you will need to have an existing Twitter account. If you'd like to create a new account just for the bot you'll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you've already used your phone number for your primary twitter account.  Head over to https://apps.twitter.com/ to create a new app that can communicate with Twitter's API.
 
 {% img center https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.33.03+AM.png 700 450 'image' 'images' %}
 
 It requires the app's Name, Description, and URL.  Fill out the info.  You can use something like "http://www.example.com" to get started with and update it later. Also, the Name must be unique so something like 'Test' is probably going to be taken.
 
-Fill out the requied info and create your new app.  Once that's done you'll be taken to the Application details page.  Head over to the `Key and Access Tokens` section next.  This is where you'll find your Consumer Key and Consumer Secret Keys.  There's one more step that we need to do before we're going to be ready to go.  Scroll down to the bottom to `Token Actions` and create a new access token.  This will create the new Access Token and Access Token Secret needed to connect out bot to Twitter's API.
+Fill out the requied info and create your new app.  Once that's done, you'll be taken to the Application details page.  Head over to the "Key and Access Tokens" section next.  This is where you'll find your Consumer Key and Consumer Secret Keys.  There's one more step that we need to do before we're going to be ready to go.  Scroll down to the bottom to "Token Actions" and create a new access token.  This will create the new "Access Token" and "Access Token Secret" needed to connect out bot to Twitter's API.
 
 {% img center https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.47.05+AM.png 700 450 'image' 'images' %}
 
 Now that we have all of keys and tokens situated, we're ready to write some code.
 
-This post is meant to be a quick intro into automating actions using the Twitter gem.  It will be a single file and ran from the command line so feel free to create a Gemfile, and set up a directory structure if you like.
+This post is meant to be a quick intro to automating actions using the Twitter gem.  It will be a single file and ran from the command line so feel free to create a Gemfile, and set up a directory structure if you like.
 
 Let's create a directory to keep our bot files in
 
@@ -52,24 +49,22 @@ client = Twitter::REST::Client.new do |config|
 end
 ```
 
-First, I'd like to point out the first line at the top.  Even though it has a `#` at the beginning, this is not a comment.  It's called a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).  This tells the program loader what command to use to run the program.  In out example it will use the [env](http://ss64.com/bash/env.html) command to figure out where the ruby interperter is to run our program.
+First, I'd like to point out the first line at the top `#!/usr/bin/env ruby`.  Even though it has a `#` at the beginning, this is not a comment.  It's called a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix).  This tells the program loader what command to use to run the program.  In our example, it will use the [env](http://ss64.com/bash/env.html) command to figure out where the ruby interperter is to run our program.
 
 Next, we create a client to communicate with the Twitter API.  Fill in the config variables with your information from the Twitter app settings page.  DO NOT CHECK YOUR KEYS INTO VERSION CONTROL.  If you plan on uploading this to GitHub or anywhere else besides your computer, [create Environment Variables](http://www.schrodinger.com/kb/1842) for your key information.
 
-Now that we have everything connected, you can send your first tweet
+Now that we have everything connected, you can send your first tweet.  Add this line below the block where you created the `client` variable
 
 ```ruby
 client.update('Tweet from the command line!')
 ```
-Being able to send a tweet from the command line is not terribly useful so let's look into something a little more interesting.  On the gem's Github page, there are a couple useful [examples](https://github.com/sferik/twitter/tree/master/examples) to get you started.  To really get an idea of the available options, you'll need to go though the [docs](http://www.rubydoc.info/gems/twitter)
-
-Here's a little example I came up with.  As a tribute to [Hitchbot](http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606) the lovable little robot that met it's untimely demise here in Philadelphia, let's find all the 100 most recent tweets containg `#hitchbot`, favorite the tweet and reply to the tweet with "Avenge Me..." as an account I setup called @hitchbot_ghost.
+Being able to send a tweet from the command line is not terribly useful so let's look into something a little more interesting.  On the gem's Github page, there are a couple useful [examples](https://github.com/sferik/twitter/tree/master/examples) to get you started.  To really get an idea of the available options, you'll need to go though the [docs](http://www.rubydoc.info/gems/twitter).
 
 First, let's pull all the recent tweets for our search criteria to make sure everything's working:
 
 
 ```ruby
-client.search("#hitchbot").take(50) do |tweet|
+client.search("#ruby").take(50) do |tweet|
   puts tweet.text
 end
 ```
@@ -82,7 +77,7 @@ If you see the tweets output to your console, you're good to go.  The baic forma
 
 You can find the available options in the [docs](http://www.rubydoc.info/gems/twitter/Twitter/REST/Search)
 
-With's the pope's visit to Philadelphia in about a month, let's say we want to get 50 recent tweets containing the work "pope" we could do this:
+With's the pope's visit to Philadelphia in about a month, let's say we want to get 50 recent tweets containing the word "pope" we could do this:
 
 ```ruby
 search_options = {

@@ -78,22 +78,19 @@
         </div>
         <p>Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots.  With that said, they can be useful and fun to build.  Here is a quick rundown of creating a simple Twitter bot in Ruby.</p>
 
-<p>First off, you will need to have an existing Twitter account. So, if you&rsquo;d like to create a new account just for the bot you&rsquo;ll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you&rsquo;ve already used your phone number for your primary twitter account.  Head over to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to create a new app that can communicate with Twitter&rsquo;s API.</p>
-
-<p>IMAGE/SCREEN SHOT?
-TEST</p>
+<p>First off, you will need to have an existing Twitter account. If you&rsquo;d like to create a new account just for the bot you&rsquo;ll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you&rsquo;ve already used your phone number for your primary twitter account.  Head over to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to create a new app that can communicate with Twitter&rsquo;s API.</p>
 
 <p><img class="center" src="https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.33.03+AM.png" width="700" height="450" title="image" alt="images"></p>
 
 <p>It requires the app&rsquo;s Name, Description, and URL.  Fill out the info.  You can use something like &ldquo;<a href="http://www.example.com">http://www.example.com</a>&rdquo; to get started with and update it later. Also, the Name must be unique so something like &lsquo;Test&rsquo; is probably going to be taken.</p>
 
-<p>Fill out the requied info and create your new app.  Once that&rsquo;s done you&rsquo;ll be taken to the Application details page.  Head over to the <code>Key and Access Tokens</code> section next.  This is where you&rsquo;ll find your Consumer Key and Consumer Secret Keys.  There&rsquo;s one more step that we need to do before we&rsquo;re going to be ready to go.  Scroll down to the bottom to <code>Token Actions</code> and create a new access token.  This will create the new Access Token and Access Token Secret needed to connect out bot to Twitter&rsquo;s API.</p>
+<p>Fill out the requied info and create your new app.  Once that&rsquo;s done, you&rsquo;ll be taken to the Application details page.  Head over to the &ldquo;Key and Access Tokens&rdquo; section next.  This is where you&rsquo;ll find your Consumer Key and Consumer Secret Keys.  There&rsquo;s one more step that we need to do before we&rsquo;re going to be ready to go.  Scroll down to the bottom to &ldquo;Token Actions&rdquo; and create a new access token.  This will create the new &ldquo;Access Token&rdquo; and &ldquo;Access Token Secret&rdquo; needed to connect out bot to Twitter&rsquo;s API.</p>
 
 <p><img class="center" src="https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.47.05+AM.png" width="700" height="450" title="image" alt="images"></p>
 
 <p>Now that we have all of keys and tokens situated, we&rsquo;re ready to write some code.</p>
 
-<p>This post is meant to be a quick intro into automating actions using the Twitter gem.  It will be a single file and ran from the command line so feel free to create a Gemfile, and set up a directory structure if you like.</p>
+<p>This post is meant to be a quick intro to automating actions using the Twitter gem.  It will be a single file and ran from the command line so feel free to create a Gemfile, and set up a directory structure if you like.</p>
 
 <p>Let&rsquo;s create a directory to keep our bot files in</p>
 
@@ -128,27 +125,25 @@ TEST</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>First, I&rsquo;d like to point out the first line at the top.  Even though it has a <code>#</code> at the beginning, this is not a comment.  It&rsquo;s called a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix">shebang</a>).  This tells the program loader what command to use to run the program.  In out example it will use the <a href="http://ss64.com/bash/env.html">env</a> command to figure out where the ruby interperter is to run our program.</p>
+<p>First, I&rsquo;d like to point out the first line at the top <code>#!/usr/bin/env ruby</code>.  Even though it has a <code>#</code> at the beginning, this is not a comment.  It&rsquo;s called a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix">shebang</a>.  This tells the program loader what command to use to run the program.  In our example, it will use the <a href="http://ss64.com/bash/env.html">env</a> command to figure out where the ruby interperter is to run our program.</p>
 
 <p>Next, we create a client to communicate with the Twitter API.  Fill in the config variables with your information from the Twitter app settings page.  DO NOT CHECK YOUR KEYS INTO VERSION CONTROL.  If you plan on uploading this to GitHub or anywhere else besides your computer, <a href="http://www.schrodinger.com/kb/1842">create Environment Variables</a> for your key information.</p>
 
-<p>Now that we have everything connected, you can send your first tweet</p>
+<p>Now that we have everything connected, you can send your first tweet.  Add this line below the block where you created the <code>client</code> variable</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;Tweet from the command line!&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Being able to send a tweet from the command line is not terribly useful so let&rsquo;s look into something a little more interesting.  On the gem&rsquo;s Github page, there are a couple useful <a href="https://github.com/sferik/twitter/tree/master/examples">examples</a> to get you started.  To really get an idea of the available options, you&rsquo;ll need to go though the <a href="http://www.rubydoc.info/gems/twitter">docs</a></p>
-
-<p>Here&rsquo;s a little example I came up with.  As a tribute to <a href="http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606">Hitchbot</a> the lovable little robot that met it&rsquo;s untimely demise here in Philadelphia, let&rsquo;s find all the 100 most recent tweets containg <code>#hitchbot</code>, favorite the tweet and reply to the tweet with &ldquo;Avenge Me&hellip;&rdquo; as an account I setup called @hitchbot_ghost.</p>
+<p>Being able to send a tweet from the command line is not terribly useful so let&rsquo;s look into something a little more interesting.  On the gem&rsquo;s Github page, there are a couple useful <a href="https://github.com/sferik/twitter/tree/master/examples">examples</a> to get you started.  To really get an idea of the available options, you&rsquo;ll need to go though the <a href="http://www.rubydoc.info/gems/twitter">docs</a>.</p>
 
 <p>First, let&rsquo;s pull all the recent tweets for our search criteria to make sure everything&rsquo;s working:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;#hitchbot&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;#ruby&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
 </span><span class='line'>  <span class="nb">puts</span> <span class="n">tweet</span><span class="o">.</span><span class="n">text</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -163,7 +158,7 @@ TEST</p>
 
 <p>You can find the available options in the <a href="http://www.rubydoc.info/gems/twitter/Twitter/REST/Search">docs</a></p>
 
-<p>With&rsquo;s the pope&rsquo;s visit to Philadelphia in about a month, let&rsquo;s say we want to get 50 recent tweets containing the work &ldquo;pope&rdquo; we could do this:</p>
+<p>With&rsquo;s the pope&rsquo;s visit to Philadelphia in about a month, let&rsquo;s say we want to get 50 recent tweets containing the word &ldquo;pope&rdquo; we could do this:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
