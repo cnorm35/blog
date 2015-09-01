@@ -54,7 +54,7 @@ Next, we create a client to communicate with the Twitter API.  Fill in the confi
 
 Now that we have everything connected, you can send your first tweet
 
-```ruby
+```
 client.update('Tweet from the command line!')
 ```
 Being able to send a tweet from the command line is not terribly useful so let's look into something a little more interesting.  On the gem's Github page, there are a couple useful [examples](https://github.com/sferik/twitter/tree/master/examples) to get you started.  To really get an idea of the available options, you'll need to go though the [docs](http://www.rubydoc.info/gems/twitter)
@@ -64,11 +64,31 @@ Here's a little example I came up with.  As a tribute to [Hitchbot](http://www.n
 First, let's pull all the recent tweets for our search criteria to make sure everything's working:
 
 
-```ruby
+```
 client.search("#hitchbot").take(50) do |tweet|
   puts tweet.text
 end
+```
 
+If you see the tweets output to your console, you're good to go.  The baic format for the search method is: 
+
+```
+	client.search("query", {options})
+```
+
+You can find the available options in the [docs](http://www.rubydoc.info/gems/twitter/Twitter/REST/Search)
+
+With's the pope's visit to Philadelphia in about a month, let's say we want to get 50 recent tweets containing the work "pope" we could do this:
+
+```
+search_options = {
+	result_type: "recent",
+	geocode: "39.9525839,-75.1652215,10mi"
+}
+
+client.search("pope", search_options).take(50).each do |tweet|
+	puts "#{tweet.user.screen_name}: #{tweet.text}
+end
 ```
 
 
