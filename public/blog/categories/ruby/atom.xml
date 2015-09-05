@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby, | Code by Codes]]></title>
   <link href="http://www.codebycodes.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2015-09-01T08:26:55-04:00</updated>
+  <updated>2015-09-05T18:45:48-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -12,6 +12,127 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Simple Twitter Bot With Ruby]]></title>
+    <link href="http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/"/>
+    <updated>2015-08-31T20:09:41-04:00</updated>
+    <id>http://www.codebycodes.com/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby</id>
+    <content type="html"><![CDATA[<p>Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots.  With that said, they can be useful and fun to build.  Here is a quick rundown of creating a simple Twitter bot in Ruby.</p>
+
+<p>First off, you will need to have an existing Twitter account. If you&rsquo;d like to create a new account just for the bot you&rsquo;ll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you&rsquo;ve already used your phone number for your primary twitter account.  Head over to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to create a new app that can communicate with Twitter&rsquo;s API.</p>
+
+<p><img class="center <a" src="href="https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.33.03+AM.png">https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.33.03+AM.png</a>&#8221; width=&#8221;700&#8221; height=&#8221;450&#8221; title=&#8221;&lsquo;image&rsquo; &lsquo;images&rsquo;&#8221; ></p>
+
+<!--more-->
+
+
+<p>It requires the app&rsquo;s Name, Description, and URL.  Fill out the info.  You can use something like &ldquo;<a href="http://www.example.com">http://www.example.com</a>&rdquo; to get started with and update it later. Also, the Name must be unique so something like &lsquo;Test&rsquo; is probably going to be taken.</p>
+
+<p>Fill out the required info and create your new app.  Once that&rsquo;s done, you&rsquo;ll be taken to the Application details page.  Head over to the &ldquo;Key and Access Tokens&rdquo; section next.  This is where you&rsquo;ll find your Consumer Key and Consumer Secret Keys.  There&rsquo;s one more step that we need to do before we&rsquo;re going to be ready to go.  Scroll down to the bottom to &ldquo;Token Actions&rdquo; and create a new access token.  This will create the new &ldquo;Access Token&rdquo; and &ldquo;Access Token Secret&rdquo; needed to connect out bot to Twitter&rsquo;s API.</p>
+
+<p><img class="center <a" src="href="https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.47.05+AM.png">https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.47.05+AM.png</a>&#8221; width=&#8221;700&#8221; height=&#8221;450&#8221; title=&#8221;&lsquo;image&rsquo; &lsquo;images&rsquo;&#8221; ></p>
+
+<p>Now that we have all of keys and tokens situated, we&rsquo;re ready to write some code.</p>
+
+<p>This post is meant to be a quick intro to automating actions using the Twitter gem.  It will be a single file and ran from the command line so feel free to create a Gemfile, and set up a directory structure if you like.</p>
+
+<p>Let&rsquo;s create a directory to keep our bot files in</p>
+
+<p><code>$ mkdir TwitterBot</code></p>
+
+<p><code>$ cd TwitterBot</code></p>
+
+<p><code>$ touch bot.rb</code></p>
+
+<p>Now that we have a directory set up and a <code>bot.rb</code> file created, let&rsquo;s install the Twitter gem:</p>
+
+<p><code>$ gem install twitter</code></p>
+
+<p>Time to write some code, open the <code>bot.rb</code> we created and let&rsquo;s get to work.</p>
+
+<pre><code class="ruby">#!/usr/bin/env ruby
+
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = "YOUR_CONSUMER_KEY"
+  config.consumer_secret     = "YOUR_CONSUMER_SECRET"
+  config.access_token        = "YOUR_ACCESS_TOKEN"
+  config.access_token_secret = "YOUR_ACCESS_SECRET"
+end
+</code></pre>
+
+<p>First, I&rsquo;d like to point out the first line at the top <code>#!/usr/bin/env ruby</code>.  Even though it has a <code>#</code> at the beginning, this is not a comment.  It&rsquo;s called a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix">shebang</a>.  This tells the program loader what command to use to run the program.  In our example, it will use the <a href="http://ss64.com/bash/env.html">env</a> command to figure out where the ruby interpreter is to run our program.</p>
+
+<p>Next, we create a client to communicate with the Twitter API.  Fill in the config variables with your information from the Twitter app settings page.  DO NOT CHECK YOUR KEYS INTO VERSION CONTROL!  If you plan on uploading this to GitHub or anywhere else besides your computer, <a href="http://www.schrodinger.com/kb/1842">create Environment Variables</a> for your key information.</p>
+
+<p>Now that we have everything connected, you can send your first tweet.  Add this line below the block where you created the <code>client</code> variable</p>
+
+<pre><code class="ruby">client.update('Tweet from the command line!')
+</code></pre>
+
+<p>Check the your Twitter account you used to register the app with, you should see your first tweet from the command line.  Being able to send a tweet from the command line is not terribly useful so let&rsquo;s look into something a little more interesting.  On the gem&rsquo;s Github page, there are a couple useful <a href="https://github.com/sferik/twitter/tree/master/examples">examples</a> to get you started.  To really get an idea of the available options, you&rsquo;ll need to go though the <a href="http://www.rubydoc.info/gems/twitter">docs</a>.</p>
+
+<p>First, let&rsquo;s pull all the recent tweets for our search criteria to make sure everything is working:</p>
+
+<pre><code class="ruby">client.search("#ruby").take(50).each do |tweet|
+  puts tweet.text
+end
+</code></pre>
+
+<p>This example should be pretty self explanatory, but if you&rsquo;re not sure what we&rsquo;re doing here, we&rsquo;re searching for tweets containing &ldquo;#ruby&rdquo;, taking the first 50 results, and printing out the text of the tweet to our console.</p>
+
+<p>If you see the tweets output to your console, you&rsquo;re good to go.  The baic format for the search method is:</p>
+
+<pre><code class="ruby">    client.search("query", {options})
+</code></pre>
+
+<p>You can find the available options in the <a href="http://www.rubydoc.info/gems/twitter/Twitter/REST/Search">docs</a>.</p>
+
+<p>With the pope&rsquo;s visit to Philadelphia in about a month, let&rsquo;s say we want to get 50 recent tweets containing the word &ldquo;pope&rdquo;, within a 10 mile radius of Philadelphia, we could do this:</p>
+
+<pre><code class="ruby">search_options = {
+    result_type: "recent",
+    geocode: "39.9525839,-75.1652215,10mi"
+}
+
+client.search("pope", search_options).take(50).each do |tweet|
+    puts "#{tweet.user.screen_name}: #{tweet.text}
+end
+</code></pre>
+
+<p>If you&rsquo;re feeling extra friendly, you can favorite, and reply to their tweet with a message.</p>
+
+<pre><code class="ruby">search_options = {
+    result_type: "recent",
+    geocode: "39.9525839,-75.1652215,10mi"
+}
+
+client.search("pope", search_options).take(50).each do |tweet|
+    puts "#{tweet.user.screen_name}: #{tweet.text}
+    client.favorite(tweet)
+    client.upate("@{tweet.user.screen_name} Welcome to Philadelphia!")
+end
+</code></pre>
+
+<p>You may want to limit interactions with replies and things like that to not come off as too spammy to people.</p>
+
+<p>Here&rsquo;s a little example I came up with.  As a tribute to <a href="http://www.nbcnews.com/news/us-news/hitchhiking-robot-hitchbot-meets-demise-philadelphia-after-about-2-weeks-n402606">Hitchbot</a> the lovable little robot that met it&rsquo;s untimely demise here in Philadelphia. Let&rsquo;s find all the 10 most recent tweets containing &ldquo;#hitchbot&rdquo;, favorite the tweet and reply to the tweet with &ldquo;Avenge Me&hellip;&rdquo; as an account I setup called @hitchbot_ghost.  Take note, if you submit too many client actions at one time, the API can respond with an error saying it looks like it could be spam.</p>
+
+<pre><code class="ruby">search_options = {
+    result_type: "recent",
+    geocode: "39.9525839,-75.1652215,10mi"
+}
+client.search("#hitchbot", search_options).take(10).each do |tweet|
+    puts "#{tweet.user.screen_name}: #{tweet.text}"
+    client.favorite(tweet)
+    client.update("@#{tweet.user.screen_name} Avenge me...",
+                  in_reply_to_status_id: tweet.id)
+end
+</code></pre>
+
+<p>And that&rsquo;s it! In just few lines of Ruby, we have a working bot for Twitter.  If you have any questions or get stuck let me know!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Creating Rails Application Templates]]></title>

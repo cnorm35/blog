@@ -4,7 +4,7 @@
   <title><![CDATA[Code by Codes]]></title>
   <link href="http://www.codebycodes.com/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2015-09-01T08:26:55-04:00</updated>
+  <updated>2015-09-05T18:45:48-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -88,7 +88,7 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;#ruby&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;#ruby&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
 </span><span class='line'>  <span class="nb">puts</span> <span class="n">tweet</span><span class="o">.</span><span class="n">text</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>

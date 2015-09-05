@@ -14,7 +14,7 @@
   <meta name="author" content="Cody Norman">
 
   
-  <meta name="description" content="Creating a Simple Twitter Bot With Ruby written August 31, 2015 Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots. &hellip;">
+  <meta name="description" content="Creating a Simple Twitter Bot With Ruby written August 31, 2015 in ruby,, twitter Let me preface this by saying I&rsquo;m not always the biggest fan &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -73,6 +73,13 @@
 
 <time datetime="2015-08-31T20:09:41-04:00" pubdate data-updated="true">August 31, 2015</time>
           
+
+in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby,</a>, <a class='category' href='/blog/categories/twitter/'>twitter</a>
+  
+</span>
 
 
         </div>
@@ -146,7 +153,7 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;#ruby&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;#ruby&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span>
 </span><span class='line'>  <span class="nb">puts</span> <span class="n">tweet</span><span class="o">.</span><span class="n">text</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
