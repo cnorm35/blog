@@ -64,7 +64,7 @@ First, let's pull all the recent tweets for our search criteria to make sure eve
 
 
 ```ruby
-client.search("#ruby").take(50) do |tweet|
+client.search("#ruby").take(50).each do |tweet|
   puts tweet.text
 end
 ```
