@@ -10,12 +10,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Code by Codes</title>
+  <title>Creating Polymorphic Users With Devise and Rails - Code by Codes</title>
   <meta name="author" content="Cody Norman">
 
   
-  <meta name="description" content="Code by Codes
-Codes, rants and musings about me Cody here! I'm a former loan officer who saw the light and became a software developer. This is &hellip;">
+  <meta name="description" content="Creating Polymorphic Users With Devise and Rails written May 30, 2016 Add in links for an updated template to start the project with. create &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,7 +23,7 @@ Codes, rants and musings about me Cody here! I'm a former loan officer who saw t
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.codebycodes.com">
+  <link rel="canonical" href="http://www.codebycodes.com/blog/2016/05/30/creating-polymorphic-users-with-devise-and-rails">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Code by Codes" type="application/atom+xml">
@@ -53,95 +52,53 @@ Codes, rants and musings about me Cody here! I'm a former loan officer who saw t
       <img src="/images/home.png"/>
     </a>
 
-    <div class="home-page">
-  <div class="hero">
-    <h1>Code by Codes</h1>
-<p>Codes, rants and musings</p>
+    <article role="article" class="full-single-article">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Creating Polymorphic Users With Devise and Rails</h1>
+        <div class="meta">
+          written 
 
-  </div>
 
-  <div class="home-field">
-    <div class="home-landing her-row">
-      <div class="container">
-        <div class="row">
-          <div id="about-me" class="col-md-offset-3 col-md-6">
-  <h4>about me</h4>
-  <p>Cody here! I&#8217;m a former loan officer who saw the light and became a software developer. This is where I&#8217;ll share what I&#8217;m working on, what I&#8217;ve learned from coding bootcamp and working as a developer in an early stage start up. You want to know more? Drop me a line.</p>
-  <div class="social-icon-list">
-  	
-    <a title="Twitter" href="https://twitter.com/cnorm35"><i class="fa fa-twitter-square fa-3x"></i></a>
-    
-    
-    <a title="GitHub" href="https://github.com/cnorm35"><i class="fa fa-github fa-3x"></i></a>
-    
-    
-    
-    <a title="E-Mail" href="mailto:wcodynorman@gmail.com"><i class="fa fa-envelope-o fa-3x"></i></a>
-    
-  </div>
-</div>
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-05-30T21:44:36-04:00" pubdate data-updated="true">May 30, 2016</time>
+          
+
 
         </div>
-      </div>
-    </div>
-
-    <div class="article-list">
-      <div class="container">
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2016/05/30/creating-polymorphic-users-with-devise-and-rails/">Creating Polymorphic Users With Devise and Rails</a></h2>
-  
-  <p>
-    <h1>Add in links for an updated template to start the project with.</h1>
-
-
-
+        <h1>Add in links for an updated template to start the project with.</h1>
 
 <h1>create template just for the tutorial</h1>
 
-
-
-
 <h1>run rake routes to see all the routes and get an idea what pages were</h1>
-
-
-
 
 <h1>created</h1>
 
-
-
-
 <p><a href="https://gist.github.com/043484e923f87840ca763f6b287a4bfc.git">https://gist.github.com/043484e923f87840ca763f6b287a4bfc.git</a></p>
-
-
-
 
 <p>First and foremost, if you&rsquo;re not familiar with Devise, or are looking
 for a good place to get some good information on getting started with
 Devise, this is not the post for you.  There are a ton of great
 resources, incliding the Devise documentation for getting started.</p>
 
-
-
-
 <p>Today were going to be talking about building differnt types of users
 that will build off Devise.  It&rsquo;s a pretty common use case, the most
 common of which is some type of service provider and a customer of that
 service.  In this example we&rsquo;ll be using Provider and Customer.</p>
 
-
-
-
 <p>Once we&rsquo;re done, we&rsquo;ll be able to sign up users as either a Provider or
 Customer, sign them in after registering, and have a single login page
 regardless of the type of user.</p>
-
-
-
 
 <p>To make it easy to get started, I&rsquo;ve created a template to generate a
 new application for us to jump into.  If you want to know more about
@@ -149,20 +106,12 @@ creating templates, or how to create your own, check out my other post.
 If you have any problems creating the template, or just prefer to fork
 or clone for github, you can do that.</p>
 
-
-
-
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ rails new polymorphic_users -m WHATEVER THE URL OR SETUP IS</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>Once, you have the app up and running, lets take a look at the fields
 Devise creates for the User model for us.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -170,12 +119,7 @@ Devise creates for the User model for us.</p>
 </span><span class='line'>=&gt; #&lt;User id: nil, email: "", encrypted_password: "", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: nil, last_sign_in_ip: nil, created_at: nil, updated_at: nil&gt;</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p><code>email</code>, <code>encrypted_password</code>, <code>reset_password_token</code>, <code>reset_password_sent_at</code>, <code>remember_created_at</code>, <code>sign_in_count</code>, <code>current_sign_in_at</code>, <code>last_sign_in_at</code>, <code>current_sign_in_ip</code>, <code>last_sign_in_ip</code>, <code>created_at</code>, <code>updated_at</code></p>
-
-
-
 
 <p>This gives us an idea of the structure that we&rsquo;re going to build on and
 think about the best way to model our Users.  To keep the code DRY,
@@ -185,39 +129,19 @@ a pretty reasonable assumption that every user that signs up for our
 site will have a first_name and last_name so there&rsquo;s no point in
 duplicating those fields in the Provider and Customer tables.</p>
 
-
-
-
 <h5>Create migrations for adding first_name and last_name to tables,</h5>
-
-
-
 
 <h5>views, and controllers (i think adding them to the controllers, it</h5>
 
-
-
-
 <h4>tricky?)</h4>
 
-
-
-
 <p>First, let&rsquo;s add our new fields to the Devise User model.</p>
-
-
-
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ rails g migration add_names_to_users first_name last_name</span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>That&rsquo;s going to create a migration file that looks like this</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -234,33 +158,20 @@ duplicating those fields in the Provider and Customer tables.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>Now that we have a new fields on the model, how do we add them to the
 strong parameters for Devise? There are a couple ways to go about this.
 You can check the recommeded way from Devise [<a href="https://github.com/plataformatec/devise#strong-parameters">https://github.com/plataformatec/devise#strong-parameters</a>]</p>
 
-
-
-
 <p>But I prefer, a slightly different way.  For both ways, you&rsquo;ll need to
 add a <code>before_filter</code> inside the <code>ApplicationController</code>.  This filter
 will run before any action from a Devise controller.</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">before_action</span> <span class="ss">:configure_permitted_parameters</span><span class="p">,</span> <span class="k">if</span><span class="p">:</span> <span class="ss">:devise_controller?</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>Let&rsquo;s write our method that will run before each Devise action now</p>
-
-
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -273,19 +184,11 @@ will run before any action from a Devise controller.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>After that&rsquo;s taken care of, we can update our forms as we normally would
 to add the new fields.  Here&rsquo;s what the new user form should look like
 now</p>
 
-
-
-
 <h1>check the formation on this, still looks crooked?</h1>
-
-
-
 
 <figure class='code'><figcaption><span>`app/views/devise/registrations/new.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -368,12 +271,7 @@ now</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-
 <p>same thing goes for our <code>edit</code> page</p>
-
-
-
 
 <figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -480,248 +378,35 @@ now</p>
 
 
 
-  </p>
-  <span class="meta">
-    written 
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="cnorm35" data-size="large">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+</script>
+        <hr class="divider-short"/>
 
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2016-05-30T21:44:36-04:00" pubdate data-updated="true">May 30, 2016</time>
-    
-
-
-  </span>
-
-  
-</article>
-            </div>
-          </div>
         
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/">Creating a Simple Twitter Bot With Ruby</a></h2>
-  
-  <p>
-    <p>Let me preface this by saying I&rsquo;m not always the biggest fan of Twitter bots.  With that said, they can be useful and fun to build.  Here is a quick rundown of creating a simple Twitter bot in Ruby.</p>
-
-
-
-
-<p>First off, you will need to have an existing Twitter account. If you&rsquo;d like to create a new account just for the bot you&rsquo;ll also need a phone number.  The easiest way to take care of this is to create a new google voice number if you&rsquo;ve already used your phone number for your primary twitter account.  Head over to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to create a new app that can communicate with Twitter&rsquo;s API.</p>
-
-
-
-
-<p><img class="center" src="https://s3.amazonaws.com/codebycodes-blog-images/images/Screen+Shot+2015-08-31+at+8.33.03+AM.png" width="700" height="450" title="image" alt="images"></p>
-
-
-
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-08-31T20:09:41-04:00" pubdate data-updated="true">August 31, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ruby/'>ruby,</a>, <a class='category' href='/blog/categories/twitter/'>twitter</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2015/08/17/creating-rails-application-templates/">Creating Rails Application Templates</a></h2>
-  
-  <p>
-    <p>Programmers are lazy.  This is probably one of the greatest things about us.  Anything that takes slightly longer than we think it should, and you start thinking “Hmmmmm……I wonder if I could fix that” or “I bet I could make that better&#8221;.</p>
-
-
-
-
-<p>I don’t know about you, but I’m the type that can get easily distracted by shiny new things to try out, whether it’s a new framework, gem, pattern, or fancy bourbon (I mean, we can’t program all the time).</p>
-
-
-
-
-<p>I started looking into Rails application templates to try to alleviate these problems.  If I want to try out a new feature, follow along with a tutorial, or just start tinkering with a new project, it takes me a little while to get everything set up with my preferences.  Things like setting up devise, bootstrap, getting flash messages to play nicely with bootstrap and any other configs I think will help with whatever project I’m kicking off.</p>
-
-
-
-
-<p><p>Why choose a template over just having a full application you can clone from github as a fresh starting point?</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-08-17T09:11:43-04:00" pubdate data-updated="true">August 17, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby,</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/08/17/creating-rails-application-templates/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/">Deploy Your Octopress Blog to Heroku</a></h2>
-  
-  <p>
-    <p>You may have noticed that my site&rsquo;s name is codebycodes, but I have yet to post any code on here.  Good job on calling me out.  So here it is.  This post will walk you through setting up a new blog with the Octopress blogging framework and deploy to Heroku.  This is the same setup that this blog is currently running on.</p>
-
-
-
-
-<p><p>So first off, what exactly <em>is</em> Octopress.  Octopress is billed as a blogging framework for hackers.  It&rsquo;s a little different that some of the other blogging frameworks you may have had some experience with.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2015-01-13T18:08:38-05:00" pubdate data-updated="true">January 13, 2015</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/heroku/'>heroku</a>, <a class='category' href='/blog/categories/octopress/'>octopress,</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2015/01/13/deploy-your-octopress-blog-to-heroku/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
-        
-          
-          <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-              <article>
-  <h2><a href="/blog/2014/12/10/my-time-at-dreamit-ventures/">My Time at Dreamit Ventures</a></h2>
-  
-  <p>
-    <p><p>On June 20th of this year, I boarded a flight bound for San Francisco.  Armed with only a suitcase and a laptop, I was heading to a coding bootcamp to follow a crazy dream of switching careers and becoming a developer.  I had no idea what the next 3 months would bring.  My first two weeks were spent on the top bunk at a hacker house.  My &ldquo;room&rdquo; was really the living room.  I didn&rsquo;t even have a chance to fall asleep with the light off and not have people working around me until week 3.</p>
-
-  </p>
-  <span class="meta">
-    written 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2014-12-10T07:53:40-05:00" pubdate data-updated="true">December 10, 2014</time>
-    
-
-in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/accelerator/'>accelerator</a>, <a class='category' href='/blog/categories/startup/'>startup</a>, <a class='category' href='/blog/categories/startups/'>startups,</a>
-  
-</span>
-
-
-  </span>
-
-  
-    <a class="full-article-link pull-right" rel="full-article" href="/blog/2014/12/10/my-time-at-dreamit-ventures/">Read on &rarr;</a>
-  
-</article>
-            </div>
-          </div>
+        <section>
+          <h1>Comments</h1>
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+        </section>
         
       </div>
     </div>
+  </div>
+</article>
 
-    <hr class="divider-short"/>
+<hr class="divider-short"/>
 
-    <div class="archive-link">
-      <h3><a href="/posts/">All Posts</a></h3>
+<div class="archive-link">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+          <a class="pull-left" href="/blog/2015/08/31/creating-a-simeple-twitter-bot-with-ruby/" title="Previous Post: Creating a Simple Twitter Bot with Ruby">&laquo; Previous: Creating a Simple Twitter Bot with Ruby</a>
+        
+
+        
+      </div>
     </div>
   </div>
 </div>
@@ -761,13 +446,36 @@ in
 </footer>
 
     
+      
+
+<script type="text/javascript">
+      var disqus_shortname = 'codebycodes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.codebycodes.com/blog/2016/05/30/creating-polymorphic-users-with-devise-and-rails/';
+        var disqus_url = 'http://www.codebycodes.com/blog/2016/05/30/creating-polymorphic-users-with-devise-and-rails/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+    
     
 
 <script type="text/javascript">
       var disqus_shortname = 'codebycodes';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.codebycodes.com/blog/2016/05/30/creating-polymorphic-users-with-devise-and-rails/';
+        var disqus_url = 'http://www.codebycodes.com/blog/2016/05/30/creating-polymorphic-users-with-devise-and-rails/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
