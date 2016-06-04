@@ -4,7 +4,7 @@
   <title><![CDATA[Code by Codes]]></title>
   <link href="http://www.codebycodes.com/atom.xml" rel="self"/>
   <link href="http://www.codebycodes.com/"/>
-  <updated>2016-06-04T15:01:17-04:00</updated>
+  <updated>2016-06-04T15:43:42-04:00</updated>
   <id>http://www.codebycodes.com/</id>
   <author>
     <name><![CDATA[Cody Norman]]></name>
@@ -265,6 +265,15 @@ now</p>
 <span class='line-number'>48</span>
 <span class='line-number'>49</span>
 <span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel panel-default&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-heading&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-title&quot;</span><span class="nt">&gt;</span>
@@ -315,10 +324,102 @@ now</p>
 </span><span class='line'>    <span class="err">&lt;</span>%= link_to &quot;Back&quot;, :back %&gt;
 </span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  ```
+</span><span class='line'>Before we get to creating our new types of Users, we need to make one
+</span><span class='line'>more change to the Devise User model.
+</span><span class='line'>
+</span><span class='line'>Start with a new migration.  If you&#39;re wondering why I didn&#39;t add it to
+</span><span class='line'>the last one, I like to keep my migrations small and concise.  This
+</span><span class='line'>makes it easier to roll things back if you ever need to.
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>$ rails g migration add_profile_to_users profile_id:integer profile_type</p>
 
+<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>Let&#39;s add an index for the sake of performance.  Note, you can specify
+</span><span class='line'>things like creating an index when your passing in arguments to the
+</span><span class='line'>generator.  I always pop open my migrations to make sure I created it
+</span><span class='line'>correctly, and usually just add it in that way.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ruby
+class AddProfileToUsers &lt; ActiveRecord::Migration
+  def change
+    add_column :users, :profile_id, :integer
+    add_column :users, :profile_type, :string</p>
+
+<pre><code>add_index :users, [:meta_id, :meta_type]
+</code></pre>
+
+<p>  end
+end</p>
+
+<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>One last tweak to the `User` model and we&#39;ll be all set to get started
+</span><span class='line'>on our new user types.
+</span><span class='line'>
+</span><span class='line'>Open the `User` model and add our new association that&#39;s going to allow
+</span><span class='line'>us to link our new types of users
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ruby  app/models/user.rb
+class User &lt; ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+  :recoverable, :rememberable, :trackable, :validatable</p>
+
+<p>  belongs_to :profile, polymorphic: true
+end</p>
+
+<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>Now we have our custimizations to Devise complete, our next step is to
+</span><span class='line'>create our new types of users.  For the sake of simplicity, we&#39;re not going to be adding any fields
+</span><span class='line'>to the new types of users.  If you have no idea what polymorphic
+</span><span class='line'>relations are in Rails, take a bit to skim over the Rails guides to get
+</span><span class='line'>an idea.  If you dont get it, don&#39;t worry.  Polymophism can be a tricky
+</span><span class='line'>concept, especially when first setting it up but I&#39;ve found that it
+</span><span class='line'>makes much more sense after you&#39;ve implemented it and had a chance to
+</span><span class='line'>play around with it a bit. [http://guides.rubyonrails.org/association_basics.html#polymorphic-associations]
+</span><span class='line'>
+</span><span class='line'>If you remember, our two types of users are going to be `Provider`s and
+</span><span class='line'>`Customer`s.  Since both of the models are going to be pretty empty,
+</span><span class='line'>let&#39;s create them both at once
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$ rails g model Customer &amp;&amp; rails g model Provider</p>
+
+<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>be sure to migrate the db afterwards
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>$ bundle exec rake db:migrate
+&#8220;`</p>
 ]]></content>
   </entry>
   

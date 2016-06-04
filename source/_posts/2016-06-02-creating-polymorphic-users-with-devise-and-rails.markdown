@@ -203,5 +203,70 @@ same thing goes for our `edit` page
 	</div>
 
 
+  ```
+Before we get to creating our new types of Users, we need to make one
+more change to the Devise User model.
+
+Start with a new migration.  If you're wondering why I didn't add it to
+the last one, I like to keep my migrations small and concise.  This
+makes it easier to roll things back if you ever need to.
+
+```
+$ rails g migration add_profile_to_users profile_id:integer profile_type
 ```
 
+Let's add an index for the sake of performance.  Note, you can specify
+things like creating an index when your passing in arguments to the
+generator.  I always pop open my migrations to make sure I created it
+correctly, and usually just add it in that way.
+
+```ruby
+class AddProfileToUsers < ActiveRecord::Migration
+  def change
+    add_column :users, :profile_id, :integer
+    add_column :users, :profile_type, :string
+
+    add_index :users, [:meta_id, :meta_type]
+  end
+end
+
+```
+One last tweak to the `User` model and we'll be all set to get started
+on our new user types.
+
+Open the `User` model and add our new association that's going to allow
+us to link our new types of users
+
+```ruby  app/models/user.rb
+class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+  :recoverable, :rememberable, :trackable, :validatable
+
+  belongs_to :profile, polymorphic: true
+end
+
+```
+
+Now we have our custimizations to Devise complete, our next step is to
+create our new types of users.  For the sake of simplicity, we're not going to be adding any fields
+to the new types of users.  If you have no idea what polymorphic
+relations are in Rails, take a bit to skim over the Rails guides to get
+an idea.  If you dont get it, don't worry.  Polymophism can be a tricky
+concept, especially when first setting it up but I've found that it
+makes much more sense after you've implemented it and had a chance to
+play around with it a bit. [http://guides.rubyonrails.org/association_basics.html#polymorphic-associations]
+
+If you remember, our two types of users are going to be `Provider`s and
+`Customer`s.  Since both of the models are going to be pretty empty,
+let's create them both at once
+
+```
+$ rails g model Customer && rails g model Provider
+```
+be sure to migrate the db afterwards
+
+```
+$ bundle exec rake db:migrate
+```
