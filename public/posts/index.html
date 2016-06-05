@@ -91,6 +91,11 @@
 
 
 
+<h1>remove simple form form template and make sure everything still works</h1>
+
+
+
+
 <p><a href="https://gist.github.com/043484e923f87840ca763f6b287a4bfc.git">https://gist.github.com/043484e923f87840ca763f6b287a4bfc.git</a></p>
 
 
@@ -263,7 +268,7 @@ now</p>
 
 
 
-<figure class='code'><figcaption><span>`app/views/devise/registrations/new.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>app/views/devise/registrations/new.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -351,7 +356,7 @@ now</p>
 
 
 
-<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>app/views/devise/registrations/edit.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -401,15 +406,6 @@ now</p>
 <span class='line-number'>48</span>
 <span class='line-number'>49</span>
 <span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel panel-default&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-heading&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-title&quot;</span><span class="nt">&gt;</span>
@@ -460,91 +456,214 @@ now</p>
 </span><span class='line'>    <span class="err">&lt;</span>%= link_to &quot;Back&quot;, :back %&gt;
 </span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>  ```
-</span><span class='line'>Before we get to creating our new types of Users, we need to make one
-</span><span class='line'>more change to the Devise User model.
-</span><span class='line'>
-</span><span class='line'>Start with a new migration.  If you&#39;re wondering why I didn&#39;t add it to
-</span><span class='line'>the last one, I like to keep my migrations small and concise.  This
-</span><span class='line'>makes it easier to roll things back if you ever need to.
 </span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<p>$ rails g migration add_profile_to_users profile_id:integer profile_type</p>
+<p>Before we get to creating our new types of Users, we need to make one
+more change to the Devise User model.</p>
 
 
 
 
-<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>Let&#39;s add an index for the sake of performance.  Note, you can specify
-</span><span class='line'>things like creating an index when your passing in arguments to the
-</span><span class='line'>generator.  I always pop open my migrations to make sure I created it
-</span><span class='line'>correctly, and usually just add it in that way.
+<p>Start with a new migration.  If you&rsquo;re wondering why I didn&rsquo;t add it to
+the last one, I like to keep my migrations small and concise.  This
+makes it easier to roll things back if you ever need to.</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/views/devise/registrations/edit.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>$ rails g migration add_profile_to_users profile_id:integer profile_type
 </span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<p>ruby
-class AddProfileToUsers &lt; ActiveRecord::Migration
-  def change
-    add_column :users, :profile_id, :integer
-    add_column :users, :profile_type, :string</p>
+<p>Let&rsquo;s add an index for the sake of performance.  Note, you can specify
+things like creating an index when your passing in arguments to the
+generator.  I always pop open my migrations to make sure I created it
+correctly, and usually just add it in that way.</p>
 
 
 
 
-<pre><code>add_index :users, [:meta_id, :meta_type]
-</code></pre>
-
-
-
-
-<p>  end
-end</p>
-
-
-
-
-<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>One last tweak to the `User` model and we&#39;ll be all set to get started
-</span><span class='line'>on our new user types.
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">AddProfileToUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">change</span>
+</span><span class='line'>    <span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:profile_id</span><span class="p">,</span> <span class="ss">:integer</span>
+</span><span class='line'>    <span class="n">add_column</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:profile_type</span><span class="p">,</span> <span class="ss">:string</span>
 </span><span class='line'>
-</span><span class='line'>Open the `User` model and add our new association that&#39;s going to allow
-</span><span class='line'>us to link our new types of users
+</span><span class='line'>    <span class="n">add_index</span> <span class="ss">:users</span><span class="p">,</span> <span class="o">[</span><span class="ss">:meta_id</span><span class="p">,</span> <span class="ss">:meta_type</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<p>ruby  app/models/user.rb
-class User &lt; ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-  :recoverable, :rememberable, :trackable, :validatable</p>
+<p>One last tweak to the <code>User</code> model and we&rsquo;ll be all set to get started
+on our new user types.</p>
 
 
 
 
-<p>  belongs_to :profile, polymorphic: true
-end</p>
+<p>Open the <code>User</code> model and add our new association that&rsquo;s going to allow
+us to link our new types of users</p>
 
 
 
 
-<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>app/models/user.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="c1"># Include default devise modules. Others available are:</span>
+</span><span class='line'>  <span class="c1"># :confirmable, :lockable, :timeoutable and :omniauthable</span>
+</span><span class='line'>  <span class="n">devise</span> <span class="ss">:database_authenticatable</span><span class="p">,</span> <span class="ss">:registerable</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">:recoverable</span><span class="p">,</span> <span class="ss">:rememberable</span><span class="p">,</span> <span class="ss">:trackable</span><span class="p">,</span> <span class="ss">:validatable</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:profile</span><span class="p">,</span> <span class="ss">polymorphic</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Now we have our custimizations to Devise complete, our next step is to
+create our new types of users.  For the sake of simplicity, we&rsquo;re not going to be adding any fields
+to the new types of users.  If you have no idea what polymorphic
+relations are in Rails, take a bit to skim over the Rails guides to get
+an idea.  If you dont get it, don&rsquo;t worry.  Polymophism can be a tricky
+concept, especially when first setting it up but I&rsquo;ve found that it
+makes much more sense after you&rsquo;ve implemented it and had a chance to
+play around with it a bit. [<a href="http://guides.rubyonrails.org/association_basics.html#polymorphic-associations">http://guides.rubyonrails.org/association_basics.html#polymorphic-associations</a>]</p>
+
+
+
+
+<p>If you remember, our two types of users are going to be <code>Provider</code>s and
+<code>Customer</code>s.  Since both of the models are going to be pretty empty,
+let&rsquo;s create them both at once</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/models/user.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="n">g</span> <span class="n">model</span> <span class="no">Customer</span> <span class="o">&amp;&amp;</span> <span class="n">rails</span> <span class="n">g</span> <span class="n">model</span> <span class="no">Provider</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>be sure to migrate the db afterwards</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/models/user.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rake</span> <span class="ss">db</span><span class="p">:</span><span class="n">migrate</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>We have one side of our polymorphic relationship, now we need to update
+the other side of it with our new User types.</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/models/customer.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Customer</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_one</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">as</span><span class="p">:</span> <span class="ss">:profile</span><span class="p">,</span> <span class="ss">dependent</span><span class="p">:</span> <span class="n">destroy</span>
+</span><span class='line'>  <span class="n">accepts_nested_attributes_for</span> <span class="ss">:user</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>app/models/provider.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Provider</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_one</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">as</span><span class="p">:</span> <span class="ss">:profile</span><span class="p">,</span> <span class="ss">dependnet</span><span class="p">:</span> <span class="n">destroy</span>
+</span><span class='line'>  <span class="n">accepts_nested_attributes_for</span> <span class="ss">:user</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>The first line is filling out the other half of our relationship to the
+users.  We&rsquo;re telling rails it has one <code>User</code> and <code>as: profile</code>
+indicates it&rsquo;s a polymorphic relationship.  We&rsquo;ve also added <code>dependent:
+destroy</code> to make sure when we delete an object, and associated objects
+are deleted as well.</p>
+
+
+
+
+<p>The second line we added is needed to create an associated <code>User</code>
+whenever we create either a <code>Customer</code> or <code>Provider</code></p>
+
+
+
+
+<p><code>accepts_nested_attributes_for</code> allow you to save attributes on associated records through the parent.
+[<a href="http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html">http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html</a>]</p>
+
+
+
+
+<p>Back to an earlier topic of strong parameters in Rails, we now need to
+whitelist the attributes for the <code>User</code> inside the each of our
+controllers.</p>
+
+
+
+
+<p>We already have our models created, but we would still like to genrate a
+lot of the boilerplate we need to create the controller and views so we
+can keep plugging away at our project.  Using the rails <code>scaffold</code>
+command, would create a model for whatever resource name we specify so
+what are our options.  Let&rsquo;s ask for some help&hellip;</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/models/provider.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="n">generate</span> <span class="o">-</span><span class="n">h</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>will give us a lot of options for the generate command, take a look this
+section in particular</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/models/provider.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -556,37 +675,346 @@ end</p>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>Now we have our custimizations to Devise complete, our next step is to
-</span><span class='line'>create our new types of users.  For the sake of simplicity, we&#39;re not going to be adding any fields
-</span><span class='line'>to the new types of users.  If you have no idea what polymorphic
-</span><span class='line'>relations are in Rails, take a bit to skim over the Rails guides to get
-</span><span class='line'>an idea.  If you dont get it, don&#39;t worry.  Polymophism can be a tricky
-</span><span class='line'>concept, especially when first setting it up but I&#39;ve found that it
-</span><span class='line'>makes much more sense after you&#39;ve implemented it and had a chance to
-</span><span class='line'>play around with it a bit. [http://guides.rubyonrails.org/association_basics.html#polymorphic-associations]
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Please</span> <span class="n">choose</span> <span class="n">a</span> <span class="n">generator</span> <span class="n">below</span><span class="o">.</span>
 </span><span class='line'>
-</span><span class='line'>If you remember, our two types of users are going to be `Provider`s and
-</span><span class='line'>`Customer`s.  Since both of the models are going to be pretty empty,
-</span><span class='line'>let&#39;s create them both at once
+</span><span class='line'><span class="ss">Rails</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">assets</span>
+</span><span class='line'>  <span class="n">controller</span>
+</span><span class='line'>  <span class="n">generator</span>
+</span><span class='line'>  <span class="n">helper</span>
+</span><span class='line'>  <span class="n">integration_test</span>
+</span><span class='line'>  <span class="n">job</span>
+</span><span class='line'>  <span class="n">mailer</span>
+</span><span class='line'>  <span class="n">migration</span>
+</span><span class='line'>  <span class="n">model</span>
+</span><span class='line'>  <span class="n">resource</span>
+</span><span class='line'>  <span class="n">responders_controller</span>
+</span><span class='line'>  <span class="n">scaffold</span>
+</span><span class='line'>  <span class="n">scaffold_controller</span>
+</span><span class='line'>  <span class="n">task</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<p>$ rails g model Customer &amp;&amp; rails g model Provider</p>
+<p>Take a look at <code>scaffold_controller</code>  here&rsquo;s what it does:</p>
 
 
 
 
-<figure class='code'><figcaption><span>`app/views/devise/registrations/edit.html.erb`</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>be sure to migrate the db afterwards
+<blockquote><p>Stubs out a scaffolded controller and its views. Pass the model name, either CamelCased or under_scored, and a list of views as arguments. The controller name is retrieved as a pluralized version of the model name.  To create a controller within a modulespecify the model name as a path like &lsquo;parent_module/controller_name&rsquo;.  This generates a controller class in app/controllers and invokes helper, template engine and test framework generators.</p></blockquote>
+
+
+
+
+<p>Running:</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/models/provider.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="n">g</span> <span class="n">scaffold_controller</span> <span class="no">Customer</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<p>$ bundle exec rake db:migrate
-&#8220;`</p>
+<p>and</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/models/provider.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="n">g</span> <span class="n">scaffold_controller</span> <span class="no">Provider</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>will scaffold a controller with all our RESTful routes along with
+their associated views.  If you look at the created files, there weren&rsquo;t
+and migrations or changes to the model, just our controllers and views.</p>
+
+
+
+
+<p>However, we do have to specify our routes, so let&rsquo;s add those in now:</p>
+
+
+
+
+<figure class='code'><figcaption><span>config/routes.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">resources</span> <span class="ss">:customers</span>
+</span><span class='line'>  <span class="n">resources</span> <span class="ss">:providers</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>look into removing simple form to keep things simple  - remove from</h2>
+
+
+
+
+<h2>template and streamline forms</h2>
+
+
+
+
+<h1>work on controllers and building user - form showing blank right now.</h1>
+
+
+
+
+<h1>link for info on bulding user</h1>
+
+
+
+
+<h1><a href="http://stackoverflow.com/questions/783584/ruby-on-rails-how-do-i-use-the-active-record-build-method-in-a-belongs-to-rel">http://stackoverflow.com/questions/783584/ruby-on-rails-how-do-i-use-the-active-record-build-method-in-a-belongs-to-rel</a></h1>
+
+
+
+
+<p>With our routes set up, let&rsquo;s update both of our forms to collect the
+signup info from our user.</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/views/customers/_form.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="err">&lt;</span>%= form_for(@customer) do |f| %&gt;
+</span><span class='line'>  <span class="err">&lt;</span>% if @customer.errors.any? %&gt;
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;error_explanation&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h2&gt;</span><span class="err">&lt;</span>%= pluralize(@customer.errors.count, &quot;error&quot;) %&gt; prohibited this customer from being saved:<span class="nt">&lt;/h2&gt;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">&lt;ul&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>% @customer.errors.full_messages.each do |message| %&gt;
+</span><span class='line'>          <span class="nt">&lt;li&gt;</span><span class="err">&lt;</span>%= message %&gt;<span class="nt">&lt;/li&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>      <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>  <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-body&quot;</span> <span class="na">style=</span><span class="s">&quot;text-align: center;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="err">&lt;</span>%= f.fields_for :user do |u| %&gt;
+</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>%= u.label :first_name %&gt;<span class="nt">&lt;br&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>%= u.text_field :first_name, class: &#39;form-control&#39; %&gt;
+</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>%= u.label :last_name %&gt;<span class="nt">&lt;br&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>%= u.text_field :last_name, class: &#39;form-control&#39; %&gt;
+</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>%= u.label :email %&gt;<span class="nt">&lt;br&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>%= u.email_field :email, class: &#39;form-control&#39; %&gt;
+</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>%= u.label :password %&gt;<span class="nt">&lt;br&gt;</span>
+</span><span class='line'>        <span class="err">&lt;</span>%= u.password_field :password, class: &#39;form-control&#39; %&gt;
+</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span> <span class="na">style=</span><span class="s">&quot;margin: 10px 0px; text-align: center;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.submit &quot;Submit&quot;, :class=&gt;&quot;btn btn-info&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="err">&lt;</span>% if request.path == new_customer_path %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= link_to &quot;Log in&quot;, new_user_session_path %&gt;<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">&lt;</span>% end %&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>This may look a little odd because asll the elements listed in the form
+are nested.  This is becasue right now, we dont have any fields specific
+to the Customer.  When you add your own elements to the
+Customer/Provider, it will look something like this.</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="err">&lt;</span>%= f.label :home_address %&gt;
+</span><span class='line'><span class="err">&lt;</span>%= f.text_field :home_address %&gt;
+</span><span class='line'>
+</span><span class='line'>  <span class="err">&lt;</span>%= f.fields_for :user do |u| %&gt;
+</span><span class='line'>    ...
+</span><span class='line'>  <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>
+</span><span class='line'>  ...
+</span><span class='line'><span class="err">&lt;</span>% end %&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>Go ahead and do the same thing with the <code>Provider</code> form as well.  Once that&rsquo;s
+complete, we&rsquo;re ready to start doing work on our forms now.</p>
+
+
+
+
+<p>If you look at your forms on the front end.  Unless you added attributes
+for either the Provider or Customer, you wont see any fields.  This is
+because right now, we havn&rsquo;t done anyhting to build a <code>User</code> to go along
+with the association we&rsquo;re trying to create.</p>
+
+
+
+
+<p>Build the associated user inside you <code>#new</code> method so it&rsquo;s available to
+the form.</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/controllers/customers_controller.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="k">def</span> <span class="nf">new</span>
+</span><span class='line'>    <span class="vi">@customer</span> <span class="o">=</span> <span class="no">Customer</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>    <span class="vi">@customer</span><span class="o">.</span><span class="n">build_user</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>and to allow user updates to be allowed through our <code>Customer</code> model, we
+need to add those to our strong params.</p>
+
+
+
+
+<figure class='code'><figcaption><span>app/controllers/customers_controller.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">customer_params</span>
+</span><span class='line'>  <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:customer</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">user_attributes</span><span class="p">:</span> <span class="o">[</span><span class="ss">:first_name</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="ss">:last_name</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="ss">:email</span><span class="p">,</span>
+</span><span class='line'>                                                     <span class="ss">:password</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>If you go to the <code>new_customer_path</code>, we can create a new Customer
+and User at the same time, and get redirected to the <code>show</code> view for the
+customer we just created.  If you look in the top corner of the nav bar,
+we still see the Sign In link.  We need to make one more update to
+create a new Customer, create and associated User, and create a new
+session for the user we just created.  This sounds a lot more
+complicated than it actually is.  Devise give us a very handy <code>sign_in</code>
+method.</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="c1"># POST /customers</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>    <span class="vi">@customer</span> <span class="o">=</span> <span class="no">Customer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">customer_params</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="vi">@customer</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>      <span class="n">flash</span><span class="o">[</span><span class="ss">:success</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;Customer was successfully created.&#39;</span>
+</span><span class='line'>      <span class="n">sign_in</span><span class="p">(</span><span class="vi">@customer</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">redirect_to</span> <span class="vi">@customer</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="n">render</span> <span class="ss">:new</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>and that&rsquo;s that!  Now, when you go to create a new <code>Customer</code> or
+<code>Provider</code>, we automatically create an associated <code>User</code> and sign in.
+One of my favorite things about this set up is you, can use single form
+to sign in at the <code>new_user_session GET    /users/sign_in(.:format)       devise/sessions#new</code> path.</p>
 
 
   </p>

@@ -12,6 +12,9 @@ categories:
 # run rake routes to see all the routes and get an idea what pages were
 # created
 
+
+#remove simple form form template and make sure everything still works
+
 https://gist.github.com/043484e923f87840ca763f6b287a4bfc.git
 
 
@@ -104,7 +107,7 @@ now
 
 #check the formation on this, still looks crooked?
 
-```html `app/views/devise/registrations/new.html.erb`
+```html app/views/devise/registrations/new.html.erb
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h1>Sign up</h1>
@@ -150,7 +153,7 @@ same thing goes for our `edit` page
 
 
 
-```html `app/views/devise/registrations/edit.html.erb`
+``` html app/views/devise/registrations/edit.html.erb
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <div class="panel-title">
@@ -203,7 +206,8 @@ same thing goes for our `edit` page
 	</div>
 
 
-  ```
+```
+
 Before we get to creating our new types of Users, we need to make one
 more change to the Devise User model.
 
@@ -270,3 +274,232 @@ be sure to migrate the db afterwards
 ```
 $ bundle exec rake db:migrate
 ```
+
+We have one side of our polymorphic relationship, now we need to update
+the other side of it with our new User types.
+
+
+```ruby app/models/customer.rb
+class Customer < ActiveRecord::Base
+  has_one :user, as: :profile, dependent: destroy
+  accepts_nested_attributes_for :user
+end
+```
+
+```ruby app/models/provider.rb
+class Provider < ActiveRecord::Base
+  has_one :user, as: :profile, dependnet: destroy
+  accepts_nested_attributes_for :user
+end
+```
+The first line is filling out the other half of our relationship to the
+users.  We're telling rails it has one `User` and `as: profile`
+indicates it's a polymorphic relationship.  We've also added `dependent:
+destroy` to make sure when we delete an object, and associated objects
+are deleted as well.
+
+The second line we added is needed to create an associated `User`
+whenever we create either a `Customer` or `Provider`
+
+`accepts_nested_attributes_for` allow you to save attributes on associated records through the parent.
+[http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html]
+
+Back to an earlier topic of strong parameters in Rails, we now need to
+whitelist the attributes for the `User` inside the each of our
+controllers.
+
+We already have our models created, but we would still like to genrate a
+lot of the boilerplate we need to create the controller and views so we
+can keep plugging away at our project.  Using the rails `scaffold`
+command, would create a model for whatever resource name we specify so
+what are our options.  Let's ask for some help...
+
+
+```
+$ rails generate -h
+```
+
+will give us a lot of options for the generate command, take a look this
+section in particular
+
+```
+Please choose a generator below.
+
+Rails:
+  assets
+  controller
+  generator
+  helper
+  integration_test
+  job
+  mailer
+  migration
+  model
+  resource
+  responders_controller
+  scaffold
+  scaffold_controller
+  task
+```
+  
+Take a look at `scaffold_controller`  here's what it does:
+
+>Stubs out a scaffolded controller and its views. Pass the model name, either CamelCased or under_scored, and a list of views as arguments. The controller name is retrieved as a pluralized version of the model name.  To create a controller within a modulespecify the model name as a path like 'parent_module/controller_name'.  This generates a controller class in app/controllers and invokes helper, template engine and test framework generators.
+
+Running:
+```
+$ rails g scaffold_controller Customer
+```
+and
+
+```
+$ rails g scaffold_controller Provider
+```
+
+will scaffold a controller with all our RESTful routes along with
+their associated views.  If you look at the created files, there weren't
+and migrations or changes to the model, just our controllers and views.
+
+However, we do have to specify our routes, so let's add those in now:
+
+```ruby config/routes.rb
+  resources :customers
+  resources :providers
+```
+
+##look into removing simple form to keep things simple  - remove from
+##template and streamline forms
+
+#work on controllers and building user - form showing blank right now.
+#link for info on bulding user 
+
+#http://stackoverflow.com/questions/783584/ruby-on-rails-how-do-i-use-the-active-record-build-method-in-a-belongs-to-rel
+
+With our routes set up, let's update both of our forms to collect the
+signup info from our user.
+
+
+```html app/views/customers/_form.html.erb
+<%= form_for(@customer) do |f| %>
+  <% if @customer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="panel-body" style="text-align: center;">
+    <%= f.fields_for :user do |u| %>
+      <div class="form-group">
+        <%= u.label :first_name %><br>
+        <%= u.text_field :first_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= u.label :last_name %><br>
+        <%= u.text_field :last_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= u.label :email %><br>
+        <%= u.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= u.label :password %><br>
+        <%= u.password_field :password, class: 'form-control' %>
+      </div>
+    <% end %>
+
+    <div class="form-group" style="margin: 10px 0px; text-align: center;">
+      <%= f.submit "Submit", :class=>"btn btn-info" %>
+    </div>
+
+    <% if request.path == new_customer_path %>
+      <%= link_to "Log in", new_user_session_path %><br />
+    <% end %>
+  </div>
+
+<% end %>
+
+```
+
+This may look a little odd because asll the elements listed in the form
+are nested.  This is becasue right now, we dont have any fields specific
+to the Customer.  When you add your own elements to the
+Customer/Provider, it will look something like this.
+
+```html
+<%= f.label :home_address %>
+<%= f.text_field :home_address %>
+
+  <%= f.fields_for :user do |u| %>
+    ...
+  <% end %>
+
+  ...
+<% end %>
+```
+Go ahead and do the same thing with the `Provider` form as well.  Once that's
+complete, we're ready to start doing work on our forms now.
+
+If you look at your forms on the front end.  Unless you added attributes
+for either the Provider or Customer, you wont see any fields.  This is
+because right now, we havn't done anyhting to build a `User` to go along
+with the association we're trying to create.
+
+Build the associated user inside you `#new` method so it's available to
+the form.
+
+
+```ruby app/controllers/customers_controller.rb
+  def new
+    @customer = Customer.new
+    @customer.build_user
+  end
+```
+
+and to allow user updates to be allowed through our `Customer` model, we
+need to add those to our strong params.
+
+```ruby app/controllers/customers_controller.rb
+    def customer_params
+      params.require(:customer).permit(user_attributes: [:first_name,
+                                                         :last_name,
+                                                         :email,
+                                                         :password])
+    end
+```
+If you go to the `new_customer_path`, we can create a new Customer
+and User at the same time, and get redirected to the `show` view for the
+customer we just created.  If you look in the top corner of the nav bar,
+we still see the Sign In link.  We need to make one more update to
+create a new Customer, create and associated User, and create a new
+session for the user we just created.  This sounds a lot more
+complicated than it actually is.  Devise give us a very handy `sign_in`
+method.
+
+```ruby
+ # POST /customers
+  def create
+    @customer = Customer.new(customer_params)
+    if @customer.save
+      flash[:success] = 'Customer was successfully created.'
+      sign_in(@customer.user)
+      redirect_to @customer
+    else
+      render :new
+    end
+  end
+
+```
+
+and that's that!  Now, when you go to create a new `Customer` or
+`Provider`, we automatically create an associated `User` and sign in.
+One of my favorite things about this set up is you, can use single form
+to sign in at the `new_user_session GET    /users/sign_in(.:format)       devise/sessions#new` path.
