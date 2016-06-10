@@ -14,7 +14,7 @@
   <meta name="author" content="Cody Norman">
 
   
-  <meta name="description" content="Creating Polymorphic Users With Devise and Rails written May 30, 2016 Add in links for an updated template to start the project with. create &hellip;">
+  <meta name="description" content="Creating Polymorphic Users With Devise and Rails written May 30, 2016 First and foremost, if you&rsquo;re not familiar with Devise, or are looking &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,24 +76,12 @@
 
 
         </div>
-        <h1>Add in links for an updated template to start the project with.</h1>
-
-<h1>create template just for the tutorial</h1>
-
-<h1>run rake routes to see all the routes and get an idea what pages were</h1>
-
-<h1>created</h1>
-
-<h1>remove simple form form template and make sure everything still works</h1>
-
-<p><a href="https://gist.github.com/043484e923f87840ca763f6b287a4bfc.git">https://gist.github.com/043484e923f87840ca763f6b287a4bfc.git</a></p>
-
-<p>First and foremost, if you&rsquo;re not familiar with Devise, or are looking
+        <p>First and foremost, if you&rsquo;re not familiar with Devise, or are looking
 for a good place to get some good information on getting started with
 Devise, this is not the post for you.  There are a ton of great
-resources, incliding the Devise documentation for getting started.</p>
+resources, including the Devise documentation for getting started.</p>
 
-<p>Today were going to be talking about building differnt types of users
+<p>Today were going to be talking about building different types of users
 that will build off Devise.  It&rsquo;s a pretty common use case, the most
 common of which is some type of service provider and a customer of that
 service.  In this example we&rsquo;ll be using Provider and Customer.</p>
@@ -106,11 +94,23 @@ regardless of the type of user.</p>
 new application for us to jump into.  If you want to know more about
 creating templates, or how to create your own, check out my other post.
 If you have any problems creating the template, or just prefer to fork
-or clone for github, you can do that.</p>
+or clone for github, I&rsquo;ll include a link to the repo.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ rails new polymorphic_users -m WHATEVER THE URL OR SETUP IS</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ rails new polymorphic_users -m \
+</span><span class='line'>https://raw.githubusercontent.com/cnorm35/rails_templates/master/polymorphic_blog_post.rb</span></code></pre></td></tr></table></div></figure>
 
+
+<p>or</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone https://github.com/cnorm35/polymorphic_post_starter.git</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you created new app from the template I provided, all you need to do
+is run <code>rails server</code> and you&rsquo;re good to go. The migrations are already
+taken care of and a new git repo initialized.</p>
 
 <p>Once, you have the app up and running, lets take a look at the fields
 Devise creates for the User model for us.</p>
@@ -126,16 +126,10 @@ Devise creates for the User model for us.</p>
 <p>This gives us an idea of the structure that we&rsquo;re going to build on and
 think about the best way to model our Users.  To keep the code DRY,
 let&rsquo;s think about what fields both types of Users will have in common.
-To keep it simple, let&rsquo;s just stick with first_name and last_name.  It&rsquo;s
+To keep it simple, let&rsquo;s just stick with <code>first_name</code> and <code>last_name</code>.  It&rsquo;s
 a pretty reasonable assumption that every user that signs up for our
-site will have a first_name and last_name so there&rsquo;s no point in
-duplicating those fields in the Provider and Customer tables.</p>
-
-<h5>Create migrations for adding first_name and last_name to tables,</h5>
-
-<h5>views, and controllers (i think adding them to the controllers, it</h5>
-
-<h4>tricky?)</h4>
+site will have a <code>first_name</code> and <code>last_name</code> so there&rsquo;s no point in
+duplicating those fields in the <code>Provider</code> and <code>Customer</code> tables.</p>
 
 <p>First, let&rsquo;s add our new fields to the Devise User model.</p>
 
@@ -162,7 +156,7 @@ duplicating those fields in the Provider and Customer tables.</p>
 
 <p>Now that we have a new fields on the model, how do we add them to the
 strong parameters for Devise? There are a couple ways to go about this.
-You can check the recommeded way from Devise [<a href="https://github.com/plataformatec/devise#strong-parameters">https://github.com/plataformatec/devise#strong-parameters</a>]</p>
+You can check the recommended way from Devise <a href="https://github.com/plataformatec/devise#strong-parameters">here</a>.</p>
 
 <p>But I prefer, a slightly different way.  For both ways, you&rsquo;ll need to
 add a <code>before_filter</code> inside the <code>ApplicationController</code>.  This filter
@@ -173,7 +167,7 @@ will run before any action from a Devise controller.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Let&rsquo;s write our method that will run before each Devise action now</p>
+<p>Let&rsquo;s write our method that will run before each Devise action now.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -237,33 +231,33 @@ now</p>
 </span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-body&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="err">&lt;</span>%= form_for(resource, :as =&gt; resource_name, :url =&gt; registration_path(resource_name)) do |f| %&gt;
+</span><span class='line'>  <span class="err">&lt;</span>%= form_for(resource, :as =&gt; resource_name, :url =&gt; registration_path(resource_name)) do |f| %&gt;
 </span><span class='line'>    <span class="err">&lt;</span>%= devise_error_messages! %&gt;
 </span><span class='line'>
 </span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :first_name %&gt;
-</span><span class='line'>        <span class="err">&lt;</span>%= f.text_field :first_name, autofocus: true, class: &quot;form-control&quot; %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :first_name %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= f.text_field :first_name, autofocus: true, class: &quot;form-control&quot; %&gt;
 </span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :last_name %&gt;
-</span><span class='line'>        <span class="err">&lt;</span>%= f.text_field :last_name, class: &quot;form-control&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :last_name %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= f.text_field :last_name, class: &quot;form-control&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :email %&gt;
-</span><span class='line'>        <span class="err">&lt;</span>%= f.email_field :email, autofocus: true, class: &quot;form-control&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :email %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= f.email_field :email, autofocus: true, class: &quot;form-control&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :password %&gt;
-</span><span class='line'>        <span class="err">&lt;</span>%= f.password_field :password, class: &quot;form-control&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :password %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= f.password_field :password, class: &quot;form-control&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.submit &quot;Sign up&quot;, class: &quot;btn btn-primary&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>    <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.submit &quot;Sign up&quot;, class: &quot;btn btn-primary&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>  <span class="err">&lt;</span>% end %&gt;
 </span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-footer&quot;</span><span class="nt">&gt;</span>
@@ -332,40 +326,40 @@ now</p>
 </span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-body&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="err">&lt;</span>%= form_for(resource, :as =&gt; resource_name, :url =&gt; registration_path(resource_name), :html =&gt; { :method =&gt; :put }) do |f| %&gt;
+</span><span class='line'>  <span class="err">&lt;</span>%= form_for(resource, :as =&gt; resource_name, :url =&gt; registration_path(resource_name), :html =&gt; { :method =&gt; :put }) do |f| %&gt;
 </span><span class='line'>    <span class="err">&lt;</span>%= devise_error_messages! %&gt;
 </span><span class='line'>
 </span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :first_name %&gt;
-</span><span class='line'>        <span class="err">&lt;</span>%= f.text_field :first_name, class: &quot;form-control&quot;, :autofocus =&gt; true %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :first_name %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= f.text_field :first_name, class: &quot;form-control&quot;, :autofocus =&gt; true %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :last_name %&gt;
-</span><span class='line'>        <span class="err">&lt;</span>%= f.text_field :last_name, class: &quot;form-control&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :last_name %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= f.text_field :last_name, class: &quot;form-control&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :email %&gt;
-</span><span class='line'>        <span class="err">&lt;</span>%= f.email_field :email, class: &quot;form-control&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :email %&gt;
+</span><span class='line'>      <span class="err">&lt;</span>%= f.email_field :email, class: &quot;form-control&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :password %&gt; <span class="nt">&lt;i&gt;</span>(leave blank if you don&#39;t want to change it)<span class="nt">&lt;/i&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.password_field :password, class: &quot;form-control&quot;, :autocomplete =&gt; &quot;off&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :password %&gt; <span class="nt">&lt;i&gt;</span>(leave blank if you don&#39;t want to change it)<span class="nt">&lt;/i&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.password_field :password, class: &quot;form-control&quot;, :autocomplete =&gt; &quot;off&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.label :current_password %&gt; <span class="nt">&lt;i&gt;</span>(we need your current password to confirm your changes)<span class="nt">&lt;/i&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.password_field :current_password, class: &quot;form-control&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.label :current_password %&gt; <span class="nt">&lt;i&gt;</span>(we need your current password to confirm your changes)<span class="nt">&lt;/i&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.password_field :current_password, class: &quot;form-control&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="err">&lt;</span>%= f.submit &quot;Update&quot;, class: &quot;btn btn-primary&quot; %&gt;
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>    <span class="err">&lt;</span>% end %&gt;
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="err">&lt;</span>%= f.submit &quot;Update&quot;, class: &quot;btn btn-primary&quot; %&gt;
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>  <span class="err">&lt;</span>% end %&gt;
 </span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;panel-footer&quot;</span><span class="nt">&gt;</span>
 </span><span class='line'>    <span class="nt">&lt;h3&gt;</span>Cancel my account<span class="nt">&lt;/h3&gt;</span>
@@ -390,10 +384,10 @@ makes it easier to roll things back if you ever need to.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Let&rsquo;s add an index for the sake of performance.  Note, you can specify
+<p>Let&rsquo;s add an index for the sake of performance.  Note that you can specify
 things like creating an index when your passing in arguments to the
 generator.  I always pop open my migrations to make sure I created it
-correctly, and usually just add it in that way.</p>
+correctly anyway, and usually add it in that way.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -439,14 +433,14 @@ us to link our new types of users</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Now we have our custimizations to Devise complete, our next step is to
+<p>Now we have our customizations to Devise complete, our next step is to
 create our new types of users.  For the sake of simplicity, we&rsquo;re not going to be adding any fields
 to the new types of users.  If you have no idea what polymorphic
-relations are in Rails, take a bit to skim over the Rails guides to get
-an idea.  If you dont get it, don&rsquo;t worry.  Polymophism can be a tricky
-concept, especially when first setting it up but I&rsquo;ve found that it
+relations are, take a bit to skim over the <a href="http://guides.rubyonrails.org/association_basics.html#polymorphic-associations">Rails guides</a> to get
+an idea.  If you don&rsquo;t get it right away, don&rsquo;t worry.  Polymorphism can be a tricky
+concept, especially when first setting it up.  I&rsquo;ve found that it
 makes much more sense after you&rsquo;ve implemented it and had a chance to
-play around with it a bit. [<a href="http://guides.rubyonrails.org/association_basics.html#polymorphic-associations">http://guides.rubyonrails.org/association_basics.html#polymorphic-associations</a>]</p>
+play around with it a bit.</p>
 
 <p>If you remember, our two types of users are going to be <code>Provider</code>s and
 <code>Customer</code>s.  Since both of the models are going to be pretty empty,
@@ -492,34 +486,36 @@ the other side of it with our new User types.</p>
 
 
 <p>The first line is filling out the other half of our relationship to the
-users.  We&rsquo;re telling rails it has one <code>User</code> and <code>as: profile</code>
+users.  We&rsquo;re telling Rails it has one <code>User</code> and <code>as: profile</code>
 indicates it&rsquo;s a polymorphic relationship.  We&rsquo;ve also added <code>dependent:
 destroy</code> to make sure when we delete an object, and associated objects
 are deleted as well.</p>
 
 <p>The second line we added is needed to create an associated <code>User</code>
-whenever we create either a <code>Customer</code> or <code>Provider</code></p>
+whenever we create either a <code>Customer</code> or <code>Provider</code>.</p>
 
 <p><code>accepts_nested_attributes_for</code> allow you to save attributes on associated records through the parent.
-[<a href="http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html">http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html</a>]</p>
+<a href="http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html">accepts_nested_attributes_for</a></p>
 
-<p>Back to an earlier topic of strong parameters in Rails, we now need to
+<p>Back to an earlier topic of strong parameters. We now need to
 whitelist the attributes for the <code>User</code> inside the each of our
 controllers.</p>
 
-<p>We already have our models created, but we would still like to genrate a
+<p>We already have our models created, but we would still like to generate a
 lot of the boilerplate we need to create the controller and views so we
-can keep plugging away at our project.  Using the rails <code>scaffold</code>
-command, would create a model for whatever resource name we specify so
-what are our options.  Let&rsquo;s ask for some help&hellip;</p>
+can keep plugging away at our project.  Using the <code>rails scaffold</code>
+command, would create a model for whatever resource name we specify, so
+what are our alternatives.  Let&rsquo;s ask for some help&hellip;</p>
+
+<p>//why is this still showing the other filename?</p>
 
 <figure class='code'><figcaption><span>app/models/provider.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">rails</span> <span class="n">generate</span> <span class="o">-</span><span class="n">h</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>will give us a lot of options for the generate command, take a look this
-section in particular</p>
+<p>This gives us a lot of options for the generate command. Take a look this
+section in particular:</p>
 
 <figure class='code'><figcaption><span>app/models/provider.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -558,9 +554,9 @@ section in particular</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Take a look at <code>scaffold_controller</code>  here&rsquo;s what it does:</p>
+<p>Take a look at <code>scaffold_controller</code>,  here&rsquo;s what it does:</p>
 
-<blockquote><p>Stubs out a scaffolded controller and its views. Pass the model name, either CamelCased or under_scored, and a list of views as arguments. The controller name is retrieved as a pluralized version of the model name.  To create a controller within a modulespecify the model name as a path like &lsquo;parent_module/controller_name&rsquo;.  This generates a controller class in app/controllers and invokes helper, template engine and test framework generators.</p></blockquote>
+<blockquote><p>Stubs out a scaffolded controller and its views. Pass the model name, either CamelCased or under_scored, and a list of views as arguments. The controller name is retrieved as a pluralized version of the model name.  To create a controller within a module specify the model name as a path like &lsquo;parent_module/controller_name&rsquo;.  This generates a controller class in app/controllers and invokes helper, template engine and test framework generators.</p></blockquote>
 
 <p>Running:</p>
 
@@ -589,18 +585,8 @@ and migrations or changes to the model, just our controllers and views.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>look into removing simple form to keep things simple  - remove from</h2>
-
-<h2>template and streamline forms</h2>
-
-<h1>work on controllers and building user - form showing blank right now.</h1>
-
-<h1>link for info on bulding user</h1>
-
-<h1><a href="http://stackoverflow.com/questions/783584/ruby-on-rails-how-do-i-use-the-active-record-build-method-in-a-belongs-to-rel">http://stackoverflow.com/questions/783584/ruby-on-rails-how-do-i-use-the-active-record-build-method-in-a-belongs-to-rel</a></h1>
-
 <p>With our routes set up, let&rsquo;s update both of our forms to collect the
-signup info from our user.</p>
+sign up info from our user.</p>
 
 <figure class='code'><figcaption><span>app/views/customers/_form.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -763,12 +749,13 @@ need to add those to our strong params.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>If you go to the <code>new_customer_path</code>, we can create a new Customer
-and User at the same time, and get redirected to the <code>show</code> view for the
+<p>If you go to the <code>new_customer_path</code>, we can create a new <code>Customer</code>
+and <code>User</code> at the same time, and get redirected to the <code>show</code> view for the
 customer we just created.  If you look in the top corner of the nav bar,
-we still see the Sign In link.  We need to make one more update to
-create a new Customer, create and associated User, and create a new
-session for the user we just created.  This sounds a lot more
+we still see the Sign In link, whereas, if we were logged in, we would
+see our email address.  We need to make one more update to
+create a new <code>Customer</code>, create an associated <code>User</code>, and create a new
+session for the <code>User</code> we just created.  This sounds a lot more
 complicated than it actually is.  Devise give us a very handy <code>sign_in</code>
 method.</p>
 
@@ -800,7 +787,12 @@ method.</p>
 <p>and that&rsquo;s that!  Now, when you go to create a new <code>Customer</code> or
 <code>Provider</code>, we automatically create an associated <code>User</code> and sign in.
 One of my favorite things about this set up is you, can use single form
-to sign in at the <code>new_user_session GET    /users/sign_in(.:format)       devise/sessions#new</code> path.</p>
+to sign in at the <code>new_user_session</code> path.</p>
+
+<p>Again, this is by no means an exhaustive post on Polymorphism or Devise.
+Just my way of combining two common uses into a practical example
+There are a ton of great resources online if you&rsquo;d like to do a deeper
+dive into either topics.</p>
 
         <a href="https://twitter.com/share" class="twitter-share-button" data-via="cnorm35" data-size="large">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');

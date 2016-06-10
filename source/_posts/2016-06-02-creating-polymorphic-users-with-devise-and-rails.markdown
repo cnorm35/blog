@@ -6,27 +6,15 @@ comments: true
 categories: 
 ---
 
-#Add in links for an updated template to start the project with.
-#create template just for the tutorial
-
-# run rake routes to see all the routes and get an idea what pages were
-# created
-
-
-#remove simple form form template and make sure everything still works
-
-https://gist.github.com/043484e923f87840ca763f6b287a4bfc.git
-
-
 First and foremost, if you're not familiar with Devise, or are looking
 for a good place to get some good information on getting started with
 Devise, this is not the post for you.  There are a ton of great
-resources, incliding the Devise documentation for getting started.
+resources, including the Devise documentation for getting started.
 
-Today were going to be talking about building differnt types of users
+Today were going to be talking about building different types of users
 that will build off Devise.  It's a pretty common use case, the most
 common of which is some type of service provider and a customer of that
-service.  In this example we'll be using Provider and Customer.  
+service.  In this example we'll be using Provider and Customer.
 
 Once we're done, we'll be able to sign up users as either a Provider or
 Customer, sign them in after registering, and have a single login page
@@ -36,11 +24,23 @@ To make it easy to get started, I've created a template to generate a
 new application for us to jump into.  If you want to know more about
 creating templates, or how to create your own, check out my other post.
 If you have any problems creating the template, or just prefer to fork
-or clone for github, you can do that.
+or clone for github, I'll include a link to the repo.
 
 ```
-$ rails new polymorphic_users -m WHATEVER THE URL OR SETUP IS
+$ rails new polymorphic_users -m \
+https://raw.githubusercontent.com/cnorm35/rails_templates/master/polymorphic_blog_post.rb
 ```
+
+or
+
+```
+$ git clone https://github.com/cnorm35/polymorphic_post_starter.git
+```
+
+If you created new app from the template I provided, all you need to do
+is run `rails server` and you're good to go. The migrations are already
+taken care of and a new git repo initialized.
+
 
 Once, you have the app up and running, lets take a look at the fields
 Devise creates for the User model for us.
@@ -55,15 +55,11 @@ irb(main):001:0> user = User.new
 This gives us an idea of the structure that we're going to build on and
 think about the best way to model our Users.  To keep the code DRY,
 let's think about what fields both types of Users will have in common.
-To keep it simple, let's just stick with first_name and last_name.  It's
+To keep it simple, let's just stick with `first_name` and `last_name`.  It's
 a pretty reasonable assumption that every user that signs up for our
-site will have a first_name and last_name so there's no point in
-duplicating those fields in the Provider and Customer tables.  
+site will have a `first_name` and `last_name` so there's no point in
+duplicating those fields in the `Provider` and `Customer` tables.
 
-#####Create migrations for adding first_name and last_name to tables,
-
-#####views, and controllers (i think adding them to the controllers, it
-####tricky?)
 
 First, let's add our new fields to the Devise User model.
 
@@ -82,7 +78,7 @@ end
 ```
 Now that we have a new fields on the model, how do we add them to the
 strong parameters for Devise? There are a couple ways to go about this.
-You can check the recommeded way from Devise [https://github.com/plataformatec/devise#strong-parameters]
+You can check the recommended way from Devise [here](https://github.com/plataformatec/devise#strong-parameters).
 
 But I prefer, a slightly different way.  For both ways, you'll need to
 add a `before_filter` inside the `ApplicationController`.  This filter
@@ -92,7 +88,7 @@ will run before any action from a Devise controller.
   before_action :configure_permitted_parameters, if: :devise_controller?
 ```
 
-Let's write our method that will run before each Devise action now
+Let's write our method that will run before each Devise action now.
 
 ```ruby
   def configure_permitted_parameters
@@ -114,33 +110,33 @@ now
 	  </div>
 
 	  <div class="panel-body">
-	    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
 
         <div class="form-group">
-	        <%= f.label :first_name %>
-	        <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
         </div>
 
         <div class="form-group">
-	        <%= f.label :last_name %>
-	        <%= f.text_field :last_name, class: "form-control" %>
-	      </div>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
 
-	      <div class="form-group">
-	        <%= f.label :email %>
-	        <%= f.email_field :email, autofocus: true, class: "form-control" %>
-	      </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
 
-	      <div class="form-group">
-	        <%= f.label :password %>
-	        <%= f.password_field :password, class: "form-control" %>
-	      </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "form-control" %>
+        </div>
 
-	      <div class="form-group">
-	        <%= f.submit "Sign up", class: "btn btn-primary" %>
-	      </div>
-	    <% end %>
+        <div class="form-group">
+          <%= f.submit "Sign up", class: "btn btn-primary" %>
+        </div>
+      <% end %>
 	  </div>
 
 	  <div class="panel-footer">
@@ -161,40 +157,40 @@ same thing goes for our `edit` page
 	    </div>
 	  </div>
 	  <div class="panel-body">
-	    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
         <%= devise_error_messages! %>
 
         <div class="form-group">
-	        <%= f.label :first_name %>
-	        <%= f.text_field :first_name, class: "form-control", :autofocus => true %>
-	      </div>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, class: "form-control", :autofocus => true %>
+        </div>
 
         <div class="form-group">
-	        <%= f.label :last_name %>
-	        <%= f.text_field :last_name, class: "form-control" %>
-	      </div>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
 
 
-	      <div class="form-group">
-	        <%= f.label :email %>
-	        <%= f.email_field :email, class: "form-control" %>
-	      </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
 
 
-	      <div class="form-group">
-	        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
-	        <%= f.password_field :password, class: "form-control", :autocomplete => "off" %>
-	      </div>
+        <div class="form-group">
+          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+          <%= f.password_field :password, class: "form-control", :autocomplete => "off" %>
+        </div>
 
-	      <div class="form-group">
-	        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
-	        <%= f.password_field :current_password, class: "form-control" %>
-	      </div>
+        <div class="form-group">
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+          <%= f.password_field :current_password, class: "form-control" %>
+        </div>
 
-	      <div class="form-group">
-	        <%= f.submit "Update", class: "btn btn-primary" %>
-	      </div>
-	    <% end %>
+        <div class="form-group">
+          <%= f.submit "Update", class: "btn btn-primary" %>
+        </div>
+      <% end %>
 	  </div>
 	  <div class="panel-footer">
 	    <h3>Cancel my account</h3>
@@ -219,10 +215,10 @@ makes it easier to roll things back if you ever need to.
 $ rails g migration add_profile_to_users profile_id:integer profile_type
 ```
 
-Let's add an index for the sake of performance.  Note, you can specify
+Let's add an index for the sake of performance.  Note that you can specify
 things like creating an index when your passing in arguments to the
 generator.  I always pop open my migrations to make sure I created it
-correctly, and usually just add it in that way.
+correctly anyway, and usually add it in that way.
 
 ```ruby
 class AddProfileToUsers < ActiveRecord::Migration
@@ -253,14 +249,14 @@ end
 
 ```
 
-Now we have our custimizations to Devise complete, our next step is to
+Now we have our customizations to Devise complete, our next step is to
 create our new types of users.  For the sake of simplicity, we're not going to be adding any fields
 to the new types of users.  If you have no idea what polymorphic
-relations are in Rails, take a bit to skim over the Rails guides to get
-an idea.  If you dont get it, don't worry.  Polymophism can be a tricky
-concept, especially when first setting it up but I've found that it
+relations are, take a bit to skim over the [Rails guides](http://guides.rubyonrails.org/association_basics.html#polymorphic-associations) to get
+an idea.  If you don't get it right away, don't worry.  Polymorphism can be a tricky
+concept, especially when first setting it up.  I've found that it
 makes much more sense after you've implemented it and had a chance to
-play around with it a bit. [http://guides.rubyonrails.org/association_basics.html#polymorphic-associations]
+play around with it a bit.
 
 If you remember, our two types of users are going to be `Provider`s and
 `Customer`s.  Since both of the models are going to be pretty empty,
@@ -292,35 +288,37 @@ class Provider < ActiveRecord::Base
   accepts_nested_attributes_for :user
 end
 ```
+
 The first line is filling out the other half of our relationship to the
-users.  We're telling rails it has one `User` and `as: profile`
+users.  We're telling Rails it has one `User` and `as: profile`
 indicates it's a polymorphic relationship.  We've also added `dependent:
 destroy` to make sure when we delete an object, and associated objects
 are deleted as well.
 
 The second line we added is needed to create an associated `User`
-whenever we create either a `Customer` or `Provider`
+whenever we create either a `Customer` or `Provider`.
 
 `accepts_nested_attributes_for` allow you to save attributes on associated records through the parent.
-[http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html]
+[accepts_nested_attributes_for](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html)
 
-Back to an earlier topic of strong parameters in Rails, we now need to
+Back to an earlier topic of strong parameters. We now need to
 whitelist the attributes for the `User` inside the each of our
 controllers.
 
-We already have our models created, but we would still like to genrate a
+We already have our models created, but we would still like to generate a
 lot of the boilerplate we need to create the controller and views so we
-can keep plugging away at our project.  Using the rails `scaffold`
-command, would create a model for whatever resource name we specify so
-what are our options.  Let's ask for some help...
+can keep plugging away at our project.  Using the `rails scaffold`
+command, would create a model for whatever resource name we specify, so
+what are our alternatives.  Let's ask for some help...
 
+//why is this still showing the other filename?
 
 ```
 $ rails generate -h
 ```
 
-will give us a lot of options for the generate command, take a look this
-section in particular
+This gives us a lot of options for the generate command. Take a look this
+section in particular:
 
 ```
 Please choose a generator below.
@@ -342,9 +340,9 @@ Rails:
   task
 ```
   
-Take a look at `scaffold_controller`  here's what it does:
+Take a look at `scaffold_controller`,  here's what it does:
 
->Stubs out a scaffolded controller and its views. Pass the model name, either CamelCased or under_scored, and a list of views as arguments. The controller name is retrieved as a pluralized version of the model name.  To create a controller within a modulespecify the model name as a path like 'parent_module/controller_name'.  This generates a controller class in app/controllers and invokes helper, template engine and test framework generators.
+>Stubs out a scaffolded controller and its views. Pass the model name, either CamelCased or under_scored, and a list of views as arguments. The controller name is retrieved as a pluralized version of the model name.  To create a controller within a module specify the model name as a path like 'parent_module/controller_name'.  This generates a controller class in app/controllers and invokes helper, template engine and test framework generators.
 
 Running:
 ```
@@ -367,16 +365,8 @@ However, we do have to specify our routes, so let's add those in now:
   resources :providers
 ```
 
-##look into removing simple form to keep things simple  - remove from
-##template and streamline forms
-
-#work on controllers and building user - form showing blank right now.
-#link for info on bulding user 
-
-#http://stackoverflow.com/questions/783584/ruby-on-rails-how-do-i-use-the-active-record-build-method-in-a-belongs-to-rel
-
 With our routes set up, let's update both of our forms to collect the
-signup info from our user.
+sign up info from our user.
 
 
 ```html app/views/customers/_form.html.erb
@@ -475,12 +465,13 @@ need to add those to our strong params.
                                                          :password])
     end
 ```
-If you go to the `new_customer_path`, we can create a new Customer
-and User at the same time, and get redirected to the `show` view for the
+If you go to the `new_customer_path`, we can create a new `Customer`
+and `User` at the same time, and get redirected to the `show` view for the
 customer we just created.  If you look in the top corner of the nav bar,
-we still see the Sign In link.  We need to make one more update to
-create a new Customer, create and associated User, and create a new
-session for the user we just created.  This sounds a lot more
+we still see the Sign In link, whereas, if we were logged in, we would
+see our email address.  We need to make one more update to
+create a new `Customer`, create an associated `User`, and create a new
+session for the `User` we just created.  This sounds a lot more
 complicated than it actually is.  Devise give us a very handy `sign_in`
 method.
 
@@ -502,4 +493,9 @@ method.
 and that's that!  Now, when you go to create a new `Customer` or
 `Provider`, we automatically create an associated `User` and sign in.
 One of my favorite things about this set up is you, can use single form
-to sign in at the `new_user_session GET    /users/sign_in(.:format)       devise/sessions#new` path.
+to sign in at the `new_user_session` path.
+
+Again, this is by no means an exhaustive post on Polymorphism or Devise.
+Just my way of combining two common uses into a practical example
+There are a ton of great resources online if you'd like to do a deeper
+dive into either topics.
